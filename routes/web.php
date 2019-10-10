@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', "MainController@home")->name('main');
 
 Route::get('/services', function () {
     return view('services');
@@ -30,12 +28,6 @@ Route::get('/contact', function () {
 Route::get('/blog-post', function(){
     return view('blog-post');
 });
-
-Auth::routes();
-
-Route::get('/home', function() {
-    return view('home');
-})->name('home')->middleware('auth');
 
 Auth::routes();
 

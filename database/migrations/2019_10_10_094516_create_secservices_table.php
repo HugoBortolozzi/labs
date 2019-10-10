@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSectionTeamsTable extends Migration
+class CreateSecservicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateSectionTeamsTable extends Migration
      */
     public function up()
     {
-        Schema::create('section_teams', function (Blueprint $table) {
+        Schema::create('secservices', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title_part1');
             $table->string('title_part2');
             $table->string('span');
+            $table->string('button');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateSectionTeamsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('section_teams');
+        Schema::dropIfExists('secservices');
     }
 }
