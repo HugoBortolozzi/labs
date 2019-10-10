@@ -23,6 +23,7 @@ class CreateAboutsTable extends Migration
             $table->string('button');
             $table->string('video');
             $table->string('video_img');
+            $table->string('testimonial_title');
             $table->timestamps();
         });
     }

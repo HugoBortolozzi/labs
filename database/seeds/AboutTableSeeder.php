@@ -24,6 +24,7 @@ class AboutTableSeeder extends Seeder
             "button" => "Browse",
             "video" => "https://www.youtube.com/watch?v=JgHfx2v9zOU",
             "video_img" => "img/video.jpg",
+            "testimonial_title" => "What our clients say",
         ]);
     }
 }
