@@ -1,41 +1,11 @@
-@extends('templates/home/index_home');
+@extends('adminlte::page')
 
-@section('head')
-	@include('templates/home/head')
-@endsection
+@section('title', 'AdminLTE')
 
-@section('header')
-	@include('templates/home/header')
-@endsection
+@section('content_header')
+    <h1>Dashboard</h1>
+@stop
 
-@section('intro')
-	@include('templates/home/intro')
-@endsection
-
-@section('about')
-	@include('templates/home/about')
-@endsection
-
-@section('testimonials')
-	@include('templates/home/testimonials')
-@endsection
-
-@section('services')
-	@include('templates/home/services')
-@endsection
-
-@section('team')
-	@include('templates/home/team')
-@endsection
-
-@section('promotions')
-	@include('templates/home/promotions')
-@endsection
-
-@section('contact')
-	@include('templates/home/contact')
-@endsection
-
-@section('footer')
-	@include('templates/home/footer')
-@endsection
+@section('content')
+    <p>You are logged in!</p>
+@stop
