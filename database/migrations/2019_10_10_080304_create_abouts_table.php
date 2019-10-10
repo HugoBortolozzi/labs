@@ -19,9 +19,10 @@ class CreateAboutsTable extends Migration
             $table->string('title_part2');
             $table->string('span');
             $table->text('text1');
-            $table->string('text2');
+            $table->text('text2');
             $table->string('button');
             $table->string('video');
+            $table->string('video_img');
             $table->timestamps();
         });
     }

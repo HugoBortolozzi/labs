@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', "MainController@home")->name('main');
+Route::get('/', "MainController@main")->name('main');
 
 Route::get('/services', function () {
     return view('services');

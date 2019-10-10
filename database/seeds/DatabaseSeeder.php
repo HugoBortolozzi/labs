@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use App\Banner;
+use App\Carousel;
+use App\About;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,7 +15,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Banner::truncate();
-        $this->call(UsersTableSeeder::class);
+        Carousel::truncate();
+        About::truncate();
+        // $this->call(UsersTableSeeder::class);
         $this->call(BannerTableSeeder::class);
+        $this->call(CarouselTableSeeder::class);
+        $this->call(AboutTableSeeder::class);
     }
 }
