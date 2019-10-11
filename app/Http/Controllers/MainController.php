@@ -9,6 +9,11 @@ use App\About;
 use App\Testimonial;
 use App\Service;
 use App\Secservice;
+use App\Team;
+use App\Secteam;
+use App\Promotion;
+use App\Contact;
+use App\Contactform;
 
 class MainController extends Controller
 {
@@ -19,6 +24,11 @@ class MainController extends Controller
         $testimonials = Testimonial::all();
         $services = Service::all();
         $secservice = Secservice::find(1);
-        return view ("main", compact('banner',"carousels","about","testimonials","services","secservice"));
+        $teams = Team::all();
+        $secteam = Secteam::find(1);
+        $promotion = Promotion::find(1);
+        $contact = Contact::find(1);
+        $contactform = Contactform::find(1);
+        return view ("main", compact('banner',"carousels","about","testimonials","services","secservice","teams","secteam","promotion","contact",'contactform'));
     }
 }

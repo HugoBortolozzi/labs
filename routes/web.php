@@ -13,9 +13,7 @@
 
 Route::get('/', "MainController@main")->name('main');
 
-Route::get('/services', function () {
-    return view('services');
-});
+Route::get('/services', "ServiceController@Service");
 
 Route::get('/blog', function () {
     return view('blog');

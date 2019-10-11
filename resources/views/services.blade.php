@@ -24,9 +24,9 @@
 	@include('templates/services/servicesCard')
 @endsection
 
-{{-- @section('servicesNewletter')
-	@include('templates/services/servicesNewletter')
-@endsection --}}
+@section('contact')
+	@include('templates/home/contact')
+@endsection
 
 @section('newsletter')
 	@include('templates/home/newsletter')

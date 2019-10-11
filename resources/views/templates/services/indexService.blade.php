@@ -41,7 +41,7 @@
 
     @yield('newsletter')   
 
-	@yield('servicesContact')
+	@yield('contact')
 
 	@yield('footer')
 </body>
