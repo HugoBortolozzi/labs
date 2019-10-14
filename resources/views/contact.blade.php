@@ -4,12 +4,16 @@
 	@include('templates/home/head')
 @endsection
 
+@section('preloader')
+	@include('templates/home/preloader')
+@endsection
+
 @section('contactHeader')
 	@include('templates/contact/contactHeader')
 @endsection
 
-@section('contactSection')
-	@include('templates/contact/contactSection')
+@section('contact')
+	@include('templates/home/contact')
 @endsection
 
 @section('footer')

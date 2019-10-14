@@ -41,35 +41,54 @@
     <!-- card section end-->
 
 
+    @foreach($templates as $template)
     <!-- About contant -->
+    @if($template->id ==5 )
     <div class="about-contant">
-        <div class="container">
-            <div class="section-title">
-                <h2>{{$about->title_part1}}<span>{{$about->span}}</span>{{$about->title_part2}}</h2>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <p>{{$about->text1}}</p>
+            <div class="container">
+                <div class="section-title">
+                    <h2>{{$template->contain}} @endif 
+                        @if($template->id ==6 )
+                        <span>{{$template->contain}}</span>
+                        @endif
+                        @if($template->id ==7 )
+                    {{$template->contain}}</h2>
                 </div>
-                <div class="col-md-6">
-                    <p>{{$about->text2}}</p>
-                </div>
-            </div>
-            <div class="text-center mt60">
-                <a href="" class="site-btn">{{$about->button}}</a>
-            </div>
-            <!-- popup video -->
-            <div class="intro-video">
+    @endif
+                @if($template->id == 8)
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <img src="{{$about->video_img}}" alt="">
-                        <a href="{{$about->video}}" class="video-popup">
-                            <i class="fa fa-play"></i>
-                        </a>
+                    <div class="col-md-6">
+                        <p>{{$template->contain}}</p>
+                    </div>
+                @endif
+                @if($template->id == 9)
+                    <div class="col-md-6">
+                        <p>{{$template->contain}}</p>
+                    </div>
+                </div>
+                @endif
+                @if($template->id == 10)
+                <div class="text-center mt60">
+                    <a href="" class="site-btn">{{$template->contain}}</a>
+                </div>
+                @endif
+                @if($template->id == 11)
+                <!-- popup video -->
+                <div class="intro-video">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <img src="{{$template->contain}}" alt="">
+                @endif
+                @if($template->id == 12)
+                            <a href="{{$template->contain}}" class="video-popup">
+                                    <i class="fa fa-play"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+                @endif
+    @endforeach
 </div>
 <!-- About section end -->

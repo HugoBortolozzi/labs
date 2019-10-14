@@ -3,40 +3,34 @@
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="section-title">
-				<h2>Get in <span>the Lab</span> and  discover the world</h2>
+				@foreach($templates as $template)
+					@if($template->id == 38)
+					<h2>{{$template->contain}}
+					@endif
+					@if($template->id == 39)
+					<span>{{$template->contain}}</span>
+					@endif
+					@if($template->id == 40)
+					{{$template->contain}}</h2>
+					@endif
+				@endforeach
+				
 			</div>
 			<div class="row">
 				<!-- feature item -->
 				<div class="col-md-4 col-sm-4 features">
-					<div class="icon-box light left">
-						<div class="service-text">
-							<h2>Get in the lab</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
-						</div>
-						<div class="icon">
-							<i class="flaticon-002-caliper"></i>
-						</div>
-					</div>
+					@foreach($projets as $projet)
 					<!-- feature item -->
 					<div class="icon-box light left">
-						<div class="service-text">
-							<h2>Projects online</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
+							<div class="service-text">
+								<h2>{{$projet->name}}</h2>
+								<p>{{$projet->text}}</p>
+							</div>
+							<div class="icon">
+								<i class="{{$projet->icon}}"></i>
+							</div>
 						</div>
-						<div class="icon">
-							<i class="flaticon-019-coffee-cup"></i>
-						</div>
-					</div>
-					<!-- feature item -->
-					<div class="icon-box light left">
-						<div class="service-text">
-							<h2>SMART MARKETING</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
-						</div>
-						<div class="icon">
-							<i class="flaticon-020-creativity"></i>
-						</div>
-					</div>
+					@endforeach
 				</div>
 				<!-- Devices -->
 				<div class="col-md-4 col-sm-4 devices">
@@ -78,7 +72,11 @@
 				</div>
 			</div>
 			<div class="text-center mt100">
-				<a href="" class="site-btn">Browse</a>
+				@foreach($templates as $template)
+					@if($template->id == 41)
+					<a href="" class="site-btn">{{$template->contain}}</a>
+					@endif
+				@endforeach
 			</div>
 		</div>
 	</div>

@@ -2,6 +2,7 @@
 <html lang="en">
     @yield('head')
 <body>
+	@yield('preloader')
 	
     @yield('header')
 

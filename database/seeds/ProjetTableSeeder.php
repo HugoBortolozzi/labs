@@ -33,23 +33,23 @@ class ProjetTableSeeder extends Seeder
             "icon" => "flaticon-020-creativity",
             "photo" => "img/card-3.jpg",
         ]);
-        Projet::create([
-            "name" => "Get in the lab",
-            "text" => "Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec",
-            "icon" => "flaticon-037-idea",
-            "photo" => "img/card-1.jpg",
-        ]);
-        Projet::create([
-            "name" => "Projects online",
-            "text" => "Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec",
-            "icon" => "flaticon-025-imagination",
-            "photo" => "img/card-2.jpg",
-        ]);
-        Projet::create([
-            "name" => "SMART MARKETING",
-            "text" => "Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec",
-            "icon" => "flaticon-008-team",
-            "photo" => "img/card-3.jpg",
-        ]);
+        // Projet::create([
+        //     "name" => "Get in the lab",
+        //     "text" => "Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec",
+        //     "icon" => "flaticon-037-idea",
+        //     "photo" => "img/card-1.jpg",
+        // ]);
+        // Projet::create([
+        //     "name" => "Projects online",
+        //     "text" => "Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec",
+        //     "icon" => "flaticon-025-imagination",
+        //     "photo" => "img/card-2.jpg",
+        // ]);
+        // Projet::create([
+        //     "name" => "SMART MARKETING",
+        //     "text" => "Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec",
+        //     "icon" => "flaticon-008-team",
+        //     "photo" => "img/card-3.jpg",
+        // ]);
     }
 }

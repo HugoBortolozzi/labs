@@ -4,6 +4,10 @@
 	@include('templates/home/head')
 @endsection
 
+@section('preloader')
+	@include('templates/home/preloader')
+@endsection
+
 @section('header')
 	@include('templates/home/header')
 @endsection

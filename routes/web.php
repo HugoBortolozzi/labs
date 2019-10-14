@@ -13,15 +13,11 @@
 
 Route::get('/', "MainController@main")->name('main');
 
-Route::get('/services', "ServiceController@Service");
+Route::get('/services', "ServiceController@service")->name("service");
 
-Route::get('/blog', function () {
-    return view('blog');
-});
+Route::get('/blog', "BlogController@blog")->name('blog');
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+Route::get('/contact', "MainController@contact")->name("contact");
 
 Route::get('/blog-post', function(){
     return view('blog-post');

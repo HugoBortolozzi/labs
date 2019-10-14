@@ -4,13 +4,8 @@
 	@yield('head')
 	
 <body>
-	<!-- Page Preloder -->
-	<div id="preloder">
-		<div class="loader">
-			<img src="img/logo.png" alt="">
-			<h2>Loading.....</h2>
-		</div>
-	</div>
+
+	@yield('preloader')
 
 
 	<!-- Header section -->
@@ -22,10 +17,20 @@
 		<div class="responsive"><i class="fa fa-bars"></i></div>
 		<nav>
 			<ul class="menu-list">
-				<li><a href="/">Home</a></li>
-				<li><a href="/services">Services</a></li>
-				<li><a href="/blog">Blog</a></li>
-				<li class="active"><a href="/contact">Contact</a></li>
+					@foreach($templates as $template)
+					@if($template->id == 1)
+						<li><a href="/">{{$template->contain}}</a></li>
+					@endif
+					@if($template->id == 37)
+						<li><a href="/services">{{$template->contain}}</a></li>
+					@endif
+					@if($template->id == 42)
+						<li><a href="/blog">{{$template->contain}}</a></li>
+					@endif
+					@if($template->id == 51)
+						<li class="active"><a href="/contact">{{$template->contain}}</a></li>
+					@endif
+				@endforeach
 			</ul>
 		</nav>
 	</header>
@@ -33,7 +38,7 @@
 
 	@yield('contactHeader')
 
-	@yield('contactSection')
+	@yield('contact')
 
 	@yield('footer')
 </body>

@@ -2,8 +2,14 @@
 <div class="hero-section">
     <div class="hero-content">
         <div class="hero-center">
-            <img src="{{$banner->bigLogo}}" alt="">
-            <p>{{$banner->sub_title}}</p>
+            @foreach($templates as $template)
+                @if($template->id ==3)
+                <img src="{{$template->contain}}" alt="">
+                @endif
+                @if($template->id == 4)
+                <p>{{$template->contain}}</p>
+                @endif
+            @endforeach
         </div>
     </div>
     <!-- slider -->

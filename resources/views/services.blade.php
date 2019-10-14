@@ -4,20 +4,20 @@
 	@include('templates/home/head')
 @endsection
 
+@section('preloader')
+	@include('templates/home/preloader')
+@endsection
+
 @section('servicesHeader')
 	@include('templates/services/servicesHeader')
 @endsection
 
-@section('servicesSection')
-	@include('templates/services/servicesSection')
+@section('services')
+	@include('templates/home/services')
 @endsection
 
-@section('servicesFeatures')
-	@include('templates/services/servicesFeatures')
-@endsection
-
-@section('servicesFeatures')
-	@include('templates/services/servicesFeatures')
+@section('servicesProjet')
+	@include('templates/services/servicesProjet')
 @endsection
 
 @section('servicesCard')

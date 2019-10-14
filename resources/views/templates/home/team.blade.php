@@ -3,7 +3,18 @@
     <div class="overlay"></div>
     <div class="container">
         <div class="section-title">
-            <h2>{{$secteam->title_part1}}<span>{{$secteam->span}}</span>{{$secteam->title_part2}}</h2>
+            @foreach($templates as $template)
+                @if($template->id == 18)
+                    <h2>{{$template->contain}}
+                @endif
+                @if($template->id == 19)
+                    <span>{{$template->contain}}</span>
+                @endif
+                @if($template->id == 20)
+                    {{$template->contain}}</h2>
+                @endif
+            @endforeach
+            
         </div>
         <div class="row">
             @foreach($teams as $team)

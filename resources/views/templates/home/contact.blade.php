@@ -4,31 +4,65 @@
         <div class="row">
             <!-- contact info -->
             <div class="col-md-5 col-md-offset-1 contact-info col-push">
+                @foreach($templates as $template)
+                @if($template->id == 24)
                 <div class="section-title left">
-                    <h2>{{$contact->title}}</h2>
+                    <h2>{{$template->contain}}</h2>
                 </div>
-                <p>{{$contact->text}}</p>
-                <h3 class="mt60">{{$contact->sub_title}}</h3>
-                <p class="con-item">{{$contact->champ1}}</p>
-                <p class="con-item">{{$contact->champ2}}</p>
-                <p class="con-item">{{$contact->champ3}}</p>
-                <p class="con-item">{{$contact->champ4}}</p>
+                @endif
+                @if($template->id == 25)
+                <p>{{$template->contain}}</p>
+                @endif
+                @if($template->id == 26)
+                <h3 class="mt60">{{$template->contain}}</h3>
+                @endif
+                @if($template->id == 27)
+                <p class="con-item">{{$template->contain}}</p>
+                @endif
+                @if($template->id == 28)
+                <p class="con-item">{{$template->contain}}</p>
+                @endif
+                @if($template->id == 29)
+                <p class="con-item">{{$template->contain}}</p>
+                @endif
+                @if($template->id == 30)
+                <p class="con-item">{{$template->contain}}</p>
+                @endif                   
+                @endforeach
             </div>
             <!-- contact form -->
             <div class="col-md-6 col-pull">
                 <form class="form-class" id="con_form">
                     <div class="row">
-                        <div class="col-sm-6">
-                            <input type="text" name="name" placeholder="{{$contactform->name}}">
-                        </div>
-                        <div class="col-sm-6">
-                            <input type="text" name="email" placeholder="{{$contactform->mail}}">
-                        </div>
-                        <div class="col-sm-12">
-                            <input type="text" name="subject" placeholder="{{$contactform->subject}}">
-                            <textarea name="message" placeholder="{{$contactform->message}}"></textarea>
-                            <button class="site-btn">{{$contactform->button}}</button>
-                        </div>
+                        @foreach($templates as $template)
+                            @if($template->id == 31)
+                                <div class="col-sm-6">
+                                    <input type="text" name="name" placeholder="{{$template->contain}}">
+                                </div>
+                            @endif
+                            @if($template->id == 32)
+                                <div class="col-sm-6">
+                                    <input type="text" name="email" placeholder="{{$template->contain}}">
+                                </div>
+                            @endif
+                            @if($template->id == 33)
+                                <div class="col-sm-12">
+                                    <input type="text" name="subject" placeholder="{{$template->contain}}">
+                            @endif
+                            @if($template->id == 34)
+                                <textarea name="message" placeholder="{{$template->contain}}"></textarea>
+                            @endif
+                            @if($template->id == 35)
+                                <button class="site-btn">{{$template->contain}}</button>
+                            </div>
+                            @endif
+                        @endforeach
+                        
+                        
+                        
+                            
+                           
+                        
                     </div>
                 </form>
             </div>

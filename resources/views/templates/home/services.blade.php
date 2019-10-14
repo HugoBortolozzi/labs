@@ -1,9 +1,20 @@
 <!-- Services section -->
 <div class="services-section spad">
     <div class="container">
-        <div class="section-title dark">
-            <h2>{{$secservice->title_part1}}<span>{{$secservice->span}}</span>{{$secservice->title_part2}}</h2>
-        </div>
+        @foreach($templates as $template)
+            @if($template->id ==14)
+                <div class="section-title dark">
+                    <h2>{{$template->contain}}
+            @endif
+            @if($template->id == 15)
+                <span>{{$template->contain}}</span>
+            @endif
+            @if($template->id == 16)
+                    {{$template->contain}}</h2>
+                </div>
+            @endif
+        @endforeach
+        
         <div class="row">
             @foreach($services as $service)
             <!-- single service -->
@@ -20,9 +31,13 @@
                 </div>
             @endforeach
         </div>
-        <div class="text-center">
-            <a href="" class="site-btn">{{$secservice->button}}</a>
-        </div>
+        @foreach($templates as $template)
+            @if($template->id == 17)
+            <div class="text-center">
+                    <a href="" class="site-btn">{{$template->contain}}</a>
+                </div>
+            @endif
+        @endforeach
     </div>
 </div>
 <!-- services section end -->

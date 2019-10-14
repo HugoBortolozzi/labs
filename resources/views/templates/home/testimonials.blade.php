@@ -5,7 +5,11 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-4">
                 <div class="section-title left">
-                    <h2>{{$about->testimonial_title}}</h2>
+                    @foreach($templates as $template)
+                        @if($template->id == 13)
+                        <h2>{{$template->contain}}</h2>
+                        @endif
+                    @endforeach
                 </div>
                 <div class="owl-carousel" id="testimonial-slide">
                     

@@ -3,12 +3,23 @@
 		<div class="overlay"></div>
 		<div class="container text-right">
 			<div class="page-info">
-				<h2>Services</h2>
-				<div class="page-links">
-					<a href="/">Home</a>
-					<span>Services</span>
-				</div>
+				@foreach($templates as $template)
+					@if($template->id == 37)
+						<h2>{{$template->contain}}</h2>
+					@endif
+				@endforeach
+
+				@foreach($templates as $template)
+					@if($template->id == 1)
+					<div class="page-links">
+							<a href="/">{{$template->contain}}</a>
+					@endif
+					@if($template->id == 37)
+						<span>{{$template->contain}}</span>
+					</div>
+					@endif
+				@endforeach
 			</div>
 		</div>
-	</div>
+</div>
 	<!-- Page header end-->

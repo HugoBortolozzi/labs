@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use App\Service;
-use App\Secservice;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -60,12 +59,6 @@ class ServiceTableSeeder extends Seeder
             "title" => "Ultra modern",
             "logo" => "flaticon-012-cube",
             "text" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..",
-        ]);
-        Secservice::create([
-            "title_part1" => "Get in ",
-            "title_part2" => " and see the services",
-            "span" => "the Lab",
-            "button" => "Browse",
         ]);
     }
 }
