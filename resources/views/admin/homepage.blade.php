@@ -24,7 +24,7 @@
 
 
         @if($template->id == 1)
-        <h2>Page 1</h2>
+        <h2>Page principale</h2>
         <br>
         @if(session()->has('messageBanner'))
         <div class="alert alert-info alert-dismissible" role="alert">{{session()->get('messageBanner')}}</div>

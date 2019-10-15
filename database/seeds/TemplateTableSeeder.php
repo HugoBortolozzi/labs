@@ -206,36 +206,36 @@ class TemplateTableSeeder extends Seeder
         // Page 2 
 
         Template::create([
-            "name" => "page2_title",
+            "name" => "Titre de la deuxième page",
             "contain" => "Services",
         ]);
 
             // Section 1 
 
         Template::create([
-            "name" => "page2_sec2_title_part1",
+            "name" => "Titre de la 2ème section de la page 2 partie 1",
             "contain" => "Get in",
         ]);
         Template::create([
-            "name" => "page2_sec2_title_span",
+            "name" => "Titre de la 2ème section de la page 2 partie colorée",
             "contain" => "the Lab",
         ]);
         Template::create([
-            "name" => "page2_sec2_title_part2",
+            "name" => "Titre de la 2ème section de la page 2 partie 2",
             "contain" => "and  discover the world",
         ]);
 
             // 40
 
         Template::create([
-            "name" => "page2_sec2_button",
+            "name" => "Bouton de la 2ème section de la page 2",
             "contain" => "Browse",
         ]);
 
             // Page 3
 
         Template::create([
-            "name" => "page3_title",
+            "name" => "Titre de la page 3",
             "contain" => "Blog",
         ]);
 
@@ -283,7 +283,7 @@ class TemplateTableSeeder extends Seeder
         // 50
 
         Template::create([
-            "name" => "page3_title",
+            "name" => "page4_title",
             "contain" => "Contact"
         ]);
     }

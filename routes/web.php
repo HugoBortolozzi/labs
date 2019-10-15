@@ -43,3 +43,15 @@ Route::patch('/admin/template/editSec4',"EditTemplateController@section4")->midd
 Route::patch('/admin/template/editSec5',"EditTemplateController@section5")->middleware('auth');
 Route::patch('/admin/template/editSec6',"EditTemplateController@section6")->middleware('auth');
 Route::patch('/admin/template/editForm',"EditTemplateController@formulaire")->middleware('auth');
+
+
+Route::get('/admin/template/page2',"EditTemplateController@page2")->middleware('auth')->name('pageDeux');
+
+Route::patch('/admin/template/editPage2Title',"EditTemplateController@P2Title")->middleware('auth');
+Route::patch('/admin/template/editPage2Sec2',"EditTemplateController@P2sec2")->middleware('auth');
+
+Route::get('/admin/template/page3',"EditTemplateController@page3")->middleware('auth')->name('pageTrois');
+
+Route::patch('/admin/template/editPage3Title',"EditTemplateController@P3Title")->middleware('auth');
+
+Route::patch('/admin/template/editWidget',"EditTemplateController@P3Widget")->middleware('auth');

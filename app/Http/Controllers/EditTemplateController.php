@@ -11,10 +11,15 @@ class EditTemplateController extends Controller
         return view('admin/template');
     }
 
+
+        // Updaters de la page principale
+
     public function homepage(){
         $templates = Template::all();
         return view('admin/homepage',compact('templates'));
     }
+
+        // Banner
 
     public function banner(){
         $template = Template::find(1);
@@ -41,11 +46,13 @@ class EditTemplateController extends Controller
 
         $template->save();
 
-        $messageBanner = $template ? "En-tête mis à jour" : "erreur lors de la modification de l'en-tête";
+        $messageBanner = $template ? "En-tête mis à jour" : "Erreur lors de la modification de l'en-tête";
         session()->flash('messageBanner',$messageBanner);
 
         return redirect()->route('homepage');
     }
+
+        // Section 1
 
     public function section1(){
         $template = Template::find(5);
@@ -96,11 +103,13 @@ class EditTemplateController extends Controller
 
         $template->save();
 
-        $messageSec1 = $template ? "1ère section mise à jour" : "erreur lors de la modification de la 1ère section";
+        $messageSec1 = $template ? "1ère section mise à jour" : "Erreur lors de la modification de la 1ère section";
         session()->flash('messageSec1',$messageSec1);
 
         return redirect()->route('homepage');
     }
+
+        // Section 2
 
     public function section2(){
         $template = Template::find(13);
@@ -109,11 +118,13 @@ class EditTemplateController extends Controller
 
         $template->save();
 
-        $messageSec2 = $template ? "2ème section mise à jour" : "erreur lors de la modification de la 2ème section";
+        $messageSec2 = $template ? "2ème section mise à jour" : "Erreur lors de la modification de la 2ème section";
         session()->flash('messageSec2',$messageSec2);
 
         return redirect()->route('homepage');
     }
+
+        // Section 3
 
     public function section3(){
         $template = Template::find(14);
@@ -140,11 +151,14 @@ class EditTemplateController extends Controller
 
         $template->save();
 
-        $messageSec3 = $template ? "3ème section mise à jour" : "erreur lors de la modification de la 3ème section";
+        $messageSec3 = $template ? "3ème section mise à jour" : "Erreur lors de la modification de la 3ème section";
         session()->flash('messageSec3',$messageSec3);
 
         return redirect()->route('homepage');
     }
+
+
+        // Section 4
 
     public function section4(){
         $template = Template::find(18);
@@ -165,11 +179,14 @@ class EditTemplateController extends Controller
 
         $template->save();
 
-        $messageSec4 = $template ? "4ème section mise à jour" : "erreur lors de la modification de la 4ème section";
+        $messageSec4 = $template ? "4ème section mise à jour" : "Erreur lors de la modification de la 4ème section";
         session()->flash('messageSec4',$messageSec4);
 
         return redirect()->route('homepage');
     }
+
+
+        // Section 5
 
     public function section5(){
         $template = Template::find(21);
@@ -190,11 +207,14 @@ class EditTemplateController extends Controller
 
         $template->save();
 
-        $messageSec5 = $template ? "5ème section mise à jour" : "erreur lors de la modification de la 5ème section";
+        $messageSec5 = $template ? "5ème section mise à jour" : "Erreur lors de la modification de la 5ème section";
         session()->flash('messageSec5',$messageSec5);
 
         return redirect()->route('homepage');
     }
+
+
+        // Section 6
 
     public function section6(){
         $template = Template::find(24);
@@ -239,11 +259,14 @@ class EditTemplateController extends Controller
 
         $template->save();
 
-        $messageSec6 = $template ? "6ème section mise à jour" : "erreur lors de la modification de la 6ème section";
+        $messageSec6 = $template ? "6ème section mise à jour" : "Erreur lors de la modification de la 6ème section";
         session()->flash('messageSec6',$messageSec6);
 
         return redirect()->route('homepage');
     }
+
+
+        // Formulaire
 
     public function formulaire(){
         $template = Template::find(31);
@@ -282,9 +305,141 @@ class EditTemplateController extends Controller
 
         $template->save();
 
-        $messageForm = $template ? "formulaire mis à jour" : "erreur lors de la modification du formulaire";
+        $messageForm = $template ? "formulaire mis à jour" : "Erreur lors de la modification du formulaire";
         session()->flash('messageForm',$messageForm);
 
         return redirect()->route('homepage');
+    }
+
+        // Page 2 
+
+        // Section 1
+
+    public function page2(){
+        $templates = Template::all();
+
+        return view('admin/page2',compact('templates'));
+    }
+
+    public function P2Title(){
+        $template = Template::find(37);
+
+        $template->contain = request()->input('page2_title');
+
+        $template->save();
+
+        $messageSec2 = $template ? "2ème section mise à jour" : "Erreur lors de la modification de la 2ème section";
+        session()->flash('messageSec2',$messageSec2);
+
+        return redirect()->route('pageDeux');
+    }
+
+    // Section 2 
+
+    public function P2sec2(){
+        $template = Template::find(38);
+
+        $template->contain = request()->input('page2_sec2_title_part1');
+
+        $template->save();
+
+        $template = Template::find(39);
+
+        $template->contain = request()->input('page2_sec2_title_span');
+
+        $template->save();
+
+        $template = Template::find(40);
+
+        $template->contain = request()->input('page2_sec2_title_part2');
+
+        $template->save();
+
+        $template = Template::find(41);
+
+        $template->contain = request()->input('page2_sec2_button');
+
+        $template->save();
+
+        $messageSec2 = $template ? "2ème section mise à jour" : "erreur lors de la modification de la 2ème section";
+        session()->flash('messageSec2',$messageSec2);
+
+        return redirect()->route('pageDeux');
+    }
+
+    // Page 3
+
+    public function page3(){
+        $templates = template::all();
+
+        return view('admin/page3',compact('templates'));
+    }
+
+    public function P3Title(){
+        $template = Template::find(42);
+
+        $template->contain = request()->input('page3_title');
+
+        $template->save();
+
+        $messageTitle = $template ? "2ème section mise à jour" : "erreur lors de la modification de la 2ème section";
+        session()->flash('messageTitle',$messageTitle);
+
+        return redirect()->route('pageTrois');
+    }
+
+    public function P3Widget(){
+        $template = Template::find(43);
+
+        $template->contain = request()->input('page3_widget1_name');
+
+        $template->save();
+
+        $template = Template::find(44);
+
+        $template->contain = request()->input('page3_widget2_name');
+
+        $template->save();
+
+        $template = Template::find(45);
+
+        $template->contain = request()->input('page3_widget3_name');
+
+        $template->save();
+
+        $template = Template::find(46);
+
+        $template->contain = request()->input('page3_widget4_name');
+
+        $template->save();
+
+        $template = Template::find(47);
+
+        $template->contain = request()->input('page3_widget4_contain');
+
+        $template->save();
+
+        $template = Template::find(48);
+
+        $template->contain = request()->input('page3_widget5_name');
+
+        $template->save();
+
+        $template = Template::find(49);
+
+        $template->contain = request()->input('page3_widget5_img');
+
+        $template->save();
+
+        $template = Template::find(50);
+
+        $template->contain = request()->input('page3_widget5_path_link');
+
+        $template->save();
+
+        $messageTitle = $template ? "Widgets mis à jour" : "erreur(s) lors de la modification des widgets";
+        session()->flash('messageTitle',$messageTitle);
+
+        return redirect()->route('pageTrois');
     }
 }
