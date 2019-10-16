@@ -13,7 +13,7 @@
 
 Route::get('/', "MainController@main")->name('main');
 
-Route::get('/services', "ServiceController@service")->name("service");
+Route::get('/services', "ServiceController@services")->name("services");
 
 Route::get('/blog', "BlogController@blog")->name('blog');
 
@@ -29,9 +29,12 @@ Route::get('/home', function() {
     return view('home');
 })->name('home')->middleware('auth');
 
-// Route de l'admin
+// Routes de l'admin
+
+// Routes pour le crud du template
 
 Route::get('/admin/template',"EditTemplateController@template")->middleware('auth');
+
 
 Route::get('/admin/template/home',"EditTemplateController@homepage")->middleware('auth')->name('homepage');
 
@@ -53,5 +56,25 @@ Route::patch('/admin/template/editPage2Sec2',"EditTemplateController@P2sec2")->m
 Route::get('/admin/template/page3',"EditTemplateController@page3")->middleware('auth')->name('pageTrois');
 
 Route::patch('/admin/template/editPage3Title',"EditTemplateController@P3Title")->middleware('auth');
-
 Route::patch('/admin/template/editWidget',"EditTemplateController@P3Widget")->middleware('auth');
+
+
+Route::get('/admin/template/page4',"EditTemplateController@page4")->middleware('auth')->name('pageQuatre');
+Route::patch('/admin/template/editPage4Title',"EditTemplateController@P4Title")->middleware('auth');
+
+// Routes pour le crud des services 
+
+Route::get('/admin/services',"ServiceController@adminServices")->middleware('auth')->name('adminServices');
+
+Route::get('/admin/services/{id}/edit',"ServiceController@edit")->middleware('auth');
+Route::patch('/admin/services/{id}/update',"ServiceController@update")->middleware('auth');
+Route::get('/admin/services/{id}/delete',"ServiceController@delete")->middleware('auth');
+Route::get('/admin/services/newService',"ServiceController@newService")->middleware('auth');
+Route::post('/admin/services/create',"ServiceController@create")->middleware('auth');
+
+// Routes pour le crud des testimonials
+
+Route::get('/admin/testimonials',"AdminController@testimonials")->middleware('auth')->name('adminTestimonials');
+
+Route::get('/admin/testimonials/{id}/delete',"AdminController@deleteTestimonial")->middleware('auth');
+Route::get('/admin/testimonials/{id}/update',"AdminController@updateTestimonial")->middleware('auth');

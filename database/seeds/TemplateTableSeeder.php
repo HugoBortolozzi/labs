@@ -242,48 +242,48 @@ class TemplateTableSeeder extends Seeder
             // Widgets  
         
         Template::create([
-            "name" => "page3_widget1_name",
+            "name" => "1er widget de la sidebar",
             "contain" => "Categories",
         ]);
 
         Template::create([
-            "name" => "page3_widget2_name",
+            "name" => "2ème widget de la sidebar",
             "contain" => "Instagram",
         ]);
 
         Template::create([
-            "name" => "page3_widget3_name",
+            "name" => "3ème widget de la sidebar",
             "contain" => "Tags",
         ]);
         
         // 45
 
         Template::create([
-            "name" => "page3_widget4_name",
+            "name" => "4ème widget de la sidebar",
             "contain" => "Quote",
         ]);            
         Template::create([
-            "name" => "page3_widget4_contain",
+            "name" => "texte du 4ème widget de la sidebar",
             "contain" => "Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique. Sed lacinia turpis at ultricies vestibulum.",
         ]);
 
         Template::create([
-            "name" => "page3_widget5_name",
+            "name" => "5ème widget de la sidebar",
             "contain" => "Add",
         ]);
         Template::create([
-            "name" => "page3_widget5_img",
+            "name" => "image du 5ème widget de la sidebar",
             "contain" => "img/add.jpg",
         ]);
         Template::create([
-            "name" => "page3_widget5_path_link",
+            "name" => "lien du 5ème widget de la sidebar",
             "contain" => "#",
         ]);
 
         // 50
 
         Template::create([
-            "name" => "page4_title",
+            "name" => "Titre de la page 4",
             "contain" => "Contact"
         ]);
     }

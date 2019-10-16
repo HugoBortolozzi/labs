@@ -16,11 +16,12 @@ class MainController extends Controller
         $carousels = Carousel::all();
         $testimonials = Testimonial::all();
         $services = Service::all();
-        // $serv = Service::all()->random(3);
+        $randomServices = Service::all()->random(3);      
+
         $teams = Team::all();
         
         $templates = Template::all();
-        return view ("main", compact("carousels","testimonials","services","teams","templates"));
+        return view ("main", compact("carousels","testimonials","services","teams","templates","randomServices"));
     }
     public function contact(){
 

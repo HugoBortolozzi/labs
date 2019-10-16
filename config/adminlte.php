@@ -126,6 +126,12 @@ return [
     */
 
     'menu' => [
+        ['header' => 'main_view'],
+        [
+            'text' => 'user_mode',
+            'url'  => '/',
+            'icon' => 'fas fa-undo',
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'users',
@@ -136,6 +142,16 @@ return [
             'text' => 'configure template',
             'url'  => 'admin/template',
             'icon' => 'fas fa-fw fa-lock',
+        ],
+        [
+            'text' => 'configure services',
+            'url'  => 'admin/services',
+            'icon' => 'fas fa-hands-helping',
+        ],
+        [
+            'text' => 'configure testimonials',
+            'url'  => 'admin/testimonials',
+            'icon' => 'fas fa-comment-dots',
         ],
     ],
 
