@@ -29,7 +29,7 @@
                 <tr>
                     <td>{{$testimonial->id}}</td>
                     <td>{{$testimonial->name}}</td>
-                    <td><img src="{{$testimonial->photo}}" alt=""></td>
+                    <td><img src="/{{$testimonial->photo}}" alt=""></td>
                     <td><p>{{$testimonial->text}}</p>
                     <td><p>{{$testimonial->post}}</p></td>
                     <td><a href="/admin/testimonials/{{$testimonial->id}}/delete" class="btn btn-danger">Supprimer</a></td>
@@ -43,5 +43,5 @@
       <!-- /.box -->
     </div>
   </div>
-  <a href="/admin/services/newService" class="btn btn-warning">Rajouter un nouveau service</a>
+  <a href="/admin/testimonials/newTestimonial" class="btn btn-warning">Rajouter un nouveau service</a>
 @stop

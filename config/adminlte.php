@@ -153,6 +153,11 @@ return [
             'url'  => 'admin/testimonials',
             'icon' => 'fas fa-comment-dots',
         ],
+        [
+            'text' => 'configure team',
+            'url'  => 'admin/team',
+            'icon' => "fas fa-users",
+        ],
     ],
 
     /*

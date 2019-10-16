@@ -62,6 +62,10 @@ Route::patch('/admin/template/editWidget',"EditTemplateController@P3Widget")->mi
 Route::get('/admin/template/page4',"EditTemplateController@page4")->middleware('auth')->name('pageQuatre');
 Route::patch('/admin/template/editPage4Title',"EditTemplateController@P4Title")->middleware('auth');
 
+// Routes pour le crud du carousel 
+
+Route::get('/admin/template/carousel',"MainController@carousel")->middleware('auth');
+
 // Routes pour le crud des services 
 
 Route::get('/admin/services',"ServiceController@adminServices")->middleware('auth')->name('adminServices');
@@ -77,4 +81,18 @@ Route::post('/admin/services/create',"ServiceController@create")->middleware('au
 Route::get('/admin/testimonials',"AdminController@testimonials")->middleware('auth')->name('adminTestimonials');
 
 Route::get('/admin/testimonials/{id}/delete',"AdminController@deleteTestimonial")->middleware('auth');
-Route::get('/admin/testimonials/{id}/update',"AdminController@updateTestimonial")->middleware('auth');
+Route::get('/admin/testimonials/{id}/edit',"AdminController@editTestimonial")->middleware('auth');
+Route::patch('/admin/testimonials/{id}/update',"AdminController@updateTestimonial")->middleware('auth');
+Route::get('/admin/testimonials/newTestimonial',"AdminController@newTestimonial")->middleware('auth');
+Route::post('/admin/testimonials/create',"ServiceController@createTestimonial")->middleware('auth');
+
+// Routes pour le crud de la team
+
+Route::get('/admin/team',"AdminController@team")->middleware('auth')->name('adminTeam');
+
+Route::get('/admin/team/{id}/edit',"AdminController@editTeam")->middleware('auth');
+Route::patch('/admin/team/{id}/update',"AdminController@updateTeam")->middleware('auth');
+Route::get('/admin/team/{id}/delete',"AdminController@deleteTeam")->middleware('auth');
+Route::get('/admin/team/newTeam',"AdminController@newTeam")->middleware('auth');
+Route::post('/admin/team/create',"AdminController@createTeam")->middleware('auth');
+

@@ -28,4 +28,9 @@ class MainController extends Controller
         $templates = Template::all();
         return view ('contact', compact('templates'));
     }
+    public function carousel(){
+        $carousels = Carousel::all();
+
+        return view ('admin/carousel',compact('carousels'));
+    }
 }

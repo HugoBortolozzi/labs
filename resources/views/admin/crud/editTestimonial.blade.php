@@ -18,13 +18,18 @@
             
             <div class="form-group">
                 <label for=""><h4>Changer la photo</h4></label>
-                <input class="form-control" name='testimonial_photo' type="file">
+                <input class="form-control-file" name='testimonial_photo' type="file">
             </div>
 
             <div class="form-group">
                 <label for=""><h4>Changer la description du service</h4></label><br>
-                <textarea name="service_text" id="" cols="75" rows="5">{{$testimonial->text}}</textarea>
+                <textarea name="testimonial_text" id="" cols="75" rows="5">{{$testimonial->text}}</textarea>
             </div>
+
+            <div class="form-group">
+                    <label for=""><h4>Changer le poste du témoin</h4></label>
+                    <input class="form-control" type="text" name="testimonial_post" value="{{$testimonial->post}}" id="">
+                </div>
 
             <button type="submit" class="btn btn-success">Validez les modifications</button>
         </form>

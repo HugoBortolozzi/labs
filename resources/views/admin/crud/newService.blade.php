@@ -78,7 +78,7 @@
             @endif
             <div class="form-group">
                 <label for="">Choisir le nom du nouveau service</label>
-                <input class="form-control" type="text" name="service_title" value="" id="">
+                <input class="form-control" type="text" name="service_title" value="{{old('service_title')}}" id="">
             </div>
 
             <div class="form-group">
@@ -92,7 +92,7 @@
     
             <div class="form-group">
                 <label for=""><h4>Choisir une description pour le service</h4></label><br>
-                <textarea name="service_text" id="" cols="75" rows="5"></textarea>
+                <textarea name="service_text" id="" cols="75" rows="5">{{old('service_text')}}</textarea>
             </div>
             
             <button type="submit" class="btn btn-success">Créer</button>
