@@ -11,11 +11,15 @@ use App\Template;
 class ServiceController extends Controller
 {
     public function services(){
-        $services = Service::all();
-        $projets = Projet::all();
+        $allServices = Service::all();
+        $allProjets = Projet::all();
+        $services = $allServices->take(-6);
+
+        $firstServices = $services->take(3);
+        $lastServices = $services->take(-3);
 
         $templates = Template::all();
-        return view ('services',compact('services',"projets","templates"));
+        return view ('services',compact('allServices',"allProjets","templates","firstServices","lastServices"));
     }
 
     public function adminServices(){

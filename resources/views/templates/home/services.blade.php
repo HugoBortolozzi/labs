@@ -16,7 +16,7 @@
         @endforeach
         
         <div class="row">
-            @foreach($services as $service)
+            @foreach($allServices as $service)
             <!-- single service -->
             <div class="col-md-4 col-sm-6">
                     <div class="service">

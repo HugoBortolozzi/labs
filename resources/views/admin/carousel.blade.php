@@ -6,28 +6,38 @@
     <h2>Configuer le carousel</h2>
 @stop
 
+@php
+    $count = 0;   
+@endphp
+
 @section('content')
     <section>
         @foreach($carousels as $carousel)
-        <form action="/admin/team/create" method="POST" enctype="multipart/form-data">
+        @php
+            $count = $count + 1;
+        @endphp
+        <form action="/admin/template/carousel/{{$carousel->id}}/update" method="POST" enctype="multipart/form-data">
             @csrf
+            @method("PATCH")
             <div class="form-group">
-                <label for=""><h4>Choisir le nom du membre de l'équipe</h4></label>
-                <input class="form-control" type="text" name="team_name" value="{{old('team_name')}}" id="">
+                <label for=""><h4>Changer la photo {{$count}} du carousel</h4></label>
+                <input class="form-control" type="file" name="img" value="" id="">
             </div>
+            <div><img src="/{{$carousel->img}}" alt=""></div>
+            <br>
+            <br>
             
-            <div class="form-group">
-                <label for=""><h4>Choisir la photo</h4></label>
-                <input class="form-control" name='{{old('team_photo')}}' type="file">
-            </div>
-
-            <div class="form-group">
-                    <label for=""><h4>Choisir le poste du témoin</h4></label>
-                    <input class="form-control" type="text" name="team_post" value="{{old('team_post')}}" id="">
-                </div>
-
-            <button type="submit" class="btn btn-success">Validez les modifications</button>
+            <button type="submit" class="btn btn-success">Valider la modifications</button>
+        </form>
+        <br>
+        <form action="/admin/template/carousel/{{$carousel->id}}/delete" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method("GET")
+            <button type="submit" class="btn btn-danger">Supprimer la photo</button>
         </form>
         @endforeach
     </section>
+    <br>
+    <br>
+    <a href="/admin/template/carousel/newCarousel" class="btn btn-warning">Rajouter une image</a>
 @stop

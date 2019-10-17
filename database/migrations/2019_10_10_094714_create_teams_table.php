@@ -18,6 +18,7 @@ class CreateTeamsTable extends Migration
             $table->string('name');
             $table->string('photo');
             $table->string('post');
+            $table->string('leader')->default('non');
             $table->timestamps();
         });
     }

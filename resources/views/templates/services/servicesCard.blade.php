@@ -2,7 +2,7 @@
 <div class="services-card-section spad">
 		<div class="container">
 			<div class="row">
-				@foreach($projets as $projet)
+				@foreach($allProjets as $projet)
 					<!-- Single Card -->
 					<div class="col-md-4 col-sm-6">
 						<div class="sv-card">

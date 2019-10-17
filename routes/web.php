@@ -18,10 +18,13 @@ Route::get('/services', "ServiceController@services")->name("services");
 Route::get('/blog', "BlogController@blog")->name('blog');
 
 Route::get('/contact', "MainController@contact")->name("contact");
+Route::post('/contact/newMessage',"MainController@newMessage");
 
 Route::get('/blog-post', function(){
     return view('blog-post');
 });
+
+Route::get('/inscription',"MainController@inscription");
 
 Auth::routes();
 
@@ -64,7 +67,11 @@ Route::patch('/admin/template/editPage4Title',"EditTemplateController@P4Title")-
 
 // Routes pour le crud du carousel 
 
-Route::get('/admin/template/carousel',"MainController@carousel")->middleware('auth');
+Route::get('/admin/template/carousel',"MainController@carousel")->middleware('auth')->name('carousel');
+Route::patch('/admin/template/carousel/{id}/update',"MainController@updateCarousel")->middleware('auth');
+Route::get('/admin/template/carousel/{id}/delete',"MainController@deleteCarousel")->middleware('auth');
+Route::get('/admin/template/carousel/newCarousel',"MainController@newCarousel")->middleware('auth');
+Route::post('/admin/template/carousel/create',"MainController@createCarousel")->middleware('auth');
 
 // Routes pour le crud des services 
 
@@ -95,4 +102,18 @@ Route::patch('/admin/team/{id}/update',"AdminController@updateTeam")->middleware
 Route::get('/admin/team/{id}/delete',"AdminController@deleteTeam")->middleware('auth');
 Route::get('/admin/team/newTeam',"AdminController@newTeam")->middleware('auth');
 Route::post('/admin/team/create',"AdminController@createTeam")->middleware('auth');
+Route::patch('/admin/team/leader',"AdminController@leader")->middleware('auth');
 
+// Routes pour le crud des projets
+
+Route::get('/admin/projets',"AdminController@projet")->middleware('auth')->name('projet');
+Route::get('/admin/projets/{id}/delete',"AdminController@deleteProjet")->middleware('auth');
+Route::get('/admin/projets/newProjet',"AdminController@newProjet")->middleware('auth');
+Route::get('/admin/projets/{id}/edit',"AdminController@editProjet")->middleware('auth');
+Route::patch('/admin/projets/{id}/update',"AdminController@updateProjet")->middleware('auth');
+Route::post('/admin/projets/create',"AdminController@createProjet")->middleware('auth');
+
+// Routes pour les messages
+
+Route::get('/admin/messages',"AdminController@viewMessage")->middleware('auth')->name('adminMessage');
+Route::get('/admin/messages/{id}/delete',"AdminController@deleteMessage")->middleware('auth');

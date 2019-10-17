@@ -5,12 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Team;
 use App\Testimonial;
+use App\Projet;
+use App\Message;
 
 use App\Template;
 
 
 class AdminController extends Controller
 {
+
+    // Partie Testimonial
+
     public function testimonials(){
         $testimonials = Testimonial::all();
 
@@ -65,6 +70,9 @@ class AdminController extends Controller
 
         return redirect()->route('adminTestimonials');
     }
+
+        // Partie Team
+
     public function team(){
         $teams = Team::all();
 
@@ -115,5 +123,96 @@ class AdminController extends Controller
         session()->flash('messageTeam',$messageTeam);
 
         return redirect()->route('adminTeam');
+    }
+    public function leader($id){
+        $teams = Team::all();
+        $leader = Team::find($id);
+
+        foreach($teams as $team){
+            $team->leader = "non";
+        }
+        $leader->leader = "oui";
+        $teams->save();
+
+        $messageTeam = $teams ? "Leader de l'équipe mis à jour" : "Erreur lors de la modification du leader de l'équipe";
+        session()->flash('messageTeam',$messageTeam);
+
+        return redirect()->route('adminTeam');
+    }
+
+    // Partie Projet
+
+    public function projet(){
+        $projets = Projet::all();
+
+        return view('admin/projet',compact('projets'));
+    }
+    public function editProjet($id){
+        $projet = Projet::find($id);
+
+        return view ('admin/crud/editProjet',compact('projet'));
+    }
+
+    public function updateProjet($id){
+        $projet = Projet::find($id);
+
+        $projet->name = request()->input('projet_name');
+        $projet->text= request()->input('projet_text');
+
+        $fileName= request()->file('projet_photo')->getClientOriginalName();
+        $path= request()->file('projet_photo')->storeAs('projet',$fileName);
+
+        $projet->photo = "storage/".$path;
+
+        $projet->save();
+
+        $messageProjet = $projet ? "Projet mis à jour" : "Erreur lors de la mise à jour du projet";
+        session()->flash('messageProjet',$messageProjet);
+
+        return redirect()->route('projet');
+    }
+
+    public function deleteProjet($id){
+        $projet = Projet::find($id);
+        $projet->delete();
+
+        $messageProjet = $projet ? "Projet supprimé" : "Erreur lors de la suppression du projet";
+        session()->flash('messageProjet',$messageProjet);
+
+        return redirect()->route('projet');
+    }
+    public function newProjet(){
+        return view('admin/crud/newProjet');
+    }
+    public function createProjet(){
+        $projet = new Projet;
+
+        $projet->name = request()->input('projet_name');
+        $projet->text= request()->input('projet_text');
+
+        $fileName= request()->file('projet_photo')->getClientOriginalName();
+        $path= request()->file('projet_photo')->storeAs('projet',$fileName);
+
+        $projet->photo = "storage/".$path;
+
+        $projet->save();
+
+        $messageProjet = $projet ? "Projet créé" : "Erreur lors de la création du projet";
+        session()->flash('messageProjet',$messageProjet);
+
+        return redirect()->route('projet');
+    }
+    public function viewMessage(){
+        $msgs = Message::all();
+        return view('admin/messages',compact('msgs'));
+    }
+    public function deleteMessage($id){
+        $msg = Message::find($id);
+        $msg->delete();
+
+        $message = $msg ? "Message supprimé" : "Erreur lors de la suppression du projet";
+        session()->flash('message',$message);
+
+        return redirect()->route('adminMessage');
     }
 }

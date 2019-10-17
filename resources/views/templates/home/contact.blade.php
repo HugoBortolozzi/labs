@@ -32,8 +32,9 @@
             </div>
             <!-- contact form -->
             <div class="col-md-6 col-pull">
-                <form class="form-class" id="con_form">
-                    <div class="row">
+                <form class="form-class" id="con_form" action="/contact/newMessage" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row">                        
                         @foreach($templates as $template)
                             @if($template->id == 31)
                                 <div class="col-sm-6">
@@ -53,19 +54,24 @@
                                 <textarea name="message" placeholder="{{$template->contain}}"></textarea>
                             @endif
                             @if($template->id == 35)
-                                <button class="site-btn">{{$template->contain}}</button>
+                                <button type="submit" class="site-btn">{{$template->contain}}</button>
                             </div>
                             @endif
-                        @endforeach
-                        
-                        
-                        
-                            
-                           
-                        
+                        @endforeach                        
                     </div>
                 </form>
             </div>
+            @if(count($errors))
+						<div class="col-md-6">
+							<div class="alert alert-danger rounded">
+								<ul>
+									@foreach($errors->all() as $error)
+										<li>{{$error}}</li>
+									@endforeach
+								</ul>
+							</div>
+						</div>
+					@endif
         </div>
     </div>
 </div>

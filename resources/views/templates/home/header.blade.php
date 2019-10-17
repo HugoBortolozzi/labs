@@ -28,6 +28,7 @@
 						<li><a href="/contact">{{$template->contain}}</a></li>
 					@endif
 				@endforeach
+				{{-- <li><a href="/inscription">Inscription</a></li> --}}
 			</ul>
 		</nav>
 	</header>

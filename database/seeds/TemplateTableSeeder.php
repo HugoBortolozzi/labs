@@ -68,12 +68,12 @@ class TemplateTableSeeder extends Seeder
             // 10
         
         Template::create([
-            "name" => "Lien vidéo de la 1ère section",
-            "contain" => "https://www.youtube.com/watch?v=JgHfx2v9zOU",
-        ]);
-        Template::create([
             "name" => "Image Vignatte de la vidéo de la 1ère section",
             "contain" => "img/video.jpg",
+        ]);
+        Template::create([
+            "name" => "Lien vidéo de la 1ère section",
+            "contain" => "https://www.youtube.com/watch?v=JgHfx2v9zOU",
         ]);
 
         // Section 2 

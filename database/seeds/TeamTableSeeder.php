@@ -24,6 +24,7 @@ class TeamTableSeeder extends Seeder
             "name" => "Christinne Williams",
             "photo" => "img/team/2.jpg",
             "post" => "Junior developer",
+            "leader" => "oui",
         ]);
         Team::create([
             "name" => "Christinne Williams",

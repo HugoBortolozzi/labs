@@ -158,6 +158,16 @@ return [
             'url'  => 'admin/team',
             'icon' => "fas fa-users",
         ],
+        [
+            'text' => 'configure projet',
+            'url'  => 'admin/projet',
+            'icon' => "fas fa-tasks",
+        ],
+        [
+            'text' => 'voir messages',
+            'url'  => 'admin/messages',
+            'icon' => "fas fa-envelope",
+        ],
     ],
 
     /*

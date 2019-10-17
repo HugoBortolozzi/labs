@@ -11,7 +11,11 @@
 	<!-- Header section -->
 	<header class="header-section">
 		<div class="logo">
-			<img src="img/logo.png" alt=""><!-- Logo -->
+				@foreach($templates as $template)
+				@if($template->id == 2)
+				<img src="{{$template->contain}}" alt=""><!-- Logo -->
+				@endif
+			@endforeach
 		</div>
 		<!-- Navigation -->
 		<div class="responsive"><i class="fa fa-bars"></i></div>
@@ -31,6 +35,7 @@
 						<li class="active"><a href="/contact">{{$template->contain}}</a></li>
 					@endif
 				@endforeach
+				{{-- <li><a href="/inscription">Inscription</a></li> --}}
 			</ul>
 		</nav>
 	</header>
