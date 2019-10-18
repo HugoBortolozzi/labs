@@ -41,16 +41,15 @@
 	</header>
 	<!-- Header section end -->
 
-
 	@yield('blogHeader')
-
 
 	@yield('blogSection')
 
+	@yield('blogSidebar')
 
 	@yield('newsletter')
 
-
 	@yield('footer')
+	
 </body>
 </html>

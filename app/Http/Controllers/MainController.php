@@ -8,6 +8,7 @@ use App\Testimonial;
 use App\Service;
 use App\Team;
 use App\Message;
+use App\Newsletter;
 
 use App\Template;
 
@@ -98,6 +99,17 @@ class MainController extends Controller
         session()->flash('message',$message);
 
 
+
+        // Mail::to('test@gmail.com')->send(new contactMail);
+
+        return redirect()->route('main');
+    }
+
+    public function newsletter(){
+        $newsletter = new Newsletter;
+
+        $newsletter->email = request()->input('email');
+        $newsletter->save();
 
         // Mail::to('test@gmail.com')->send(new contactMail);
 

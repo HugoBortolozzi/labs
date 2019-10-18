@@ -20,11 +20,13 @@ Route::get('/blog', "BlogController@blog")->name('blog');
 Route::get('/contact', "MainController@contact")->name("contact");
 Route::post('/contact/newMessage',"MainController@newMessage");
 
-Route::get('/blog-post', function(){
-    return view('blog-post');
-});
+Route::get('/blog-post', "BlogController@blog_post");
 
 Route::get('/inscription',"MainController@inscription");
+
+Route::post('/newsletter/newUser',"MainController@newsletter");
+Route::get('/admin/newsletter',"AdminController@viewNewsletter")->middleware('auth')->name('adminNewsletter');
+Route::get('/admin/newsletter/{id}/delete',"AdminController@deleteNewsletter")->middleware('auth');
 
 Auth::routes();
 
@@ -117,3 +119,7 @@ Route::post('/admin/projets/create',"AdminController@createProjet")->middleware(
 
 Route::get('/admin/messages',"AdminController@viewMessage")->middleware('auth')->name('adminMessage');
 Route::get('/admin/messages/{id}/delete',"AdminController@deleteMessage")->middleware('auth');
+
+// Routes pour les articles 
+
+Route::get('/admin/articles',"BlogController@articles")->middleware('auth')->name('adminArticle');

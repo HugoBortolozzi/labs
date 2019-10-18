@@ -7,6 +7,7 @@ use App\Team;
 use App\Testimonial;
 use App\Projet;
 use App\Message;
+use App\Newsletter;
 
 use App\Template;
 
@@ -202,6 +203,9 @@ class AdminController extends Controller
 
         return redirect()->route('projet');
     }
+
+    // Partie Contact
+
     public function viewMessage(){
         $msgs = Message::all();
         return view('admin/messages',compact('msgs'));
@@ -214,5 +218,19 @@ class AdminController extends Controller
         session()->flash('message',$message);
 
         return redirect()->route('adminMessage');
+    }
+    public function viewNewsletter(){
+        $newsletters = Newsletter::all();
+
+        return view('admin/newsletter',compact('newsletters'));
+    }
+    public function deleteNewsletter($id){
+        $newsletter = Newsletter::find($id);
+        $newsletter->delete();
+
+        $message = $newsletter ? "E-mail inscrit à la newsletter supprimé" : "Erreur lors de la suppression de l'email";
+        session()->flash('message',$message);
+
+        return redirect()->route('adminNewsletter');
     }
 }

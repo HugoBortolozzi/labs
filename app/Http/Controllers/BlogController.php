@@ -13,4 +13,9 @@ class BlogController extends Controller
 
         return view('blog',compact("templates"));
     }
+    public function blog_post(){
+        $templates = Template::all();
+
+        return view('blog-post',compact('templates'));
+    }
 }

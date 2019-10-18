@@ -16,6 +16,10 @@
 	@include('templates/blog/blogSection')
 @endsection
 
+@section('blogSidebar')
+	@include('templates/blog/blogSidebar')
+@endsection
+
 @section('newsletter')
 	@include('templates/home/newsletter')
 @endsection

@@ -160,13 +160,23 @@ return [
         ],
         [
             'text' => 'configure projet',
-            'url'  => 'admin/projet',
+            'url'  => 'admin/projets',
             'icon' => "fas fa-tasks",
+        ],
+        [
+            'text' => 'configure article',
+            'url'  => 'admin/articles',
+            'icon' => "far fa-newspaper",
         ],
         [
             'text' => 'voir messages',
             'url'  => 'admin/messages',
             'icon' => "fas fa-envelope",
+        ],
+        [
+            'text' => 'voir newsletter',
+            'url'  => 'admin/newsletter',
+            'icon' => "fas fa-sms",
         ],
     ],
 
