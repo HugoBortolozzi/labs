@@ -20,7 +20,7 @@ Route::get('/blog', "BlogController@blog")->name('blog');
 Route::get('/contact', "MainController@contact")->name("contact");
 Route::post('/contact/newMessage',"MainController@newMessage");
 
-Route::get('/blog-post', "BlogController@blog_post");
+Route::get('/blog-post/{id}/viewPost', "BlogController@blog_post");
 
 Route::get('/inscription',"MainController@inscription");
 
@@ -131,3 +131,4 @@ Route::get('/admin/messages/{id}/delete',"AdminController@deleteMessage")->middl
 Route::get('/admin/articles',"BlogController@authorArticles")->middleware('auth')->name('adminArticle');
 Route::get('/admin/articles/{id}/articles',"BlogController@viewArticle")->middleware('auth');
 Route::get('/admin/articles/newArticle',"BlogController@newArticle")->middleware('auth');
+Route::post('articles/{id}/newComment',"BlogController@newComment")->middleware('auth');

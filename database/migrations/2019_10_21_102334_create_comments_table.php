@@ -17,14 +17,16 @@ class CreateCommentsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email');
-            // $table->string('subject');
+            $table->string('subject');
             $table->text('comment');
-            // $table->bigInteger('article_id')->unsigned();
-            // $table->foreign('article_id')->on('articles')->references('id')->onDelete('cascade')->onUpdate('cascade'); 
+            $table->string('photo');
+            $table->bigInteger('article_id')->unsigned();
+            $table->foreign('article_id')->on('articles')->references('id')->onDelete('cascade')->onUpdate('cascade'); 
             // permet de déclarer sa clé étranger, indiquand à quelle table est lié celle-ci 
             // par ex l'album appartient à un utilisateur
             // Les onDelete et OnUpdate permettent de lier cette table à sa table parente,
-            // de sorte que si celle-ci est update ou delete, alors cette table le sera aussi            $table->timestamps();
+            // de sorte que si celle-ci est update ou delete, alors cette table le sera aussi            
+            $table->timestamps();
         });
     }
 
@@ -38,3 +40,4 @@ class CreateCommentsTable extends Migration
         Schema::dropIfExists('comments');
     }
 }
+

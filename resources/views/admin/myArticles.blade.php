@@ -28,12 +28,12 @@
             @foreach($articles as $article)
                 <tr>
                     <td>{{$article->id}}</td>
-                    <td><i class="{{$article->name}}"></i></td>
+                    <td>{{$article->name}}</td>
                     <td><img src="/{{$article->photo}}" alt=""></td>
                     <td>{{$article->categorie}}</td>
                     <td>{{$user->name}}</td>
-                    <td><a href="/admin/projets/{{$article->id}}/delete" class="btn btn-danger">Supprimer</a></td>
-                    <td><a href="/admin/projets/{{$article->id}}/edit" class="btn btn-primary">Modifier</a></td>
+                    <td><a href="/admin/articles/{{$article->id}}/delete" class="btn btn-danger">Supprimer</a></td>
+                    <td><a href="/admin/articles/{{$article->id}}/edit" class="btn btn-primary">Modifier</a></td>
                 </tr>
             @endforeach
           </tbody></table>

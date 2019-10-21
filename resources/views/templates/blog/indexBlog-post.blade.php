@@ -48,7 +48,7 @@
 					<!-- Single Post -->
 					<div class="single-post">
 						<div class="post-thumbnail">
-							<img src="{{$article->photo}}" alt="">
+							<img src="/{{$article->photo}}" alt="">
 							<div class="post-date">
 								<h2>03</h2>
 								<h3>Nov 2017</h3>
@@ -59,14 +59,16 @@
 							<div class="post-meta">
 								{{-- <a href="">{{$article->categorie}}</a> --}}
 								<a href="">Design, Inspiration</a>
-								<a href="">2 Comments</a>
+								<a href="">{{$count}} Comments</a>
 							</div>
-							<p>{{$article->text}}</p>
+							<p>{{$article->text1}}</p>
+							<p>{{$article->text2}}</p>
+							<p>{{$article->text3}}</p>
 						</div>
 						<!-- Post Author -->
 						<div class="author">
 							<div class="avatar">
-								<img src="{{$article->author_photo}}" alt="">
+								<img src="/{{$article->author_photo}}" alt="">
 							</div>
 							<div class="author-info">
 								<h2>Lore Williams, <span>Author</span></h2>
@@ -75,43 +77,38 @@
 						</div>
 						<!-- Post Comments -->
 						<div class="comments">
-							<h2>Comments (2)</h2>
+							<h2>Comments ({{$count}})</h2>
 							<ul class="comment-list">
+								@foreach($comments as $comment)
 								<li>
-									<div class="avatar">
-										<img src="img/avatar/01.jpg" alt="">
-									</div>
-									<div class="commetn-text">
-										<h3>Michael Smith | 03 nov, 2017 | Reply</h3>
-										<p>Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique. </p>
-									</div>
-								</li>
-								<li>
-									<div class="avatar">
-										<img src="img/avatar/02.jpg" alt="">
-									</div>
-									<div class="commetn-text">
-										<h3>Michael Smith | 03 nov, 2017 | Reply</h3>
-										<p>Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique. </p>
-									</div>
-								</li>
+										<div class="avatar">
+											{{-- <img src="http://lorempixel.com/400/200/people" alt=""> --}}
+											<img src="/{{$comment->photo}}" alt="">
+										</div>
+										<div class="commetn-text">
+											<h3>{{$comment->name}} | 03 nov, 2017 | Reply</h3>
+											<p>{{$comment->comment}}</p>
+										</div>
+									</li>
+								@endforeach
 							</ul>
 						</div>
 						<!-- Commert Form -->
 						<div class="row">
 							<div class="col-md-9 comment-from">
 								<h2>Laisser un commentaire</h2>
-								<form class="form-class">
+								<form class="form-class" action="/articles/{{$article->id}}/newComment" method="POST" enctype="multipart/form-data">
+									@csrf
 									<div class="row">
 										<div class="col-sm-6">
-											<input type="text" name="name" placeholder="Your name">
+											<input type="text" value="{{old('name')}}" name="name" placeholder="Your name">
 										</div>
 										<div class="col-sm-6">
-											<input type="text" name="email" placeholder="Your email">
+											<input type="text" value="{{old('email')}}" name="email" placeholder="Your email">
 										</div>
 										<div class="col-sm-12">
-											<input type="text" name="subject" placeholder="Subject">
-											<textarea name="message" placeholder="Message"></textarea>
+											<input type="text" value="{{old('subject')}}" name="subject" placeholder="Subject">
+											<textarea name="comment" value="{{old('comment')}}" placeholder="Message"></textarea>
 											<button type="submit" class="site-btn">envoyer</button>
 										</div>
 									</div>
