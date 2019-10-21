@@ -20,7 +20,7 @@
             <tbody>
             <tr>
               <th>ID</th>
-              <th>Nom de l'articlet</th>
+              <th>Nom de l'article</th>
               <th>Photo de l'article</th>
               <th>catégorie de l'article</th>
               <th>Auteur de l'article</th>
@@ -32,8 +32,8 @@
                     <td><img src="/{{$article->photo}}" alt=""></td>
                     <td>{{$article->categorie}}</td>
                     <td>{{$user->name}}</td>
-                    <td><a href="/admin/projets/{{$projet->id}}/delete" class="btn btn-danger">Supprimer</a></td>
-                    <td><a href="/admin/projets/{{$projet->id}}/edit" class="btn btn-primary">Modifier</a></td>
+                    <td><a href="/admin/projets/{{$article->id}}/delete" class="btn btn-danger">Supprimer</a></td>
+                    <td><a href="/admin/projets/{{$article->id}}/edit" class="btn btn-primary">Modifier</a></td>
                 </tr>
             @endforeach
           </tbody></table>

@@ -18,10 +18,11 @@ class BlogController extends Controller
         return view('blog',compact("templates","categories"));
     }
     public function blog_post(){
+        $article = Article::find(1);
         $templates = Template::all();
         $categories = Categorie::all();
 
-        return view('blog-post',compact('templates',"categories"));
+        return view('blog-post',compact('templates',"categories","article"));
     }
     public function authorArticles(){
         $users = User::where("role","editeur")->get();

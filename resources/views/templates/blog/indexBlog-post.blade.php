@@ -5,28 +5,40 @@
     
 @yield('preloader')
 
-
 	<!-- Header section -->
 	<header class="header-section">
 		<div class="logo">
-			<img src="img/logo.png" alt=""><!-- Logo -->
+				@foreach($templates as $template)
+				@if($template->id == 2)
+				<img src="{{$template->contain}}" alt=""><!-- Logo -->
+				@endif
+			@endforeach
 		</div>
 		<!-- Navigation -->
 		<div class="responsive"><i class="fa fa-bars"></i></div>
 		<nav>
 			<ul class="menu-list">
-				<li><a href="/">Home</a></li>
-				<li><a href="/services">Services</a></li>
-				<li class="active"><a href="/blog">Blog</a></li>
-				<li><a href="/contact">Contact</a></li>
+					@foreach($templates as $template)
+					@if($template->id == 1)
+						<li><a href="/">{{$template->contain}}</a></li>
+					@endif
+					@if($template->id == 37)
+						<li><a href="/services">{{$template->contain}}</a></li>
+					@endif
+					@if($template->id == 42)
+						<li class="active"><a href="/blog">{{$template->contain}}</a></li>
+					@endif
+					@if($template->id == 51)
+						<li><a href="/contact">{{$template->contain}}</a></li>
+					@endif
+				@endforeach
+				{{-- <li><a href="/inscription">Inscription</a></li> --}}
 			</ul>
 		</nav>
 	</header>
 	<!-- Header section end -->
 
-
 	@yield('blogHeader')
-
 
 	<!-- page section -->
 	<div class="page-section spad">
@@ -36,27 +48,25 @@
 					<!-- Single Post -->
 					<div class="single-post">
 						<div class="post-thumbnail">
-							<img src="img/blog/blog-1.jpg" alt="">
+							<img src="{{$article->photo}}" alt="">
 							<div class="post-date">
 								<h2>03</h2>
 								<h3>Nov 2017</h3>
 							</div>
 						</div>
 						<div class="post-content">
-							<h2 class="post-title">{{$article->title}}</h2>
+							<h2 class="post-title">{{$article->name}}</h2>
 							<div class="post-meta">
-								<a href="">{{$article->categorie}}</a>
+								{{-- <a href="">{{$article->categorie}}</a> --}}
 								<a href="">Design, Inspiration</a>
 								<a href="">2 Comments</a>
 							</div>
-							<p>{{$article->text1}}</p>
-							<p>{{$article->text2}}</p>
-							<p>{{$article->text3}}</p>
+							<p>{{$article->text}}</p>
 						</div>
 						<!-- Post Author -->
 						<div class="author">
 							<div class="avatar">
-								<img src="img/avatar/03.jpg" alt="">
+								<img src="{{$article->author_photo}}" alt="">
 							</div>
 							<div class="author-info">
 								<h2>Lore Williams, <span>Author</span></h2>
@@ -102,7 +112,7 @@
 										<div class="col-sm-12">
 											<input type="text" name="subject" placeholder="Subject">
 											<textarea name="message" placeholder="Message"></textarea>
-											<button type="submit" class="site-btn">send</button>
+											<button type="submit" class="site-btn">envoyer</button>
 										</div>
 									</div>
 								</form>
@@ -110,72 +120,9 @@
 						</div>
 					</div>
 				</div>
-				<!-- Sidebar area -->
-				{{-- <div class="col-md-4 col-sm-5 sidebar">
-					<!-- Single widget -->
-					<div class="widget-item">
-						<form action="#" class="search-form">
-							<input type="text" placeholder="Search">
-							<button class="search-btn"><i class="flaticon-026-search"></i></button>
-						</form>
-					</div>
-					<!-- Single widget -->
-					<div class="widget-item">
-						<h2 class="widget-title">Categories</h2>
-						<ul>
-							<li><a href="#">Vestibulum maximus</a></li>
-							<li><a href="#">Nisi eu lobortis pharetra</a></li>
-							<li><a href="#">Orci quam accumsan </a></li>
-							<li><a href="#">Auguen pharetra massa</a></li>
-							<li><a href="#">Tellus ut nulla</a></li>
-							<li><a href="#">Etiam egestas viverra </a></li>
-						</ul>
-					</div>
-					<!-- Single widget -->
-					<div class="widget-item">
-						<h2 class="widget-title">Instagram</h2>
-						<ul class="instagram">
-							<li><img src="img/instagram/1.jpg" alt=""></li>
-							<li><img src="img/instagram/2.jpg" alt=""></li>
-							<li><img src="img/instagram/3.jpg" alt=""></li>
-							<li><img src="img/instagram/4.jpg" alt=""></li>
-							<li><img src="img/instagram/5.jpg" alt=""></li>
-							<li><img src="img/instagram/6.jpg" alt=""></li>
-						</ul>
-					</div>
-					<!-- Single widget -->
-					<div class="widget-item">
-						<h2 class="widget-title">Tags</h2>
-						<ul class="tag">
-							<li><a href="">branding</a></li>
-							<li><a href="">identity</a></li>
-							<li><a href="">video</a></li>
-							<li><a href="">design</a></li>
-							<li><a href="">inspiration</a></li>
-							<li><a href="">web design</a></li>
-							<li><a href="">photography</a></li>
-						</ul>
-					</div>
-					<!-- Single widget -->
-					<div class="widget-item">
-						<h2 class="widget-title">Quote</h2>
-						<div class="quote">
-							<span class="quotation">‘​‌‘​‌</span>
-							<p>Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique. Sed lacinia turpis at ultricies vestibulum.</p>
-						</div>
-					</div>
-					<!-- Single widget -->
-					<div class="widget-item">
-						<h2 class="widget-title">Add</h2>
-						<div class="add">
-							<a href=""><img src="img/add.jpg" alt=""></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> --}}
+
 	@yield('blogSidebar')
+
 	<!-- page section end-->
 
 	@yield('newsletter')

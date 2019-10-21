@@ -286,5 +286,9 @@ class TemplateTableSeeder extends Seeder
             "name" => "Titre de la page 4",
             "contain" => "Contact"
         ]);
+        Template::create([
+            "name" => "Logo du téléphone",
+            "contain" => "img/device.png"
+        ]);
     }
 }

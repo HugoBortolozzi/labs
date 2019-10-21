@@ -34,9 +34,13 @@
 				</div>
 				<!-- Devices -->
 				<div class="col-md-4 col-sm-4 devices">
+					@foreach($templates as $template)
+					@if($template->id == 52)
 					<div class="text-center">
-						<img src="img/device.png" alt="">
+						<img src="{{$template->contain}}" alt="">
 					</div>
+					@endif
+					@endforeach
 				</div>
 				<!-- feature item -->
 				<div class="col-md-4 col-sm-4 features">

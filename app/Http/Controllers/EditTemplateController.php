@@ -289,6 +289,10 @@ class EditTemplateController extends Controller
         $template->contain = request()->input('page2_sec2_button');
         $template->save();
 
+        $template = Template::find(52);
+        $template->contain = request()->input('page2_sec2_logo');
+        $template->save();
+
         $messageSec2 = $template ? "2ème section mise à jour" : "erreur lors de la modification de la 2ème section";
         session()->flash('messageSec2',$messageSec2);
 

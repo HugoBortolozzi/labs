@@ -77,6 +77,13 @@
         </div>
         @endif
 
+        @if($template->id == 52)
+        <div class="form-group">
+            <label for="">{{$template->name}}</label>
+            <input class="form-control" type="text" name="page2_sec2_logo" value="{{$template->contain}}" id="">
+        </div>
+        @endif
+
         @endforeach
         
         <button type="submit" class="btn btn-warning">Validez les modifications</button>

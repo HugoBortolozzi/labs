@@ -7,6 +7,7 @@ use App\Service;
 use App\Team;
 use App\Projet;
 use App\Categorie;
+use App\Article;
 
 use App\Template;
 use App\Display;
@@ -20,11 +21,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
         Carousel::truncate();
         Testimonial::truncate();
         Service::truncate();
         Team::truncate();
         Projet::truncate();
+        Article::truncate();
         Categorie::truncate();
 
         Template::truncate();
@@ -35,6 +38,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ServiceTableSeeder::class);
         $this->call(TeamTableSeeder::class);
         $this->call(ProjetTableSeeder::class);
+        $this->call(ArticleTableSeeder::class);
         $this->call(CategorieTableSeeder::class);
         $this->call(TemplateTableSeeder::class);
         // $this->call(DisplayTableSeeder::class);
