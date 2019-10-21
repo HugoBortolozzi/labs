@@ -8,12 +8,40 @@ use App\Testimonial;
 use App\Projet;
 use App\Message;
 use App\Newsletter;
+use App\User;
 
 use App\Template;
 
 
 class AdminController extends Controller
 {
+    // Partie User
+
+    public function users(){
+        $users = User::all();
+
+        return view ('admin/users',compact('users'));
+    }
+    public function deleteUser($id){
+        $user = User::find($id);
+
+        $user->delete();
+        $message = $user ? "Utilisateur supprimée" : "Erreur lors de la suppression de l'utilisateur";
+        session()->flash('message',$message);
+
+        return redirect()->route('adminUsers');
+    }
+    public function updateUser($id){
+        $user = User::find($id);
+
+        $user->role = request()->input('user_role');
+        $user->save();
+
+        $message = $user ? "Role de l'utilisateur modifié" : "Erreur lors de la modification du role de l'utilisateur";
+        session()->flash('message',$message);
+
+        return redirect()->route('adminUsers');
+    }
 
     // Partie Testimonial
 

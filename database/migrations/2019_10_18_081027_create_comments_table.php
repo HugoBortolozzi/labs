@@ -19,8 +19,8 @@ class CreateCommentsTable extends Migration
             $table->string('email');
             // $table->string('subject');
             $table->text('comment');
-            $table->bigInteger('article_id')->unsigned();
-            $table->foreign('article_id')->on('articles')->references('id')->onDelete('cascade')->onUpdate('cascade'); 
+            // $table->bigInteger('article_id')->unsigned();
+            // $table->foreign('article_id')->on('articles')->references('id')->onDelete('cascade')->onUpdate('cascade'); 
             // permet de déclarer sa clé étranger, indiquand à quelle table est lié celle-ci 
             // par ex l'album appartient à un utilisateur
             // Les onDelete et OnUpdate permettent de lier cette table à sa table parente,

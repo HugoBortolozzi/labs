@@ -6,6 +6,7 @@ use App\Testimonial;
 use App\Service;
 use App\Team;
 use App\Projet;
+use App\Categorie;
 
 use App\Template;
 use App\Display;
@@ -24,6 +25,7 @@ class DatabaseSeeder extends Seeder
         Service::truncate();
         Team::truncate();
         Projet::truncate();
+        Categorie::truncate();
 
         Template::truncate();
         // Display::truncate();
@@ -33,6 +35,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ServiceTableSeeder::class);
         $this->call(TeamTableSeeder::class);
         $this->call(ProjetTableSeeder::class);
+        $this->call(CategorieTableSeeder::class);
         $this->call(TemplateTableSeeder::class);
         // $this->call(DisplayTableSeeder::class);
     }

@@ -36,6 +36,12 @@ Route::get('/home', function() {
 
 // Routes de l'admin
 
+// Routes pour les users 
+
+Route::get('/admin/users',"AdminController@users")->middleware('auth')->name('adminUsers');
+Route::get('/admin/users/{id}/delete',"AdminController@deleteUser")->middleware('auth');
+Route::post('/admin/users/{id}/update',"AdminController@updateUser")->middleware('auth');
+
 // Routes pour le crud du template
 
 Route::get('/admin/template',"EditTemplateController@template")->middleware('auth');
@@ -122,4 +128,6 @@ Route::get('/admin/messages/{id}/delete',"AdminController@deleteMessage")->middl
 
 // Routes pour les articles 
 
-Route::get('/admin/articles',"BlogController@articles")->middleware('auth')->name('adminArticle');
+Route::get('/admin/articles',"BlogController@authorArticles")->middleware('auth')->name('adminArticle');
+Route::get('/admin/articles/{id}/articles',"BlogController@viewArticle")->middleware('auth');
+Route::get('/admin/articles/newArticle',"BlogController@newArticle")->middleware('auth');

@@ -1,0 +1,9 @@
+$table->string("title");
+$table->string('photo');
+$table->text('text1')->nullable();
+$table->text('text2')->nullable();
+$table->text('text3')->nullable();
+// $table->bigInteger('user_id')->unsigned();
+// $table->foreign('user_id')->on('users')->references('id')->onDelete('cascade')->onUpd('cascade');
+// $table->bigInteger('categorie_id')->unsigned();
+// $table->foreign('categorie_id')->on('categories')->references('id')->onDelete('cascad->onUpdate('cascade'); 
