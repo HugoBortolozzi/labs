@@ -2,9 +2,10 @@
             <div class="col-md-4 col-sm-5 sidebar">
                 <!-- Single widget -->
                 <div class="widget-item">
-                    <form action="#" class="search-form">
-                        <input type="text" placeholder="Search">
-                        <button class="search-btn"><i class="flaticon-026-search"></i></button>
+                    <form class="search-form" action="/search" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="text" name="search" placeholder="Search">
+                        <button type="submit" class="search-btn"><i class="flaticon-026-search"></i></button>
                     </form>
                 </div>
                 <!-- Single widget -->
@@ -12,7 +13,7 @@
                     <h2 class="widget-title">Categories</h2>
                     <ul>
                         @foreach($categories as $categorie)
-                        <li><a href="#">{{$categorie->name}}</a></li>
+                        <li><a href="/blog/{{$categorie->id}}/categories">{{$categorie->name}}</a></li>
                         @endforeach
                     </ul>
                 </div>

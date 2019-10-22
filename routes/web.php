@@ -16,11 +16,13 @@ Route::get('/', "MainController@main")->name('main');
 Route::get('/services', "ServiceController@services")->name("services");
 
 Route::get('/blog', "BlogController@blog")->name('blog');
+Route::get('/blog/{id}/categories',"BlogController@categories");
+Route::post('/search',"BlogController@search");
+
+Route::get('/blog-post/{id}/viewPost', "BlogController@blog_post");
 
 Route::get('/contact', "MainController@contact")->name("contact");
 Route::post('/contact/newMessage',"MainController@newMessage");
-
-Route::get('/blog-post/{id}/viewPost', "BlogController@blog_post");
 
 Route::get('/inscription',"MainController@inscription");
 

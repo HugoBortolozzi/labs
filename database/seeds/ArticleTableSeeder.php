@@ -24,7 +24,7 @@ class ArticleTableSeeder extends Seeder
             "author_description" => "Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique. ",
             "author_photo" => "img/avatar/03.jpg",
             "user_id" => "1",
-            // "categorie_id" => "1",
+            "categorie_id" => "1",
         ]);
         Article::create([
             "name" => "Just a simple blog post",
@@ -35,7 +35,7 @@ class ArticleTableSeeder extends Seeder
             "author_description" => "Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique. ",
             "author_photo" => "img/avatar/03.jpg",
             "user_id" => "1",
-            // "categorie_id" => "1",
+            "categorie_id" => "1",
         ]);
         Article::create([
             "name" => "Just a simple blog post",
@@ -46,7 +46,7 @@ class ArticleTableSeeder extends Seeder
             "author_description" => "Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique. ",
             "author_photo" => "img/avatar/03.jpg",
             "user_id" => "1",
-            // "categorie_id" => "1",
+            "categorie_id" => "1",
         ]);
     }
 }

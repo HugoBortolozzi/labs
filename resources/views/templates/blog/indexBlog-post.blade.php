@@ -50,14 +50,18 @@
 						<div class="post-thumbnail">
 							<img src="/{{$article->photo}}" alt="">
 							<div class="post-date">
-								<h2>03</h2>
-								<h3>Nov 2017</h3>
+									<h2>{{$article->created_at->day}}</h2>
+									<h3>{{$article->created_at->shortEnglishMonth}} {{$article->created_at->year}}</h3>
 							</div>
 						</div>
 						<div class="post-content">
 							<h2 class="post-title">{{$article->name}}</h2>
 							<div class="post-meta">
-								{{-- <a href="">{{$article->categorie}}</a> --}}
+								@foreach($categories as $categorie)
+								@if($article->categorie_id == $categorie->id)
+								<a href="">{{$categorie->name}}</a>
+								@endif
+								@endforeach
 								<a href="">Design, Inspiration</a>
 								<a href="">{{$count}} Comments</a>
 							</div>

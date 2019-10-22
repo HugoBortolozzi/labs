@@ -8,6 +8,7 @@ use App\Team;
 use App\Projet;
 use App\Categorie;
 use App\Article;
+use App\User;
 
 use App\Template;
 use App\Display;
@@ -31,11 +32,11 @@ class DatabaseSeeder extends Seeder
         Projet::truncate();
         Comment::truncate();
         // Article::truncate();
-        Categorie::truncate();
+        // Categorie::truncate();
 
         Template::truncate();
         // Display::truncate();
-        // $this->call(UsersTableSeeder::class);
+        $this->call(UserTableSeeder::class);
         $this->call(CarouselTableSeeder::class);
         $this->call(TestimonialTableSeeder::class);
         
@@ -45,8 +46,9 @@ class DatabaseSeeder extends Seeder
         
         $this->call(TemplateTableSeeder::class);
         // $this->call(DisplayTableSeeder::class);
-        $this->call(ArticleTableSeeder::class);
         $this->call(CategorieTableSeeder::class);
+        $this->call(ArticleTableSeeder::class);
         $this->call(CommentTableSeeder::class);
+        
     }
 }
