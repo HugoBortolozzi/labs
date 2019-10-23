@@ -31,7 +31,7 @@
               <th>Nom de la personne</th>
               <th>Photo de la personne</th>
               <th>Poste de la personne</th>
-              <th>Rôle de la personne</th>
+              <th>La personne est elle le leader ?</th>
             </tr>
             @foreach($teams as $team)
                 <tr>

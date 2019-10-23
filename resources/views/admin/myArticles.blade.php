@@ -30,7 +30,7 @@
                     <td>{{$article->id}}</td>
                     <td>{{$article->name}}</td>
                     <td><img src="/{{$article->photo}}" alt=""></td>
-                    <td>{{$article->categorie}}</td>
+                    <td>{{$article->categorie()->get()[0]->name}}</td>
                     <td>{{$user->name}}</td>
                     <td><a href="/admin/articles/{{$article->id}}/delete" class="btn btn-danger">Supprimer</a></td>
                     <td><a href="/admin/articles/{{$article->id}}/edit" class="btn btn-primary">Modifier</a></td>
@@ -43,5 +43,8 @@
       <!-- /.box -->
     </div>
   </div>
+  <div class="page-pagination">
+      {{$articles->links()}}
+    </div>
   <a href="/admin/articles/newArticle" class="btn btn-warning">Créer un nouvel article</a>
 @stop

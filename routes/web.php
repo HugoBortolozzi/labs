@@ -132,5 +132,15 @@ Route::get('/admin/messages/{id}/delete',"AdminController@deleteMessage")->middl
 
 Route::get('/admin/articles',"BlogController@authorArticles")->middleware('auth')->name('adminArticle');
 Route::get('/admin/articles/{id}/articles',"BlogController@viewArticle")->middleware('auth');
-Route::get('/admin/articles/newArticle',"BlogController@newArticle")->middleware('auth');
+Route::get('/admin/articles/newArticle',"BlogController@newArticle")->middleware('auth')->name('newArticle');
+Route::post('/admin/articles/create',"BlogController@createArticle")->middleware('auth');
 Route::post('articles/{id}/newComment',"BlogController@newComment")->middleware('auth');
+
+Route::get('/admin/articles/categories',"BlogController@newCategorie")->middleware('auth');
+Route::post('/admin/articles/categories/create',"BlogController@createCategorie")->middleware('auth');
+
+// Routes pour les catégories
+
+Route::get('/admin/categories',"BlogController@adminCategories")->middleware('auth')->name('adminCategories');
+Route::patch('/admin/categories/{id}/edit',"BlogController@editCategorie")->middleware('auth');
+Route::get('/admin/categories/{id}/delete',"BlogController@deleteCategorie")->middleware('auth');

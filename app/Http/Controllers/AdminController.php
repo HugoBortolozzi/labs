@@ -129,12 +129,19 @@ class AdminController extends Controller
     public function deleteTeam($id){
         $team = Team::find($id);
 
-        $team->delete();
+        if($team->leader == "oui"){
+            $messageTeam = "Le leader ne peut pas être supprimé";
+            session()->flash('messageTeam',$messageTeam);
+
+            return redirect()->route('adminTeam');
+        }else{
+            $team->delete();
 
         $messageTeam = $team ? "Membre de l'équipe supprimé" : "Erreur lors de la suppression du membre de l'équipe";
         session()->flash('messageTeam',$messageTeam);
 
         return redirect()->route('adminTeam');
+        }   
     }
     public function newTeam(){
         return view('admin/crud/newTeam');

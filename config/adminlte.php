@@ -169,6 +169,11 @@ return [
             'icon' => "far fa-newspaper",
         ],
         [
+            'text' => 'configure categories',
+            'url'  => 'admin/categories',
+            'icon' => "fas fa-certificate",
+        ],
+        [
             'text' => 'voir messages',
             'url'  => 'admin/messages',
             'icon' => "fas fa-envelope",

@@ -16,7 +16,7 @@
 						<div class="post-content">
 							<h2 class="post-title">{{$article->name}}</h2>
 							<div class="post-meta">
-								<a href="">{{$article->categorie()->get()[0]->name}}</a>
+								<a href="/blog/{{$article->categorie()->get()[0]->id}}/categories">{{$article->categorie()->get()[0]->name}}</a>
 								<a href="">Design, Inspiration</a>
 								<a href="">{{$article->comments()->count()}} Comments</a>
 							</div>
