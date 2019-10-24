@@ -47,6 +47,8 @@
                 <input type="checkbox" value="{{$tag->id}}" name="{{$tag->name}}" id="">
                 <label for="">{{$tag->name}}</label>
                 @endforeach
+                <br>
+                <a href="/admin/articles/tags" class="btn btn-primary">Créer un nouveau tag</a>
             </div>
 
             <div class="form-group">

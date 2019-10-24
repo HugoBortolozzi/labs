@@ -268,6 +268,16 @@ class BlogController extends Controller
             return redirect()->route('adminTags');
         }
     }
+    public function newTag(){
+        return view('admin/crud/newTag');
+    }
+    public function createTag(){
+        $tag = new Tag;
+        $tag->name = request()->input('tag_name');
+        $tag->save();
+
+        return redirect()->route('newArticle');
+    }
     public function newComment($id){
         // dd($request);
         $comment = new Comment;

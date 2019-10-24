@@ -31,7 +31,7 @@
                 <tr>
                     <td>{{$user->id}}</td>
                     <td>{{$user->name}}</td>
-                    <td><p>4</p></td>
+                    <td><p>{{$user->articles()->count()}}</p></td>
 
                     <td><a href="/admin/articles/{{$user->id}}/articles" class="btn btn-primary">Voir les articles</a></td>
                 </tr>
