@@ -93,7 +93,7 @@ class BlogController extends Controller
         }   
     }
     public function authorArticles(){
-        $users = User::where("role","editeur")->paginate(10);
+        $users = User::all()->except('role','guest');
 
         return view ('admin/authorArticle',compact('users'));
     }
@@ -117,12 +117,20 @@ class BlogController extends Controller
     }
     public function editArticle($id){
         $article = Article::find($id);
+        $articleTags = $article->links()->get();
         $categories = Categorie::all();
-        $tags = Tag::all();
-        return view ('admin/crud/editArticle',compact('article',"categories","tags"));
+        $allTags = Tag::all();
+
+        $noTags = $allTags->diff($articleTags);
+        $articleTags = $allTags->diff($noTags);
+        
+
+        return view ('admin/crud/editArticle',compact('article',"categories","articleTags","noTags"));
     }
     public function updateArticle($id){
         $article = Article::find($id);
+        $tags = Tag::all();
+        $links = Link::all();
 
         $article->name = request()->input('article_name');
 
@@ -130,21 +138,43 @@ class BlogController extends Controller
         // $path= request()->file('article_photo')->storeAs('article',$fileName);
 
         // $article->photo = "storage/".$path;
-        $article->photo = request()->input('article_photo');
+        $article->photo = request()->file('article_photo');
 
         $article->categorie_id = request()->input('article_categorie');
         $article->text1 = request()->input('article_text1');
         $article->text2 = request()->input('article_text2');
         $article->text3 = request()->input('article_text3');
 
-        $fileName= request()->file('author_photo')->getClientOriginalName();
-        $path= request()->file('author_photo')->storeAs('article',$fileName);
+        // $fileName= request()->file('author_photo')->getClientOriginalName();
+        // $path= request()->file('author_photo')->storeAs('article',$fileName);
 
-        $article->author_photo = "storage/".$path;
+        // $article->author_photo = "storage/".$path;
+        $article->author_photo = request()->file('author_photo');
         $article->author_description = request()->input('author_description');
         $article->user_id = auth()->user()->id;
 
         $article->save();
+
+        // $article->links()->detach();
+
+        // $deletes = Link::where('article_id',$id)->get();
+
+        dd($article->links);
+
+        // foreach($deletes as $delete){
+
+        //     $delete->delete();
+        // }
+
+
+        foreach($tags as $tag){
+            if(request($tag->name)){
+                $link = new Link;
+                $link->tag_id = request()->input($tag->name);
+                $link->article_id = $article->id;
+                $link->save();
+            }       
+        };
 
         $message = $article ? "Votre article a bien été modifié. IL doit maintenant attendre la validation d'un administateur" : "Erreur lors de la modification de votre article";
         session()->flash('message',$article);

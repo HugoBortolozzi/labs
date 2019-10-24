@@ -41,14 +41,27 @@
                 <a href="/admin/articles/categories" class="btn btn-primary">Créer une nouvelle catégorie</a>
             </div>
 
-            {{-- <div class="form-group">
+            <div class="form-group">
                 <label for="">Choisir les tags de l'article</label><br>
-                @foreach($tags as $tag)
                 <br>
-                <input type="checkbox" value="{{$tag->id}}" name="tag_{{$tag->id}}" id="">
+                <p>Tags que portent déja l'article</p>
+                @foreach($articleTags as $tag)
+                    <br>
+                    <input type="checkbox" value="{{$tag->id}}" checked autocomplete="on" name="{{$tag->name}}" id="">
+                    <label for="">{{$tag->name}}</label>
+                @endforeach
+                <br>
+                <br>
+                <p>Tags existants que ne portent pas l'article</p>
+                @foreach($noTags as $tag)
+                <br>
+                <input type="checkbox" value="{{$tag->id}}" autocomplete="off" name="{{$tag->name}}" id="">
                 <label for="">{{$tag->name}}</label>
                 @endforeach
-            </div> --}}
+                <br>
+                <br>
+                <a href="/admin/articles/tags" class="btn btn-primary">Créer un nouveau tag</a>
+            </div>
 
             <div class="form-group">
                 <label for=""><h4>Ecrire le contenu du premier paragraphe de l'article</h4></label><br>

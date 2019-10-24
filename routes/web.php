@@ -143,11 +143,11 @@ Route::get('/admin/articles/{id}/edit',"BlogController@editArticle")->middleware
 Route::patch('/admin/articles/{id}/update',"BlogController@updateArticle")->middleware('auth');
 Route::get('/admin/articles/{id}/delete',"BlogController@deleteArticle")->middleware('auth');
 
-Route::get('/admin/articles/categories',"BlogController@newCategorie")->middleware('auth','guest');
-Route::post('/admin/articles/categories/create',"BlogController@createCategorie")->middleware('auth','guest');
+Route::get('/admin/articles/categories',"BlogController@newCategorie")->middleware('auth','user');
+Route::post('/admin/articles/categories/create',"BlogController@createCategorie")->middleware('auth','user');
 
-Route::get('/admin/articles/tags','BlogController@newTag')->middleware('auth',"guest");
-Route::post('/admin/articles/tags/create',"BlogController@createTag")->middleware('auth',"guest");
+Route::get('/admin/articles/tags','BlogController@newTag')->middleware('auth',"user");
+Route::post('/admin/articles/tags/create',"BlogController@createTag")->middleware('auth',"user");
 
 // Routes pour les catégories
 

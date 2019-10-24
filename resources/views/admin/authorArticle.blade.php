@@ -42,9 +42,6 @@
       </div>
       <!-- /.box -->
     </div>
-    <div class="page-pagination">
-        {{$users->links()}}
-      </div>
   </div>
   
 @stop
