@@ -39,6 +39,7 @@
                     <td><p>{{$user->role}}</p></td>
                     <td><form action="/admin/users/{{$user->id}}/update" method="POST" enctype="multipart/form-data">
                         @csrf
+                        
                         <select class="selectpicker" name="user_role" id="">
                             <option>guest</option>
                             <option>editeur</option>
@@ -53,6 +54,8 @@
         </div>
         <!-- /.box-body -->
       </div>
+      <a href="/admin/users/newUser" class="btn btn-success">Créer un nouvel utilisateur</a>
+
       <!-- /.box -->
     </div>
   </div>

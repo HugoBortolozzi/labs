@@ -10,6 +10,7 @@ use App\Categorie;
 use App\Article;
 use App\User;
 use App\Tag;
+use App\Link;
 
 use App\Template;
 use App\Display;
@@ -32,7 +33,8 @@ class DatabaseSeeder extends Seeder
         Team::truncate();
         Projet::truncate();
         Comment::truncate();
-        Tag::truncate();
+        Link::truncate();
+        // Tag::truncate();
         // Article::truncate();
         // Categorie::truncate();
 
@@ -52,5 +54,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ArticleTableSeeder::class);
         $this->call(CommentTableSeeder::class);
         $this->call(TagTableSeeder::class);
+        $this->call(LinkTableSeeder::class);
     }
 }

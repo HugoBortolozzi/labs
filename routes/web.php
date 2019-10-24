@@ -43,7 +43,9 @@ Route::get('/home', function() {
 
 Route::get('/admin/users',"AdminController@users")->middleware('auth')->name('adminUsers');
 Route::get('/admin/users/{id}/delete',"AdminController@deleteUser")->middleware('auth');
-Route::post('/admin/users/{id}/update',"AdminController@updateUser")->middleware('auth');
+Route::patch('/admin/users/{id}/update',"AdminController@updateUser")->middleware('auth');
+Route::get('/admin/users/newUser',"AdminController@newUser")->middleware('auth')->name('newUser');
+Route::post('/admin/users/create',"AdminController@createUser")->middleware('auth');
 
 // Routes pour le crud du template
 

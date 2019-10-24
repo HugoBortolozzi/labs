@@ -42,6 +42,39 @@ class AdminController extends Controller
 
         return redirect()->route('adminUsers');
     }
+    public function newUser(){
+        return view ('admin/crud/newUser');
+    }
+    public function createUser(Request $request){
+        $validate = $request->validate([
+            'user_name' => "required",
+            'user_email' => "required | unique:users,email",
+            "user_password" => "required | min:8",
+            "confirm_password" => "required | min:8",
+        ]);
+
+        $users = User::all();
+
+        $user = new User;
+
+        $user->role = "guest";
+        $user->name = request()->input('user_name');
+        $user->email = request()->input("user_email");
+        if(request()->input('user_password')===request()->input('confirm_password')){
+            $user->password = bcrypt(request()->input('user_password'));
+            $user->save();
+
+            $message = $user ? "Utilisateur créé" : "Erreur lors de la création de l'utilisateur";
+            session()->flash('message',$message);
+
+            return redirect()->route('adminUsers');
+        }else{
+            $message = "Les deux mots de passes doivent être identiques";
+            session()->flash('message',$message);
+
+            return redirect()->route('newUser');
+        }
+    }
 
     // Partie Testimonial
 

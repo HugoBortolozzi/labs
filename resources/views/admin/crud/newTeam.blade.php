@@ -21,7 +21,7 @@
             </div>
 
             <div class="form-group">
-                    <label for=""><h4>Choisir le poste du témoin</h4></label>
+                    <label for=""><h4>Choisir le poste du membre de l'équipe</h4></label>
                     <input class="form-control" type="text" name="team_post" value="{{old('team_post')}}" id="">
                 </div>
 
