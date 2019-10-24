@@ -174,6 +174,11 @@ return [
             'icon' => "fas fa-certificate",
         ],
         [
+            'text' => 'configure tags',
+            'url'  => 'admin/tags',
+            'icon' => "fas fa-tags",
+        ],
+        [
             'text' => 'voir messages',
             'url'  => 'admin/messages',
             'icon' => "fas fa-envelope",

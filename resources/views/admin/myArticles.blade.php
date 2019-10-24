@@ -23,6 +23,7 @@
               <th>Nom de l'article</th>
               <th>Photo de l'article</th>
               <th>catégorie de l'article</th>
+              <th>Tags de l'article</th>
               <th>Auteur de l'article</th>
             </tr>
             @foreach($articles as $article)
@@ -31,6 +32,13 @@
                     <td>{{$article->name}}</td>
                     <td><img src="/{{$article->photo}}" alt=""></td>
                     <td>{{$article->categorie()->get()[0]->name}}</td>
+                    <td>@foreach($tags as $tag)
+                        @foreach($links as $link)
+                          @if($tag->id == $link->tag_id && $link->article_id == $article->id )
+                          {{$tag->name}} 
+                          @endif
+                        @endforeach
+                      @endforeach</td>
                     <td>{{$user->name}}</td>
                     <td><a href="/admin/articles/{{$article->id}}/delete" class="btn btn-danger">Supprimer</a></td>
                     <td><a href="/admin/articles/{{$article->id}}/edit" class="btn btn-primary">Modifier</a></td>

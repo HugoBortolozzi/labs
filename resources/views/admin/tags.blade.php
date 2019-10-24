@@ -3,7 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h2>Bievenue dans la section catégorie</h2>
+    <h2>Bievenue dans la section tags</h2>
 @stop
 
 @section('content')
@@ -20,18 +20,17 @@
             <tbody>
             <tr>
               <th>ID</th>
-              <th>Nom de la catégorie</th>
+              <th>Nom du tag</th>
             </tr>
-            @foreach($categories as $categorie)
+            @foreach($tags as $tag)
                 <tr>
-                    <td>{{$categorie->id}}</td>
-                    <form action="/admin/categories/{{$categorie->id}}/edit" method="POST" enctype="multipart/form-data"><td>
+                    <td>{{$tag->id}}</td>
+                    <form action="/admin/tags/{{$tag->id}}/edit" method="POST" enctype="multipart/form-data"><td>
                         @csrf
                         @method("PATCH")
-                        <input type="text" value="{{$categorie->name}}" name="categorie_name" id="">
-                        <td><button class="btn btn-primary" type="submit">Modifier</button></td>
-                    </td></form>
-                    <td><a href="/admin/categories/{{$categorie->id}}/delete" class="btn btn-danger">Supprimer</a></td>
+                        <input type="text" value="{{$tag->name}}" name="tag_name" id="">
+                        <td><button class="btn btn-primary" type="submit">Modifier</button></td>                    </td></form>
+                    <td><a href="/admin/tags/{{$tag->id}}/delete" class="btn btn-danger">Supprimer</a></td>
                 </tr>
             @endforeach
           </tbody></table>

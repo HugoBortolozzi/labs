@@ -62,7 +62,15 @@
 								<a href="">{{$categorie->name}}</a>
 								@endif
 								@endforeach
-								<a href="">Design, Inspiration</a>
+								<a href="">
+									@foreach($tags as $tag)
+										@foreach($links as $link)
+											@if($tag->id == $link->tag_id && $link->article_id == $article->id )
+											{{$tag->name}} 
+											@endif
+										@endforeach
+									@endforeach
+								</a>
 								<a href="">{{$count}} Comments</a>
 							</div>
 							<p>{{$article->text1}}</p>

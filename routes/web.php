@@ -17,6 +17,7 @@ Route::get('/services', "ServiceController@services")->name("services");
 
 Route::get('/blog', "BlogController@blog")->name('blog');
 Route::get('/blog/{id}/categories',"BlogController@categories");
+Route::get('/blog/{id}/tags',"BlogController@tags");
 Route::post('/search',"BlogController@search");
 
 Route::get('/blog-post/{id}/viewPost', "BlogController@blog_post");
@@ -134,7 +135,10 @@ Route::get('/admin/articles',"BlogController@authorArticles")->middleware('auth'
 Route::get('/admin/articles/{id}/articles',"BlogController@viewArticle")->middleware('auth');
 Route::get('/admin/articles/newArticle',"BlogController@newArticle")->middleware('auth')->name('newArticle');
 Route::post('/admin/articles/create',"BlogController@createArticle")->middleware('auth');
+Route::get('/admin/articles/{id}/edit',"BlogController@editArticle")->middleware('auth');
+Route::patch('/admin/articles/{id}/update',"BlogController@updateArticle")->middleware('auth');
 Route::post('articles/{id}/newComment',"BlogController@newComment")->middleware('auth');
+Route::get('/admin/articles/{id}/delete',"BlogController@deleteArticle")->middleware('auth');
 
 Route::get('/admin/articles/categories',"BlogController@newCategorie")->middleware('auth');
 Route::post('/admin/articles/categories/create',"BlogController@createCategorie")->middleware('auth');
@@ -144,3 +148,10 @@ Route::post('/admin/articles/categories/create',"BlogController@createCategorie"
 Route::get('/admin/categories',"BlogController@adminCategories")->middleware('auth')->name('adminCategories');
 Route::patch('/admin/categories/{id}/edit',"BlogController@editCategorie")->middleware('auth');
 Route::get('/admin/categories/{id}/delete',"BlogController@deleteCategorie")->middleware('auth');
+
+// Routes pour les tags
+
+Route::get('/admin/tags',"BlogController@adminTags")->middleware('auth')->name('adminTags');
+Route::patch('/admin/tags/{id}/edit',"BlogController@editTag")->middleware('auth');
+Route::get('/admin/tags/{id}/delete',"BlogController@deleteTag")->middleware('auth');
+

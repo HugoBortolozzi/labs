@@ -17,7 +17,7 @@
             </div>
 
             <div class="form-group">
-                <label for=""><h4>Choisir la description</h4></label>
+                <label for=""><h4>Choisir la description</h4></label><br>
                 <textarea name="projet_text" id="" cols="75" rows="5">{{old('projet_text')}}</textarea>
             </div>
 

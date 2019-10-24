@@ -3,7 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h2>Création d'un nouvel article</h2>
+    <h2>Modification de l'article : {{$article->name}}</h2>
 @stop
 
 @section('css')
@@ -18,11 +18,12 @@
         @if(session()->has('message'))
         <div class="alert alert-info alert-dismissible" role="alert">{{session()->get('message')}}</div>
     @endif
-        <form action="/admin/articles/create" method="POST" enctype="multipart/form-data">
+        <form action="/admin/articles/{{$article->id}}/update" method="POST" enctype="multipart/form-data">
             @csrf
+            @method("PATCH")
             <div class="form-group">
                 <label for=""><h4>Choisir le nom de l'article</h4></label>
-                <input class="form-control" value="{{old('article_name')}}" name='article_name' type="text">
+                <input class="form-control" value="{{$article->name}}" name='article_name' type="text">
             </div>
 
             <div class="form-group">
@@ -40,28 +41,28 @@
                 <a href="/admin/articles/categories" class="btn btn-primary">Créer une nouvelle catégorie</a>
             </div>
 
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="">Choisir les tags de l'article</label><br>
                 @foreach($tags as $tag)
                 <br>
-                <input type="checkbox" value="{{$tag->id}}" name="{{$tag->name}}" id="">
+                <input type="checkbox" value="{{$tag->id}}" name="tag_{{$tag->id}}" id="">
                 <label for="">{{$tag->name}}</label>
                 @endforeach
-            </div>
+            </div> --}}
 
             <div class="form-group">
                 <label for=""><h4>Ecrire le contenu du premier paragraphe de l'article</h4></label><br>
-                <textarea name="article_text1" id="" cols="120" rows="10">{{old('article_text1')}}</textarea>
+                <textarea name="article_text1" id="" cols="120" rows="10">{{$article->text1}}</textarea>
             </div>
 
             <div class="form-group">
                 <label for=""><h4>Ecrire le contenu du second paragraphe de l'article</h4></label><br>
-                <textarea name="article_text2" id="" cols="120" rows="10">{{old('article_text2')}}</textarea>
+                <textarea name="article_text2" id="" cols="120" rows="10">{{$article->text2}}</textarea>
             </div>
 
             <div class="form-group">
                 <label for=""><h4>Ecrire le contenu du troisième paragraphe de l'article</h4></label><br>
-                <textarea name="article_text3" id="" cols="120" rows="10">{{old('article_text3')}}</textarea>
+                <textarea name="article_text3" id="" cols="120" rows="10">{{$article->text3}}</textarea>
             </div>
 
 
@@ -72,7 +73,7 @@
 
             <div class="form-group">
                 <label for=""><h4>Ecrire la description de l'auteur de l'article</h4></label><br>
-                <textarea name="author_description" id="" cols="120" rows="10">{{old('author_description')}}</textarea>
+                <textarea name="author_description" id="" cols="120" rows="10">{{$article->author_description}}</textarea>
             </div>
 
             <button type="submit" class="btn btn-success">Créer</button>
