@@ -9,12 +9,73 @@ use App\Projet;
 use App\Message;
 use App\Newsletter;
 use App\User;
+use App\Tag;
+use App\Link;
+use App\Article;
 
 use App\Template;
 
 
 class AdminController extends Controller
 {
+    public function admin(){
+        $role = auth()->user()->role;
+
+        return view('home',compact('role'));
+    }
+    public function myProfil(){
+        $user = auth()->user();
+        return view ('admin/myProfil',compact('user'));
+    }
+    public function editProfil(){
+        $user = auth()->user();
+        return view ('admin/crud/editProfil',compact('user'));
+    }
+    public function myArticles(){
+        $user = auth()->user();
+        $articles = Article::where('user_id',$user->id)->paginate(3);
+        $tags = Tag::all();
+        $links = Link::all();
+
+        return view ('admin/myArticles',compact('articles',"user","tags",'links'));
+    }
+    public function updateProfil(Request $request){
+        $validate = $request->validate([
+            'user_name' => "required",
+            'user_email' => "required",
+
+        ]);
+
+        $user = auth()->user();
+        $user->name = request()->input('user_name');
+        $user->email = request()->input('user_email');
+        if(request()->input('user_password') && request()->input('confirm_password')){
+            if(request()->input('user_password')===request()->input('confirm_password')){
+                $user->password = bcrypt(request()->input('user_password'));
+                $user->save();
+    
+                $message = $user ? "Utilisateur créé" : "Erreur lors de la création de l'utilisateur";
+                session()->flash('message',$message);
+    
+                return redirect()->route('myProfil');
+            }else{
+                $user->password = $user->password;
+                $message = "Les deux mots de passes doivent être identiques";
+                session()->flash('message',$message);
+    
+                return redirect()->route('editProfil');
+            }
+        }else{
+            $user->password = $user->password;
+            $user->save();
+    
+            $message = $user ? "Utilisateur créé" : "Erreur lors de la création de l'utilisateur";
+            session()->flash('message',$message);
+
+            return redirect()->route('myProfil');
+        }
+    }
+
     // Partie User
 
     public function users(){
@@ -25,6 +86,13 @@ class AdminController extends Controller
     public function deleteUser($id){
         $user = User::find($id);
 
+        if($user = auth()->user()){
+            $message = "Vous ne pouvez pas vous supprimer vous-même";
+            session()->flash('message',$message);
+    
+            return redirect()->route('adminUsers'); 
+        }
+
         $user->delete();
         $message = $user ? "Utilisateur supprimée" : "Erreur lors de la suppression de l'utilisateur";
         session()->flash('message',$message);
@@ -34,13 +102,20 @@ class AdminController extends Controller
     public function updateUser($id){
         $user = User::find($id);
 
-        $user->role = request()->input('user_role');
-        $user->save();
+        if($user = auth()->user()){
+            $message = "Vous ne pouvez pas modifier votre propre role";
+            session()->flash('message',$message);
 
-        $message = $user ? "Role de l'utilisateur modifié" : "Erreur lors de la modification du role de l'utilisateur";
-        session()->flash('message',$message);
+            return redirect()->route('adminUsers');
+        }else{
+            $user->role = request()->input('user_role');
+            $user->save();
 
-        return redirect()->route('adminUsers');
+            $message = $user ? "Role de l'utilisateur modifié" : "Erreur lors de la modification du role de     l'utilisateur";
+            session()->flash('message',$message);
+
+            return redirect()->route('adminUsers');
+        }     
     }
     public function newUser(){
         return view ('admin/crud/newUser');

@@ -63,6 +63,18 @@
         @endforeach
         
         <button type="submit" class="btn btn-warning">Validez les modifications</button>
+        <br>
+        @if(count($errors))
+						<div class="col-md-6">
+							<div class="alert alert-danger rounded">
+								<ul>
+									@foreach($errors->all() as $error)
+										<li>{{$error}}</li>
+									@endforeach
+								</ul>
+							</div>
+						</div>
+					@endif
     </form>
 
     {{-- Page 1 Section 1  --}}
@@ -88,6 +100,17 @@
             <label for="">{{$template->name}}</label>
             <input class="form-control" type="text" name="sec1_title_part1" value="{{$template->contain}}" id="">
         </div>
+        @if($errors->has("sec1_title_part1"))
+			<div class="col-md-6">
+				<div class="alert alert-danger rounded">
+					<ul>
+						@foreach($errors->all() as $error)
+							<li>{{$error}}</li>
+						@endforeach
+					</ul>
+				</div>
+			</div>
+        @endif
         @endif
 
         @if($template->id == 6)
@@ -95,6 +118,17 @@
             <label for="">{{$template->name}}</label>
             <input class="form-control" type="text" name="sec1_title_span" value="{{$template->contain}}" id="">
         </div>
+        @if($errors->has("sec1_title_span"))
+			<div class="col-md-6">
+				<div class="alert alert-danger rounded">
+					<ul>
+						@foreach($errors->all() as $error)
+							<li>{{$error}}</li>
+						@endforeach
+					</ul>
+				</div>
+			</div>
+        @endif
         @endif
 
         @if($template->id == 7)
@@ -102,6 +136,17 @@
             <label for="">{{$template->name}}</label>
             <input class="form-control" type="text" name="sec1_title_part2" value="{{$template->contain}}" id="">
         </div>
+        @if($errors->has("sec1_title_part2"))
+			<div class="col-md-6">
+				<div class="alert alert-danger rounded">
+					<ul>
+						@foreach($errors->all() as $error)
+							<li>{{$error}}</li>
+						@endforeach
+					</ul>
+				</div>
+			</div>
+        @endif
         @endif
 
         @if($template->id == 8)
@@ -109,6 +154,17 @@
             <label for="">{{$template->name}}</label>
             <input class="form-control" type="text" name="sec1_text1" value="{{$template->contain}}" id="">
         </div>
+        @if($errors->has("sec1_text1"))
+			<div class="col-md-6">
+				<div class="alert alert-danger rounded">
+					<ul>
+						@foreach($errors->all() as $error)
+							<li>{{$error}}</li>
+						@endforeach
+					</ul>
+				</div>
+			</div>
+        @endif
         @endif
 
         @if($template->id == 9)
@@ -116,6 +172,17 @@
             <label for="">{{$template->name}}</label>
             <input class="form-control" type="text" name="sec1_text2" value="{{$template->contain}}" id="">
         </div>
+        @if($errors->has("sec1_title_part1"))
+			<div class="col-md-6">
+				<div class="alert alert-danger rounded">
+					<ul>
+						@foreach($errors->all() as $error)
+							<li>{{$error}}</li>
+						@endforeach
+					</ul>
+				</div>
+			</div>
+        @endif
         @endif
 
         @if($template->id == 10)
@@ -170,6 +237,18 @@
         @endforeach
         
         <button type="submit" class="btn btn-warning">Validez les modifications</button>
+        <br>
+        @if(count($errors))
+						<div class="col-md-6">
+							<div class="alert alert-danger rounded">
+								<ul>
+									@foreach($errors->all() as $error)
+										<li>{{$error}}</li>
+									@endforeach
+								</ul>
+							</div>
+						</div>
+					@endif
     </form>
 
     {{-- Page 1 Section 3  --}}

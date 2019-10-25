@@ -21,7 +21,8 @@ class CreateArticlesTable extends Migration
             $table->text('text2');
             $table->text('text3');
             $table->text('author_description');
-            $table->string('author_photo');           
+            $table->string('author_photo');
+            $table->string('validate');           
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->on('users')->references('id')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('categorie_id')->unsigned();

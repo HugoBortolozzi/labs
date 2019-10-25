@@ -21,7 +21,13 @@ class EditTemplateController extends Controller
 
         // Banner
 
-    public function banner(){
+    public function banner(Request $request){
+        $validate = $request->validate([
+            'main_title' => "required",
+            'nav_logo' => "required",
+            "banner_logo" => "required",
+            "banner_text" => "required",
+        ]);
 
         $template = Template::find(1);
         $template->contain = request()->input('main_title');
@@ -47,7 +53,17 @@ class EditTemplateController extends Controller
 
         // Section 1
 
-    public function section1(){
+    public function section1(Request $request){
+        $validate = $request->validate([
+            'sec1_title_part1' => "required",
+            'sec1_title_span' => "required",
+            "sec1_title_part2" => "required",
+            "sec1_text1" => "required",
+            "sec1_text2" => "required",
+            'sec1_button' => "required",
+            'sec1_video' => "required",
+            "sec1_video_img" => "required",
+        ]);
 
         $template = Template::find(5);
         $template->contain = request()->input('sec1_title_part1');

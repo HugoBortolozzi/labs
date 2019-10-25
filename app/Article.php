@@ -20,6 +20,6 @@ class Article extends Model
         return $this->belongsTo(User::class,'user_id');
     }
     public function links(){
-        return $this->belongsToMany(Link::class,'links')->using(Link::class);
+        return $this->belongsToMany(Tag::class,'links',"article_id","tag_id")->using(Link::class);
     }
 }

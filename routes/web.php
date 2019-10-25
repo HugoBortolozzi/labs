@@ -28,16 +28,25 @@ Route::post('/contact/newMessage',"MainController@newMessage");
 Route::get('/inscription',"MainController@inscription");
 
 Route::post('/newsletter/newUser',"MainController@newsletter");
-Route::get('/admin/newsletter',"AdminController@viewNewsletter")->middleware('auth')->middleware('admin')->name('adminNewsletter');
-Route::get('/admin/newsletter/{id}/delete',"AdminController@deleteNewsletter")->middleware('auth','admin');
 
 Auth::routes();
 
-Route::get('/home', function() {
-    return view('home');
-})->name('home')->middleware('auth');
+//Routes pour les éditeurs et guests ( certaines routes de l'éditeur sont écrites dans la section article)
+
+Route::get('/user/profil',"AdminController@myProfil")->middleware('auth')->name('myProfil');
+Route::get('/user/profil/edit',"AdminController@editProfil")->middleware('auth')->name('editProfil');
+Route::post('/user/profil/update','AdminController@updateProfil')->middleware('auth');
+
+Route::get('/editeur/myArticles',"AdminController@myArticles")->middleware('auth','user')->name('myArticles');
 
 // Routes de l'admin
+
+Route::get('/home', "AdminController@admin")->name('home')->middleware('auth');
+
+//Routes de la newsletter
+
+Route::get('/admin/newsletter',"AdminController@viewNewsletter")->middleware('auth')->middleware('admin')->name('adminNewsletter');
+Route::get('/admin/newsletter/{id}/delete',"AdminController@deleteNewsletter")->middleware('auth','admin');
 
 // Routes pour les users 
 
@@ -133,15 +142,15 @@ Route::get('/admin/messages/{id}/delete',"AdminController@deleteMessage")->middl
 
 // Routes pour les articles 
 
-Route::post('articles/{id}/newComment',"BlogController@newComment")->middleware('auth');
+Route::post('articles/{id}/newComment',"BlogController@newComment")->middleware('auth','user');
 
-Route::get('/admin/articles',"BlogController@authorArticles")->middleware('auth')->name('adminArticle');
-Route::get('/admin/articles/{id}/articles',"BlogController@viewArticle")->middleware('auth');
-Route::get('/admin/articles/newArticle',"BlogController@newArticle")->middleware('auth')->name('newArticle');
-Route::post('/admin/articles/create',"BlogController@createArticle")->middleware('auth');
-Route::get('/admin/articles/{id}/edit',"BlogController@editArticle")->middleware('auth');
-Route::patch('/admin/articles/{id}/update',"BlogController@updateArticle")->middleware('auth');
-Route::get('/admin/articles/{id}/delete',"BlogController@deleteArticle")->middleware('auth');
+Route::get('/admin/articles',"BlogController@authorArticles")->middleware('auth','admin')->name('adminArticle');
+Route::get('/admin/articles/{id}/articles',"BlogController@viewArticle")->middleware('auth','admin');
+Route::get('/admin/articles/newArticle',"BlogController@newArticle")->middleware('auth','user')->name('newArticle');
+Route::post('/admin/articles/create',"BlogController@createArticle")->middleware('auth','user');
+Route::get('/admin/articles/{id}/edit',"BlogController@editArticle")->middleware('auth','user');
+Route::patch('/admin/articles/{id}/update',"BlogController@updateArticle")->middleware('auth','user');
+Route::get('/admin/articles/{id}/delete',"BlogController@deleteArticle")->middleware('auth','user');
 
 Route::get('/admin/articles/categories',"BlogController@newCategorie")->middleware('auth','user');
 Route::post('/admin/articles/categories/create',"BlogController@createCategorie")->middleware('auth','user');

@@ -3,9 +3,9 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>Partie admin du site</h1>
 @stop
 
 @section('content')
-    <p>You are logged in!</p>
+    <p>Vous êtes connecté en temps que <strong>{{$role}}</strong></p>
 @stop

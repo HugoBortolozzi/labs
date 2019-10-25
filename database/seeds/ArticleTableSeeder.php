@@ -23,6 +23,7 @@ class ArticleTableSeeder extends Seeder
             "text3" => "Fusce vel tempus nunc. Phasellus et risus eget sapien suscipit efficitur. Suspendisse iaculis purus ornare urna egestas imperdiet. Nulla congue consectetur placerat. Integer sit amet auctor justo. Pellentesque vel congue velit. Sed ullamcorper lacus scelerisque condimentum convallis. Sed ac mollis sem.",
             "author_description" => "Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique. ",
             "author_photo" => "img/avatar/03.jpg",
+            "validate" => "oui",
             "user_id" => "1",
             "categorie_id" => "1",
         ]);
@@ -34,6 +35,7 @@ class ArticleTableSeeder extends Seeder
             "text3" => "Fusce vel tempus nunc. Phasellus et risus eget sapien suscipit efficitur. Suspendisse iaculis purus ornare urna egestas imperdiet. Nulla congue consectetur placerat. Integer sit amet auctor justo. Pellentesque vel congue velit. Sed ullamcorper lacus scelerisque condimentum convallis. Sed ac mollis sem.",
             "author_description" => "Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique. ",
             "author_photo" => "img/avatar/03.jpg",
+            "validate" => "oui",
             "user_id" => "1",
             "categorie_id" => "1",
         ]);
@@ -45,6 +47,7 @@ class ArticleTableSeeder extends Seeder
             "text3" => "Fusce vel tempus nunc. Phasellus et risus eget sapien suscipit efficitur. Suspendisse iaculis purus ornare urna egestas imperdiet. Nulla congue consectetur placerat. Integer sit amet auctor justo. Pellentesque vel congue velit. Sed ullamcorper lacus scelerisque condimentum convallis. Sed ac mollis sem.",
             "author_description" => "Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique. ",
             "author_photo" => "img/avatar/03.jpg",
+            "validate" => "oui",
             "user_id" => "1",
             "categorie_id" => "1",
         ]);
