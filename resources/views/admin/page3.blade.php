@@ -28,6 +28,17 @@
                 <label for="">{{$template->name}}</label>
                 <input class="form-control" type="text" name="page3_title" value="{{$template->contain}}" id="">
             </div>
+            @if($errors->has("page3_title"))
+        <div class="col-md-6">
+            <div class="alert alert-danger rounded">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
             @endif
     
             @endforeach
@@ -56,6 +67,17 @@
                 <label for="">{{$template->name}}</label>
                 <input class="form-control" type="text" name="page3_widget1_name" value="{{$template->contain}}" id="">
             </div>
+            @if($errors->has("page3_widget1_name"))
+        <div class="col-md-6">
+            <div class="alert alert-danger rounded">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
             @endif
     
             @if($template->id == 44)
@@ -63,6 +85,17 @@
                 <label for="">{{$template->name}}</label>
                 <input class="form-control" type="text" name="page3_widget2_name" value="{{$template->contain}}" id="">
             </div>
+            @if($errors->has("page3_widget2_name"))
+        <div class="col-md-6">
+            <div class="alert alert-danger rounded">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
             @endif
     
             @if($template->id == 45)
@@ -70,6 +103,17 @@
                 <label for="">{{$template->name}}</label>
                 <input class="form-control" type="text" name="page3_widget3_name" value="{{$template->contain}}" id="">
             </div>
+            @if($errors->has("page3_widget3_name"))
+        <div class="col-md-6">
+            <div class="alert alert-danger rounded">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
             @endif
     
             @if($template->id == 46)
@@ -77,6 +121,17 @@
                 <label for="">{{$template->name}}</label>
                 <input class="form-control" type="text" name="page3_widget4_name" value="{{$template->contain}}" id="">
             </div>
+            @if($errors->has("page3_widget4_name"))
+        <div class="col-md-6">
+            <div class="alert alert-danger rounded">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
             @endif
     
             @if($template->id == 47)
@@ -84,6 +139,17 @@
                 <label for="">{{$template->name}}</label>
                 <input class="form-control" type="text" name="page3_widget4_contain" value="{{$template->contain}}" id="">
             </div>
+            @if($errors->has("page3_widget4_contain"))
+        <div class="col-md-6">
+            <div class="alert alert-danger rounded">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
             @endif
     
             @if($template->id == 48)
@@ -91,6 +157,17 @@
                 <label for="">{{$template->name}}</label>
                 <input class="form-control" type="text" name="page3_widget5_name" value="{{$template->contain}}" id="">
             </div>
+            @if($errors->has("page3_widget5_name"))
+        <div class="col-md-6">
+            <div class="alert alert-danger rounded">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
             @endif
     
             @if($template->id == 49)
@@ -98,6 +175,17 @@
                 <label for="">{{$template->name}}</label>
                 <input class="form-control" type="text" name="page3_widget5_img" value="{{$template->contain}}" id="">
             </div>
+            @if($errors->has("page3_widget5_img"))
+        <div class="col-md-6">
+            <div class="alert alert-danger rounded">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
             @endif
     
             @if($template->id == 50)
@@ -105,6 +193,17 @@
                 <label for="">{{$template->name}}</label>
                 <input class="form-control" type="text" name="page3_widget5_path_link" value="{{$template->contain}}" id="">
             </div>
+            @if($errors->has("page3_widget5_path_link"))
+        <div class="col-md-6">
+            <div class="alert alert-danger rounded">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
             @endif
     
             @endforeach

@@ -64,17 +64,17 @@
             </div>
 
             <div class="form-group">
-                <label for=""><h4>Ecrire le contenu du premier paragraphe de l'article</h4></label><br>
+                <label for=""><h4>Modifier le contenu du premier paragraphe de l'article</h4></label><br>
                 <textarea name="article_text1" id="" cols="120" rows="10">{{$article->text1}}</textarea>
             </div>
 
             <div class="form-group">
-                <label for=""><h4>Ecrire le contenu du second paragraphe de l'article</h4></label><br>
+                <label for=""><h4>Modifier le contenu du second paragraphe de l'article</h4></label><br>
                 <textarea name="article_text2" id="" cols="120" rows="10">{{$article->text2}}</textarea>
             </div>
 
             <div class="form-group">
-                <label for=""><h4>Ecrire le contenu du troisième paragraphe de l'article</h4></label><br>
+                <label for=""><h4>Modifier le contenu du troisième paragraphe de l'article</h4></label><br>
                 <textarea name="article_text3" id="" cols="120" rows="10">{{$article->text3}}</textarea>
             </div>
 
@@ -85,11 +85,22 @@
             </div>
 
             <div class="form-group">
-                <label for=""><h4>Ecrire la description de l'auteur de l'article</h4></label><br>
+                <label for=""><h4>Modifier la description de l'auteur de l'article</h4></label><br>
                 <textarea name="author_description" id="" cols="120" rows="10">{{$article->author_description}}</textarea>
             </div>
 
-            <button type="submit" class="btn btn-success">Créer</button>
+            <button type="submit" class="btn btn-success">Modifier</button>
+            @if(count($errors))
+						<div class="col-md-6">
+							<div class="alert alert-danger rounded">
+								<ul>
+									@foreach($errors->all() as $error)
+										<li>{{$error}}</li>
+									@endforeach
+								</ul>
+							</div>
+						</div>
+					@endif
         </form>
     </section>
 @stop

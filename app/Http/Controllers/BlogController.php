@@ -128,7 +128,18 @@ class BlogController extends Controller
 
         return view ('admin/crud/editArticle',compact('article',"categories","articleTags","noTags"));
     }
-    public function updateArticle($id){
+    public function updateArticle($id,Request $request){
+        $validate = $request->validate([
+            'article_name' => "required",
+            'article_photo' => "required",
+            "article_categorie" => "required",
+            "article_text1" => "required",
+            "article_text2" => "required",
+            "article_text3" => "required",
+            "author_photo" => "required",
+            "author_description" => "required",
+        ]);
+
         $article = Article::find($id);
         $tags = Tag::all();
         $links = Link::all();
@@ -190,7 +201,18 @@ class BlogController extends Controller
             return redirect()->route('myArticles');
         }
     }
-    public function createArticle(){
+    public function createArticle(Request $request){
+        $validate = $request->validate([
+            'article_name' => "required",
+            'article_photo' => "required",
+            "article_categorie" => "required",
+            "article_text1" => "required",
+            "article_text2" => "required",
+            "article_text3" => "required",
+            "author_photo" => "required",
+            "author_description" => "required",
+        ]);
+
         $article = new Article;
         $tags = Tag::all();
 
@@ -232,7 +254,10 @@ class BlogController extends Controller
     public function newCategorie(){
         return view ('admin/crud/newCategorie');
     }
-    public function createCategorie(){
+    public function createCategorie(Request $request){
+        $validate = $request->validate([
+            'categorie_name' => "required",
+        ]);
         $categorie = new Categorie;
 
         $categorie->name = request()->input('categorie_name');
@@ -247,7 +272,11 @@ class BlogController extends Controller
         $categories = Categorie::all();
         return view ('admin/categories',compact('categories'));
     }
-    public function editCategorie($id){
+    public function editCategorie($id,Request $request){
+        $validate = $request->validate([
+            'categorie_name' => "required",
+        ]);
+
         $categorie = Categorie::find($id);
 
         $categorie->name = request()->input('categorie_name');
@@ -279,7 +308,11 @@ class BlogController extends Controller
         $tags = Tag::all();
         return view ('admin/tags',compact('tags'));
     }
-    public function editTag($id){
+    public function editTag($id,Request $request){
+        $validate = $request->validate([
+            'tag_name' => "required",
+        ]);
+
         $tag = Tag::find($id);
 
         $tag->name = request()->input('tag_name');
@@ -310,14 +343,24 @@ class BlogController extends Controller
     public function newTag(){
         return view('admin/crud/newTag');
     }
-    public function createTag(){
+    public function createTag(Request $request){
+        $validate = $request->validate([
+            'tag_name' => "required",
+        ]);
+
         $tag = new Tag;
         $tag->name = request()->input('tag_name');
         $tag->save();
 
         return redirect()->route('newArticle');
     }
-    public function newComment($id){
+    public function newComment($id,Request $request){
+        $validate = $request->validate([
+            'name' => "required",
+            'email' => "required",
+            'subject' => "required",
+            'comment' => "required",
+        ]);
         // dd($request);
         $comment = new Comment;
 

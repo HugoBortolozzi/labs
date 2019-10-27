@@ -174,7 +174,13 @@ class AdminController extends Controller
 
         return view ('admin/crud/editTestimonial',compact('testimonial'));
     }
-    public function updateTestimonial($id){
+    public function updateTestimonial($id,Request $request){
+        $validate = $request->validate([
+            'testimonial_name' => "required",
+            'testimonial_photo' => "required",
+            "testimonial_text" => "required",
+            "testimonial_post" => "required",
+        ]);
         $testimonial = Testimonial::find($id);
 
         $testimonial->name = request()->input('testimonial_name');
@@ -192,7 +198,13 @@ class AdminController extends Controller
     public function newTestimonial(){
         return view('admin/crud/newTestimonial');
     }
-    public function createTestimonial(){
+    public function createTestimonial(Request $request){
+        $validate = $request->validate([
+            'testimonial_name' => "required",
+            'testimonial_photo' => "required",
+            "testimonial_text" => "required",
+            "testimonial_post" => "required",
+        ]);
         $testimonial = new Testimonial;
 
         $testimonial->name = request()->input('testimonial_name');
@@ -220,7 +232,13 @@ class AdminController extends Controller
 
         return view ('admin/crud/editTeam',compact('team'));
     }
-    public function updateTeam($id){
+    public function updateTeam($id,Request $request){
+        $validate = $request->validate([
+            'team_name' => "required",
+            'team_photo' => "required",
+            "team_post" => "required",
+        ]);
+
         $team = Team::find($id);
 
         $team->name = request()->input('team_name');
@@ -254,7 +272,13 @@ class AdminController extends Controller
     public function newTeam(){
         return view('admin/crud/newTeam');
     }
-    public function createTeam(){
+    public function createTeam(Request $request){
+        $validate = $request->validate([
+            'team_name' => "required",
+            'team_photo' => "required",
+            "team_post" => "required",
+        ]);
+        
         $team = new Team;
 
         $team->name = request()->input('team_name');
@@ -297,7 +321,13 @@ class AdminController extends Controller
         return view ('admin/crud/editProjet',compact('projet'));
     }
 
-    public function updateProjet($id){
+    public function updateProjet($id,Request $request){
+        $validate = $request->validate([
+            'projet_name' => "required",
+            'projet_text' => "required",
+            "team_projet_photopost" => "required",
+        ]);
+
         $projet = Projet::find($id);
 
         $projet->name = request()->input('projet_name');
@@ -328,7 +358,13 @@ class AdminController extends Controller
     public function newProjet(){
         return view('admin/crud/newProjet');
     }
-    public function createProjet(){
+    public function createProjet(Request $request){
+        $validate = $request->validate([
+            'projet_name' => "required",
+            'projet_text' => "required",
+            "team_projet_photopost" => "required",
+        ]);
+
         $projet = new Projet;
 
         $projet->name = request()->input('projet_name');

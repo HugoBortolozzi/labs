@@ -28,6 +28,17 @@
             <br>
             
             <button type="submit" class="btn btn-success">Valider la modifications</button>
+            @if($errors->has("img"))
+                        <div class="col-md-6">
+                            <div class="alert alert-danger rounded">
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>{{$error}}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    @endif    
         </form>
         <br>
         <form action="/admin/template/carousel/{{$carousel->id}}/delete" method="POST" enctype="multipart/form-data">

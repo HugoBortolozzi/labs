@@ -61,8 +61,6 @@ class EditTemplateController extends Controller
             "sec1_text1" => "required",
             "sec1_text2" => "required",
             'sec1_button' => "required",
-            'sec1_video' => "required",
-            "sec1_video_img" => "required",
         ]);
 
         $template = Template::find(5);
@@ -90,12 +88,23 @@ class EditTemplateController extends Controller
         $template->save();
 
         $template = Template::find(11);
-        $template->contain = request()->input('sec1_video');
-        $template->save();
+        if(request()->file('sec1_video')){
+            $template->contain = request()->input('sec1_video');
+            $template->save();
+        }else{
+            $template->contain = $template->contain;
+            $template->save();
+        }
 
         $template = Template::find(12);
-        $template->contain = request()->input('sec1_video_img');
-        $template->save();
+        if(request()->file('sec1_video_img')){
+            $template->contain = request()->input('sec1_video_img');
+            $template->save();
+        }else{
+            $template->contain = $template->contain;
+            $template->save();
+        }
+        
 
         $messageSec1 = $template ? "1ère section mise à jour" : "Erreur lors de la modification de la 1ère section";
         session()->flash('messageSec1',$messageSec1);
@@ -105,7 +114,11 @@ class EditTemplateController extends Controller
 
         // Section 2
 
-    public function section2(){
+    public function section2(Request $request){
+        $validate = $request->validate([
+            'sec2_title' => "required",
+            
+        ]);
 
         $template = Template::find(13);
         $template->contain = request()->input('sec2_title');
@@ -119,7 +132,13 @@ class EditTemplateController extends Controller
 
         // Section 3
 
-    public function section3(){
+    public function section3(Request $request){
+        $validate = $request->validate([
+            'sec3_title_part1' => "required",
+            'sec3_title_span' => "required",
+            "sec3_title_part2" => "required",
+            "sec3_button" => "required",
+        ]);
 
         $template = Template::find(14);
         $template->contain = request()->input('sec3_title_part1');
@@ -146,7 +165,12 @@ class EditTemplateController extends Controller
 
         // Section 4
 
-    public function section4(){
+    public function section4(Request $request){
+        $validate = $request->validate([
+            'sec4_title_part1' => "required",
+            'sec4_title_span' => "required",
+            "sec4_title_part2" => "required",
+        ]);
 
         $template = Template::find(18);
         $template->contain = request()->input('sec4_title_part1');
@@ -169,7 +193,12 @@ class EditTemplateController extends Controller
 
         // Section 5
 
-    public function section5(){
+    public function section5(Request $request){
+        $validate = $request->validate([
+            'sec5_title' => "required",
+            'sec5_text' => "required",
+            "sec5_button" => "required",
+        ]);
 
         $template = Template::find(21);
         $template->contain = request()->input('sec5_title');
@@ -192,7 +221,16 @@ class EditTemplateController extends Controller
 
         // Section 6
 
-    public function section6(){
+    public function section6(Request $request){
+        $validate = $request->validate([
+            'sec6_title' => "required",
+            'sec6_text' => "required",
+            "sec6_sub_title" => "required",
+            "sec6_string1" => "required",
+            "sec6_string2" => "required",
+            'sec6_string3' => "required",
+            'sec6_string4' => "required",
+        ]);
     
         $template = Template::find(24);
         $template->contain = request()->input('sec6_title');
@@ -231,7 +269,15 @@ class EditTemplateController extends Controller
 
         // Formulaire
 
-    public function formulaire(){
+    public function formulaire(Request $request){
+        $validate = $request->validate([
+            'contactform_name' => "required",
+            'contactform_mail' => "required",
+            "contactform_subject" => "required",
+            "contactform_message" => "required",
+            "contactform_button" => "required",
+            'contactform_target' => "required",
+        ]);
 
         $template = Template::find(31);
         $template->contain = request()->input('contactform_name');
@@ -273,7 +319,10 @@ class EditTemplateController extends Controller
         return view('admin/page2',compact('templates'));
     }
 
-    public function P2Title(){
+    public function P2Title(Request $request){
+        $validate = $request->validate([
+            'page2_title' => "required",
+        ]);
 
         $template = Template::find(37);
         $template->contain = request()->input('page2_title');
@@ -287,7 +336,14 @@ class EditTemplateController extends Controller
 
     // Section 2 
 
-    public function P2sec2(){
+    public function P2sec2(Request $request){
+        $validate = $request->validate([
+            'page2_sec2_title_part1' => "required",
+            'page2_sec2_title_span' => "required",
+            "page2_sec2_title_part2" => "required",
+            "page2_sec2_button" => "required",
+            "page2_sec2_logo" => "required",
+        ]);
 
         $template = Template::find(38);
         $template->contain = request()->input('page2_sec2_title_part1');
@@ -318,12 +374,16 @@ class EditTemplateController extends Controller
     // Page 3
 
     public function page3(){
+        
         $templates = template::all();
 
         return view('admin/page3',compact('templates'));
     }
 
-    public function P3Title(){
+    public function P3Title(Request $request){
+        $validate = $request->validate([
+            'page3_title' => "required",
+        ]);
 
         $template = Template::find(42);
         $template->contain = request()->input('page3_title');
@@ -335,7 +395,17 @@ class EditTemplateController extends Controller
         return redirect()->route('pageTrois');
     }
 
-    public function P3Widget(){
+    public function P3Widget(Request $request){
+        $validate = $request->validate([
+            'page3_widget1_name' => "required",
+            'page3_widget2_name' => "required",
+            "page3_widget3_name" => "required",
+            "page3_widget4_name" => "required",
+            "page3_widget4_contain" => "required",
+            "page3_widget5_name" => "required",
+            "page3_widget5_img" => "required",
+            "page3_widget5_path_link" => "required",
+        ]);
 
         $template = Template::find(43);
         $template->contain = request()->input('page3_widget1_name');
@@ -381,7 +451,10 @@ class EditTemplateController extends Controller
         $template = Template::find(51);
         return view('admin/page4',compact('template'));
     }
-    public function P4Title(){
+    public function P4Title(Request $request){
+        $validate = $request->validate([
+            'page4_title' => "required",
+        ]);
 
         $template = Template::find(51);
         $template->contain = request()->input('page4_title');

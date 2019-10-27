@@ -35,7 +35,10 @@ class MainController extends Controller
 
         return view ('admin/carousel',compact('carousels'));
     }
-    public function updateCarousel($id){
+    public function updateCarousel($id,Request $request){
+        $validate = $request->validate([
+            'img' => "required",
+        ]);
         $carousel = Carousel::find($id);
 
         $carousel->img = request('img');
@@ -60,7 +63,10 @@ class MainController extends Controller
     public function newCarousel(){
         return view ('admin/crud/newCarousel');
     }
-    public function createCarousel(){
+    public function createCarousel(Request $request){
+        $validate = $request->validate([
+            'img' => "required",
+        ]);
         $carousel = new Carousel;
 
         $fileName= request()->file('img')->getClientOriginalName();
@@ -105,7 +111,10 @@ class MainController extends Controller
         return redirect()->route('main');
     }
 
-    public function newsletter(){
+    public function newsletter(Request $request){
+        $validate = $request->validate([
+            'email' => "required",
+        ]);
         $newsletter = new Newsletter;
 
         $newsletter->email = request()->input('email');

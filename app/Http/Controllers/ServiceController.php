@@ -32,7 +32,12 @@ class ServiceController extends Controller
 
         return view ('admin/crud/editService',compact('service'));
     }
-    public function update($id){
+    public function update($id,Request $request){
+        $validate = $request->validate([
+            'service_title' => "required",
+            'service_logo' => "required",
+            "service_text" => "required",
+        ]);
         $service = Service::find($id);
 
         $service->title = request()->input('service_title');
@@ -59,7 +64,12 @@ class ServiceController extends Controller
     public function newService(){
         return view('admin/crud/newService');
     }
-    public function create(){
+    public function create(Request $request){
+        $validate = $request->validate([
+            'service_title' => "required",
+            'service_logo' => "required",
+            "service_text" => "required",
+        ]);
         $service = new Service;
 
         $service->title = request()->input('service_title');

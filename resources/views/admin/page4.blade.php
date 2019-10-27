@@ -25,6 +25,17 @@
                 <label for="">{{$template->name}}</label>
                 <input class="form-control" type="text" name="page4_title" value="{{$template->contain}}" id="">
             </div>
+            @if($errors->has("page4_title"))
+            <div class="col-md-6">
+                <div class="alert alert-danger rounded">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        @endif
             
             <button type="submit" class="btn btn-warning">Validez les modifications</button>
         </form>
