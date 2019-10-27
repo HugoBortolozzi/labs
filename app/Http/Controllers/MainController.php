@@ -41,7 +41,10 @@ class MainController extends Controller
         ]);
         $carousel = Carousel::find($id);
 
-        $carousel->img = request('img');
+        $fileName= request()->file('img')->getClientOriginalName();
+       $path= request()->file('img')->storeAs('carousel',$fileName);
+
+       $carousel->img = "storage/".$path;
 
         $carousel->save();
 

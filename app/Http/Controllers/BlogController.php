@@ -131,12 +131,10 @@ class BlogController extends Controller
     public function updateArticle($id,Request $request){
         $validate = $request->validate([
             'article_name' => "required",
-            'article_photo' => "required",
             "article_categorie" => "required",
             "article_text1" => "required",
             "article_text2" => "required",
             "article_text3" => "required",
-            "author_photo" => "required",
             "author_description" => "required",
         ]);
 
@@ -154,7 +152,6 @@ class BlogController extends Controller
         }else{
             $article->photo = $article->photo;
         }
-        // $article->photo = request()->file('article_photo');
 
         $article->categorie_id = request()->input('article_categorie');
         $article->text1 = request()->input('article_text1');
@@ -171,7 +168,6 @@ class BlogController extends Controller
         }
 
         
-        // $article->author_photo = request()->file('author_photo');
         $article->author_description = request()->input('author_description');
         $article->user_id = auth()->user()->id;
 

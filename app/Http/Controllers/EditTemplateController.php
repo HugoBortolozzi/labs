@@ -24,8 +24,6 @@ class EditTemplateController extends Controller
     public function banner(Request $request){
         $validate = $request->validate([
             'main_title' => "required",
-            'nav_logo' => "required",
-            "banner_logo" => "required",
             "banner_text" => "required",
         ]);
 
@@ -34,11 +32,25 @@ class EditTemplateController extends Controller
         $template->save();
 
         $template = Template::find(2);
-        $template->contain = request()->input('nav_logo');
+        if(request()->file('nav_logo')){
+            $fileName= request()->file('nav_logo')->getClientOriginalName();
+            $path= request()->file('nav_logo')->storeAs('template',$fileName);
+
+            $template->contain = "storage/".$path;
+        }else{
+            $template->contain = $template->contain;
+        }
         $template->save();
 
         $template = Template::find(3);
-        $template->contain = request()->input('banner_logo');
+        if(request()->file('banner_logo')){
+            $fileName= request()->file('banner_logo')->getClientOriginalName();
+            $path= request()->file('banner_logo')->storeAs('template',$fileName);
+
+            $template->contain = "storage/".$path;
+        }else{
+            $template->contain = $template->contain;
+        }
         $template->save();
 
         $template = Template::find(4);
@@ -97,13 +109,17 @@ class EditTemplateController extends Controller
         }
 
         $template = Template::find(12);
+
         if(request()->file('sec1_video_img')){
-            $template->contain = request()->input('sec1_video_img');
-            $template->save();
+            $fileName= request()->file('sec1_video_img')->getClientOriginalName();
+            $path= request()->file('sec1_video_img')->storeAs('template',$fileName);
+
+            $template->contain = "storage/".$path;
         }else{
             $template->contain = $template->contain;
-            $template->save();
+            
         }
+        $template->save();
         
 
         $messageSec1 = $template ? "1ère section mise à jour" : "Erreur lors de la modification de la 1ère section";
@@ -342,7 +358,6 @@ class EditTemplateController extends Controller
             'page2_sec2_title_span' => "required",
             "page2_sec2_title_part2" => "required",
             "page2_sec2_button" => "required",
-            "page2_sec2_logo" => "required",
         ]);
 
         $template = Template::find(38);
@@ -362,7 +377,14 @@ class EditTemplateController extends Controller
         $template->save();
 
         $template = Template::find(52);
-        $template->contain = request()->input('page2_sec2_logo');
+        if(request()->file('page2_sec2_logo')){
+            $fileName= request()->file('page2_sec2_logo')->getClientOriginalName();
+            $path= request()->file('page2_sec2_logo')->storeAs('template',$fileName);
+
+            $template->contain = "storage/".$path;
+        }else{
+            $template->contain = $template->contain;
+        }
         $template->save();
 
         $messageSec2 = $template ? "2ème section mise à jour" : "erreur lors de la modification de la 2ème section";
@@ -403,7 +425,6 @@ class EditTemplateController extends Controller
             "page3_widget4_name" => "required",
             "page3_widget4_contain" => "required",
             "page3_widget5_name" => "required",
-            "page3_widget5_img" => "required",
             "page3_widget5_path_link" => "required",
         ]);
 
@@ -432,7 +453,14 @@ class EditTemplateController extends Controller
         $template->save();
 
         $template = Template::find(49);
-        $template->contain = request()->input('page3_widget5_img');
+        if(request()->file('page3_widget5_img')){
+            $fileName= request()->file('page3_widget5_img')->getClientOriginalName();
+            $path= request()->file('page3_widget5_img')->storeAs('template',$fileName);
+
+            $template->contain = "storage/".$path;
+        }else{
+            $template->contain = $template->contain;
+        }
         $template->save();
 
         $template = Template::find(50);

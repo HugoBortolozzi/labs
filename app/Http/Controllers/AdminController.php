@@ -177,14 +177,20 @@ class AdminController extends Controller
     public function updateTestimonial($id,Request $request){
         $validate = $request->validate([
             'testimonial_name' => "required",
-            'testimonial_photo' => "required",
             "testimonial_text" => "required",
             "testimonial_post" => "required",
         ]);
         $testimonial = Testimonial::find($id);
 
         $testimonial->name = request()->input('testimonial_name');
-        $testimonial->photo = request('testimonial_photo');
+        if(request()->file('testimonial_photo')){
+            $fileName= request()->file('testimonial_photo')->getClientOriginalName();
+            $path= request()->file('testimonial_photo')->storeAs('testimonial',$fileName);
+
+            $testimonial->photo = "storage/".$path;
+        }else{
+            $testimonial->photo = $testimonial->photo;
+        }
         $testimonial->text = request()->input('testimonial_text');
         $testimonial->post = request()->input('testimonial_post');
 
@@ -201,14 +207,18 @@ class AdminController extends Controller
     public function createTestimonial(Request $request){
         $validate = $request->validate([
             'testimonial_name' => "required",
-            'testimonial_photo' => "required",
             "testimonial_text" => "required",
             "testimonial_post" => "required",
+            "testimonial_photo" => "required",
         ]);
         $testimonial = new Testimonial;
 
         $testimonial->name = request()->input('testimonial_name');
-        $testimonial->photo = request()->input('testimonial_photo');
+        
+        $fileName= request()->file('testimonial_photo')->getClientOriginalName();
+        $path= request()->file('testimonial_photo')->storeAs('testimonial',$fileName);
+        $testimonial->photo = "storage/".$path;
+        
         $testimonial->text = request()->input('testimonial_text');
         $testimonial->post = request()->input('testimonial_post');
 
@@ -235,14 +245,20 @@ class AdminController extends Controller
     public function updateTeam($id,Request $request){
         $validate = $request->validate([
             'team_name' => "required",
-            'team_photo' => "required",
             "team_post" => "required",
         ]);
 
         $team = Team::find($id);
 
         $team->name = request()->input('team_name');
-        $team->photo = request()->input('team_photo');
+        if(request()->file('team_photo')){
+            $fileName= request()->file('team_photo')->getClientOriginalName();
+            $path= request()->file('team_photo')->storeAs('team',$fileName);
+
+            $team->photo = "storage/".$path;
+        }else{
+            $team->photo = $team->photo;
+        }
         $team->post = request()->input('team_post');
 
         $team->save();
@@ -275,14 +291,18 @@ class AdminController extends Controller
     public function createTeam(Request $request){
         $validate = $request->validate([
             'team_name' => "required",
-            'team_photo' => "required",
             "team_post" => "required",
+            "team_photo" => "required",
         ]);
         
         $team = new Team;
 
         $team->name = request()->input('team_name');
-        $team->photo = request()->input('team_photo');
+    
+        $fileName= request()->file('team_photo')->getClientOriginalName();
+        $path= request()->file('team_photo')->storeAs('team',$fileName);
+        $team->photo = "storage/".$path;
+        
         $team->post = request()->input('team_post');
 
         $team->save();
@@ -325,18 +345,20 @@ class AdminController extends Controller
         $validate = $request->validate([
             'projet_name' => "required",
             'projet_text' => "required",
-            "team_projet_photopost" => "required",
         ]);
 
         $projet = Projet::find($id);
 
         $projet->name = request()->input('projet_name');
         $projet->text= request()->input('projet_text');
+        if(request()->file('projet_photo')){
+            $fileName= request()->file('projet_photo')->getClientOriginalName();
+            $path= request()->file('projet_photo')->storeAs('projet',$fileName);
 
-        $fileName= request()->file('projet_photo')->getClientOriginalName();
-        $path= request()->file('projet_photo')->storeAs('projet',$fileName);
-
-        $projet->photo = "storage/".$path;
+            $projet->photo = "storage/".$path;
+        }else{
+            $projet->photo = $projet->photo;
+        }
 
         $projet->save();
 
@@ -362,18 +384,18 @@ class AdminController extends Controller
         $validate = $request->validate([
             'projet_name' => "required",
             'projet_text' => "required",
-            "team_projet_photopost" => "required",
+            'projet_photo' => "required",
         ]);
 
         $projet = new Projet;
 
         $projet->name = request()->input('projet_name');
         $projet->text= request()->input('projet_text');
-
+        
         $fileName= request()->file('projet_photo')->getClientOriginalName();
-        $path= request()->file('projet_photo')->storeAs('projet',$fileName);
-
+        $path= request()->file('projet_photo')->storeAs('projet',$fileName); 
         $projet->photo = "storage/".$path;
+        
 
         $projet->save();
 

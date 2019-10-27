@@ -53,7 +53,7 @@
         @if($template->id == 2)
         <div class="form-group">
             <label for="">{{$template->name}}</label>
-            <input class="form-control" type="text" name="nav_logo" value="{{$template->contain}}" id="">
+            <input class="form-control" type="file" name="nav_logo" value="" id="">
         </div>
         @if($errors->has("nav_logo"))
         <div class="col-md-6">
@@ -71,7 +71,7 @@
         @if($template->id == 3)
         <div class="form-group">
             <label for="">{{$template->name}}</label>
-            <input class="form-control" type="text" name="banner_logo" value="{{$template->contain}}" id="">
+            <input class="form-control" type="file" name="banner_logo" value="" id="">
         </div>
         @if($errors->has("banner_logo"))
         <div class="col-md-6">

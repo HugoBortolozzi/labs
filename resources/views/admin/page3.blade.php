@@ -173,7 +173,7 @@
             @if($template->id == 49)
             <div class="form-group">
                 <label for="">{{$template->name}}</label>
-                <input class="form-control" type="text" name="page3_widget5_img" value="{{$template->contain}}" id="">
+                <input class="form-control" type="file" name="page3_widget5_img" value="" id="">
             </div>
             @if($errors->has("page3_widget5_img"))
         <div class="col-md-6">
