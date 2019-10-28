@@ -18,10 +18,18 @@ use App\Link;
 class BlogController extends Controller
 {
     public function blog(){
-        $templates = Template::all();
-        $categories = Categorie::all();
-        $articles = Article::paginate(3);
-        $tags = Tag::all();
+        $templates = Template::all();       
+        if(count(Categorie::all())>4){
+            $categories = Categorie::all()->random(5);
+        }else{
+            $categories = Categorie::all();
+        }
+        $articles = Article::where("validate","oui")->paginate(3);
+        if(count(Tag::all())>7){
+            $tags = Tag::all()->random(8);
+        }else{
+            $tags = Tag::all();
+        }
         $links = Link::all();    
         
         return view('blog',compact("templates","categories",'articles',"tags","links"));
@@ -30,50 +38,82 @@ class BlogController extends Controller
         $count = Comment::where('article_id',$id)->count();
         $comments = Comment::where('article_id',$id)->get();
         $article = Article::find($id);
-        $templates = Template::all();
-        $categories = Categorie::all();
-        $tags = Tag::all();
-        $author = User::where('id',$article->user_id);
-        $links = Link::all();
-        return view('blog-post',compact('templates',"categories","article","comments","author","count","tags","links"));
+        if($article->validate == "oui"){
+            $templates = Template::all();
+            if(count(Categorie::all())>4){
+                $categories = Categorie::all()->random(5);
+            }else{
+                $categories = Categorie::all();
+            }
+            if(count(Tag::all())>7){
+                $tags = Tag::all()->random(8);
+            }else{
+                $tags = Tag::all();
+            }
+            $author = User::where('id',$article->user_id);
+            $links = Link::all();
+            return view('blog-post',compact('templates',"categories","article","comments","author","count", "tags","links"));
+        }else{
+            $fail = "Cet article n'est pas disponible actuellement pour les utilisateurs";
+            return view ('noArticle',compact("templates","categories","articles","tags","links","fail"));
+        }
+        
     }
     public function categories($id){
-        $articles = Article::where('categorie_id',$id)->paginate(3);
+        $articles = Article::where('categorie_id',$id)->where('validate',"oui")->paginate(3);
         $templates = Template::all();
-        $categories = Categorie::all();
-        $tags = Tag::all();
+        if(count(Categorie::all())>4){
+            $categories = Categorie::all()->random(5);
+        }else{
+            $categories = Categorie::all();
+        }
+        if(count(Tag::all())>7){
+            $tags = Tag::all()->random(8);
+        }else{
+            $tags = Tag::all();
+        }
         $links = Link::all();
 
         if($articles->count() == 0){
-            return view ('noArticle',compact("templates","categories","articles","tags","links"));
+            $fail = "Aucun article n'appartient à cette catégorie";
+            return view ('noArticle',compact("templates","categories","articles","tags","links","fail"));
         }
 
         return view('blog',compact("templates","categories",'articles',"tags","links"));
     }
     public function tags($id){
         $links = Link::all();
-        $tags = Tag::all();
+        if(count(Tag::all())>7){
+            $tags = Tag::all()->random(8);
+        }else{
+            $tags = Tag::all();
+        }
         $templates = Template::all();
-        $categories = Categorie::all();
+        if(count(Categorie::all())>4){
+            $categories = Categorie::all()->random(5);
+        }else{
+            $categories = Categorie::all();
+        }
 
         $searchs = Link::where('tag_id',$id)->get();
 
         $articles = [];
 
         foreach($searchs as $search){
-            $article = Article::find($search->article_id);
+            $article = Article::where('validate',"oui")->find($search->article_id);
             array_push($articles,$article);
         }
 
         if(count($articles) == 0){
-            return view ('noArticle',compact("templates","categories","articles","tags","links"));
+            $fail = "Aucun article ne porte ce tag";
+            return view ('noArticle',compact("templates","categories","articles","tags","links","fail"));
         }else{
             return view('tagArticles',compact("templates","categories",'articles',"tags","links"));
         }       
     }
     public function search(){
         $search = request()->input('search');
-        $searchArticles = Article::all();
+        $searchArticles = Article::where("validate","oui")->get();
         $articles = [];
         foreach($searchArticles as $searchArticle){
             if(stripos($searchArticle,$search)){
@@ -82,12 +122,21 @@ class BlogController extends Controller
         };
 
         $templates = Template::all();
-        $categories = Categorie::all();
-        $tags = Tag::all();
+        if(count(Categorie::all())>4){
+            $categories = Categorie::all()->random(5);
+        }else{
+            $categories = Categorie::all();
+        }
+        if(count(Tag::all())>7){
+            $tags = Tag::all()->random(8);
+        }else{
+            $tags = Tag::all();
+        }
         $links = Link::all();
 
         if(count($articles) == 0){
-            return view ('noArticle',compact("templates","categories","articles","tags","links"));
+            $fail = "Aucun article ne correspond à votre recherche";
+            return view ('noArticle',compact("templates","categories","articles","tags","links","fail"));
         }else{
             return view('tagArticles',compact("templates","categories",'articles',"tags","links"));
         }   
@@ -97,14 +146,37 @@ class BlogController extends Controller
 
         return view ('admin/authorArticle',compact('users'));
     }
-    public function viewArticle(){
-        $user = auth()->user();
-        $articles = Article::where('user_id',$user->id)->paginate(3);
-        // $user = User::find();
+    public function viewArticle($id){
+        $user = User::find($id);
+        $articles = Article::where('user_id',$user->id)->where('validate',"oui")->paginate(3);
+        
         $tags = Tag::all();
         $links = Link::all();
 
         return view ('admin/myArticles',compact('articles',"user","tags",'links'));
+    }
+    public function notValid($id){
+        $user = User::find($id);
+        $tags = Tag::all();
+        $links = Link::all();
+        $articles = Article::where('user_id',$user->id)->where('validate',"non")->paginate(3);
+        if($user->role == "editeur" && $user->id == auth()->user()->id){
+            return view ('admin/notValid',compact('articles',"user","tags",'links'));
+        }else if (auth()->user()->role == "admin"){
+            return view ('admin/notValid',compact('articles',"user","tags",'links'));
+        }else{
+            return redirect()->back();
+        }
+    }
+    public function validArticle($id){
+        $article = Article::find($id);
+        $article->validate = "oui";
+        $article->save();
+
+        $message = $article ? "L'article a été validé. Il est maintenant visible par les utilisateurs" : "Erreur lors de la validation de l'article";
+        session()->flash('message',$message);
+
+        return redirect()->back();
     }
     public function newArticle(){
         $categories = Categorie::all();
@@ -113,20 +185,37 @@ class BlogController extends Controller
     }
     public function deleteArticle($id){
         $article = Article::find($id);
-        $article->delete();
+        if($article->user_id === auth()->user()->id){
+            $article->delete();
+            $message = $article ? "Votre article a bien été supprimé.": "Erreur lors de la suppression de votre article";
+            session()->flash('message',$message);
+    
+        }else{
+            $message = "Erreur. Cet article ne vous appartient pas";
+            session()->flash('message',$message);
+    
+        }
+        
         return redirect()->back();
     }
     public function editArticle($id){
         $article = Article::find($id);
-        $articleTags = $article->links()->get();
-        $categories = Categorie::all();
-        $allTags = Tag::all();
+        if($article->user_id === auth()->user()->id){
+            $articleTags = $article->links()->get();
+            $categories = Categorie::all();
+            $allTags = Tag::all();
 
-        $noTags = $allTags->diff($articleTags);
-        $articleTags = $allTags->diff($noTags);
-        
+            $noTags = $allTags->diff($articleTags);
+            $articleTags = $allTags->diff($noTags);
+            
 
-        return view ('admin/crud/editArticle',compact('article',"categories","articleTags","noTags"));
+            return view ('admin/crud/editArticle',compact('article',"categories","articleTags","noTags"));
+        }else{
+            $message = "Erreur. Cet article ne vous appartient pas";
+            session()->flash('message',$message);
+            
+            return redirect()->back();
+        }
     }
     public function updateArticle($id,Request $request){
         $validate = $request->validate([
@@ -139,63 +228,73 @@ class BlogController extends Controller
         ]);
 
         $article = Article::find($id);
-        $tags = Tag::all();
-        $links = Link::all();
+        if($article->user_id === auth()->user()->id){
+            $tags = Tag::all();
+            $links = Link::all();
 
-        $article->name = request()->input('article_name');
+            $article->name = request()->input('article_name');
 
-        if(request()->file('article_photo')){
-            $fileName= request()->file('article_photo')->getClientOriginalName();
-            $path= request()->file('article_photo')->storeAs('article',$fileName);
+            if(request()->file('article_photo')){
+                $fileName= request()->file('article_photo')->getClientOriginalName();
+                $path= request()->file('article_photo')->storeAs('article',$fileName);
 
-            $article->photo = "storage/".$path;
-        }else{
-            $article->photo = $article->photo;
-        }
+                $article->photo = "storage/".$path;
+            }else{
+                $article->photo = $article->photo;
+            }
 
-        $article->categorie_id = request()->input('article_categorie');
-        $article->text1 = request()->input('article_text1');
-        $article->text2 = request()->input('article_text2');
-        $article->text3 = request()->input('article_text3');
+            $article->categorie_id = request()->input('article_categorie');
+            $article->text1 = request()->input('article_text1');
+            $article->text2 = request()->input('article_text2');
+            $article->text3 = request()->input('article_text3');
 
-        if(request()->file('author_photo')){
-            $fileName= request()->file('author_photo')->getClientOriginalName();
-            $path= request()->file('author_photo')->storeAs('article',$fileName);
+            if(request()->file('author_photo')){
+                $fileName= request()->file('author_photo')->getClientOriginalName();
+                $path= request()->file('author_photo')->storeAs('article',$fileName);
 
-            $article->author_photo = "storage/".$path;
-        }else{
-            $article->author_photo = $article->author_photo;
-        }
+                $article->author_photo = "storage/".$path;
+            }else{
+                $article->author_photo = $article->author_photo;
+            }
 
+
+            $article->author_description = request()->input('author_description');
+            $article->user_id = auth()->user()->id;
+
+            $article->validate = "non";
+
+            $article->save();
+
+            $article->links()->detach();
+
+
+            foreach($tags as $tag){
+                if(request($tag->name)){
+                    // $link = new Link;
+                    // $link->tag_id = request()->input($tag->name);
+                    // $link->article_id = $article->id;
+                    // $link->save();
+                    $article->links()->attach($tag);
+                }       
+            };
+
+
+            $message = $article ? "Votre article a bien été modifié. IL doit maintenant attendre la validation d'un administateur" : "Erreur lors de la modification de votre article";
+            session()->flash('message',$message);
+
+
+            if(auth()->user()->role === "admin"){
+                return redirect()->route('adminArticle');
+            }else{
+                return redirect()->route('myArticles');
+            }
+            }else{
+                $message = "Erreur. Cet article ne vous appartient pas";
+                session()->flash('message',$message);
+
+                return redirect()->back();
+            }
         
-        $article->author_description = request()->input('author_description');
-        $article->user_id = auth()->user()->id;
-
-        $article->save();
-
-        $article->links()->detach();
-        
-
-        foreach($tags as $tag){
-            if(request($tag->name)){
-                // $link = new Link;
-                // $link->tag_id = request()->input($tag->name);
-                // $link->article_id = $article->id;
-                // $link->save();
-                $article->links()->attach($tag);
-            }       
-        };
-        
-
-        $message = $article ? "Votre article a bien été modifié. IL doit maintenant attendre la validation d'un administateur" : "Erreur lors de la modification de votre article";
-        session()->flash('message',$message);
-
-
-        if(auth()->user()->role === "admin"){
-            return redirect()->route('adminArticle');
-        }else{
-            return redirect()->route('myArticles');
-        }
     }
     public function createArticle(Request $request){
         $validate = $request->validate([
@@ -230,6 +329,8 @@ class BlogController extends Controller
         $article->author_photo = "storage/".$path;
         $article->author_description = request()->input('author_description');
         $article->user_id = auth()->user()->id;
+
+        $article->validate = "non";
 
         $article->save();
 

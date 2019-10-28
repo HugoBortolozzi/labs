@@ -11,12 +11,31 @@ use App\Template;
 class ServiceController extends Controller
 {
     public function services(){
-        $allServices = Service::all();
-        $allProjets = Projet::all();
-        $services = $allServices->take(-6);
-
-        $firstServices = $services->take(3);
-        $lastServices = $services->take(-3);
+        if(count(Service::all())>8){
+            $allServices = Service::all()->random(9);
+        }else{
+            $allServices = Service::all();
+        }
+        if(count(Projet::all())>2){
+            $allProjets = Projet::all()->take(-3);
+        }else{
+            $allProjets = Projet::all();
+        }
+        if(count(Service::all())>5){
+            $services = Service::all()->take(-6);
+            $firstServices = $services->take(3);
+            $lastServices = $services->take(-3);
+        }else{
+            $services = Service::all();
+            $check = count($services);
+            if($check % 2 == 0){
+                $firstServices = $services->take($check/2);
+                $lastServices = $services->take(-$check/2);
+            }else{
+                $firstServices = $services->take((($check-1)/2)+1);
+                $lastServices = $services->take(-($check-1)/2);
+            }
+        }
 
         $templates = Template::all();
         return view ('services',compact('allServices',"allProjets","templates","firstServices","lastServices"));

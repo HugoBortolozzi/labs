@@ -17,16 +17,30 @@
             
         </div>
         <div class="row">
-            @foreach($teams as $team)
             <!-- single member -->
             <div class="col-sm-4">
                     <div class="member">
-                        <img src="{{$team->photo}}" alt="">
-                        <h2>{{$team->name}}</h2>
-                        <h3>{{$team->post}}</h3>
+                        <img src="{{$team1->photo}}" alt="">
+                        <h2>{{$team1->name}}</h2>
+                        <h3>{{$team1->post}}</h3>
                     </div>
                 </div>
-            @endforeach
+                <!-- single member -->
+            <div class="col-sm-4">
+                <div class="member">
+                    <img src="{{$team2->photo}}" alt="">
+                    <h2>{{$team2->name}}</h2>
+                    <h3>{{$team2->post}}</h3>
+                </div>
+            </div>
+            <!-- single member -->
+            <div class="col-sm-4">
+                <div class="member">
+                    <img src="{{$team3->photo}}" alt="">
+                    <h2>{{$team3->name}}</h2>
+                    <h3>{{$team3->post}}</h3>
+                </div>
+            </div>
         </div>
     </div>
 </div>

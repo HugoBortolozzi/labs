@@ -30,17 +30,7 @@
                         @method("PATCH")
                         <input type="text" value="{{$categorie->name}}" name="categorie_name" id="">
                         <td><button class="btn btn-primary" type="submit">Modifier</button></td>
-                        @if($errors->has("categorie_name"))
-                        <div class="col-md-6">
-                            <div class="alert alert-danger rounded">
-                                <ul>
-                                    @foreach($errors->all() as $error)
-                                        <li>{{$error}}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    @endif       
+                        
                     </td></form>
                     <td><a href="/admin/categories/{{$categorie->id}}/delete" class="btn btn-danger">Supprimer</a></td>
                 </tr>
@@ -52,5 +42,16 @@
       </div>
       <!-- /.box -->
     </div>
+    @if($errors->has("categorie_name"))
+                        <div class="col-md-6">
+                            <div class="alert alert-danger rounded">
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>{{$error}}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    @endif       
   </div>
 @stop

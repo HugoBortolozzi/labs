@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use  Illuminate\Database\Eloquent\Collection;
+
 use App\Carousel;
 use App\Testimonial;
 use App\Service;
@@ -17,13 +19,41 @@ class MainController extends Controller
     public function main(){
         $carousels = Carousel::all();
         $testimonials = Testimonial::all();
-        $allServices = Service::all();
-        $randomServices = Service::all()->random(3);      
+        if(count(Service::all())>8){
+            $allServices = Service::all()->random(9);
+        }else{
+            $allServices = Service::all();
+        }
+        if(count(Service::all())>2){
+            $randomServices = Service::all()->random(3); ;
+        }else{
+            $randomServices = Service::all();
+        }    
 
-        $teams = Team::all();
+        // $teams = Team::all();
+        if(count(Team::all())>2){
+            $teams = Team::where("leader","non")->get()->random(2);
+            $team1 = $teams->take(-1)->random();
+            $team3 = $teams->take(1)->random();
+        }else if(count(Team::all())==2){
+            $team1 = Team::where("leader","non")->random();
+            $team3->name = "John Doe";
+            $team3->post = "Unknown";
+            $team3->photo = "img/team/john-doe-m4avhdgd3zuctzyxm1gtdulz1hvck28fatlza51c7k.png";
+        }else{
+            $team1->name = "John Doe";
+            $team1->post = "Unknown";
+            $team1->photo = "img/team/john-doe-m4avhdgd3zuctzyxm1gtdulz1hvck28fatlza51c7k.png";
+            $team3->name = "John Doe";
+            $team3->post = "Unknown";
+            $team3->photo = "img/team/john-doe-m4avhdgd3zuctzyxm1gtdulz1hvck28fatlza51c7k.png";
+        }
+
+
+        $team2 = Team::where("leader","oui")->get()->random();
         
         $templates = Template::all();
-        return view ("main", compact("carousels","testimonials","allServices","teams","templates","randomServices"));
+        return view ("main", compact("carousels","testimonials","allServices","team1","team2","team3","templates","randomServices"));
     }
     public function contact(){
 

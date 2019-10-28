@@ -37,6 +37,8 @@ Route::get('/user/profil',"AdminController@myProfil")->middleware('auth')->name(
 Route::get('/user/profil/edit',"AdminController@editProfil")->middleware('auth')->name('editProfil');
 Route::post('/user/profil/update','AdminController@updateProfil')->middleware('auth');
 
+Route::get('/editeur/articles/{id}/notValid',"BlogController@notValid")->middleware('auth',"user");
+
 Route::get('/editeur/myArticles',"AdminController@myArticles")->middleware('auth','user')->name('myArticles');
 
 // Routes de l'admin
@@ -157,6 +159,8 @@ Route::post('/admin/articles/categories/create',"BlogController@createCategorie"
 
 Route::get('/admin/articles/tags','BlogController@newTag')->middleware('auth',"user");
 Route::post('/admin/articles/tags/create',"BlogController@createTag")->middleware('auth',"user");
+
+Route::patch('/admin/articles/{id}/valided',"BlogController@validArticle")->middleware('auth',"admin");
 
 // Routes pour les catégories
 

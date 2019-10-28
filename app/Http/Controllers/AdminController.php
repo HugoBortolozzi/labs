@@ -154,7 +154,11 @@ class AdminController extends Controller
     // Partie Testimonial
 
     public function testimonials(){
-        $testimonials = Testimonial::all();
+        if(count(Testimonial::all())>5){
+            $testimonials = Testimonial::all()->random(6);;
+        }else{
+            $testimonials = Testimonial::all();
+        }
 
         return view ('admin/testimonials',compact('testimonials'));
     }

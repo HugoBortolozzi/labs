@@ -26,13 +26,14 @@
               <th>ID</th>
               <th>Nom de l'auteur</th>
               <th>Articles de l'auteur (nombres)</th>
+              <th>Articles en attente de validation (nombres)</th>
             </tr>
             @foreach($users as $user)
                 <tr>
                     <td>{{$user->id}}</td>
                     <td>{{$user->name}}</td>
-                    <td><p>{{$user->articles()->count()}}</p></td>
-
+                    <td><p>{{$user->validNumbers()}}</p></td>
+                    <td><p>{{$user->noValidNumbers()}}</p></td>
                     <td><a href="/admin/articles/{{$user->id}}/articles" class="btn btn-primary">Voir les articles</a></td>
                 </tr>
             @endforeach
