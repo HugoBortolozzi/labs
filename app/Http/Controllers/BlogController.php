@@ -353,7 +353,7 @@ class BlogController extends Controller
     }
     public function createCategorie(Request $request){
         $validate = $request->validate([
-            'categorie_name' => "required",
+            'categorie_name' => "required | unique:categories,name",
         ]);
         $categorie = new Categorie;
 
@@ -371,7 +371,7 @@ class BlogController extends Controller
     }
     public function editCategorie($id,Request $request){
         $validate = $request->validate([
-            'categorie_name' => "required",
+            'categorie_name' => "required | unique:categories,name",
         ]);
 
         $categorie = Categorie::find($id);
@@ -407,7 +407,7 @@ class BlogController extends Controller
     }
     public function editTag($id,Request $request){
         $validate = $request->validate([
-            'tag_name' => "required",
+            'tag_name' => "required | unique:tags,name",
         ]);
 
         $tag = Tag::find($id);
@@ -442,7 +442,7 @@ class BlogController extends Controller
     }
     public function createTag(Request $request){
         $validate = $request->validate([
-            'tag_name' => "required",
+            'tag_name' => "required | unique:tags,name",
         ]);
 
         $tag = new Tag;
