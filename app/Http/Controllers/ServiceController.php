@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Collection;
+
 use App\Service;
 use App\Projet;
 
@@ -11,11 +14,7 @@ use App\Template;
 class ServiceController extends Controller
 {
     public function services(){
-        if(count(Service::all())>8){
-            $allServices = Service::all()->random(9);
-        }else{
-            $allServices = Service::all();
-        }
+        $allServices = Service::paginate(9);
         if(count(Projet::all())>2){
             $allProjets = Projet::all()->take(-3);
         }else{

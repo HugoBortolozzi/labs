@@ -13,7 +13,12 @@ use App\Article;
 use App\Comment;
 use App\Tag;
 use App\Link;
+use App\Newsletter;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ArticleMail;
+use App\Mail\NewArticleMail;
+use App\Mail\ValidMail;
 
 class BlogController extends Controller
 {
@@ -173,7 +178,31 @@ class BlogController extends Controller
         $article->validate = "oui";
         $article->save();
 
+        $author = User::find($article->user_id);
+
+        $newsletters = Newsletter::all()->random(1);
+
+        foreach($newsletters as $newsletter){
+            $email = new ArticleMail($article);
+
+            Mail::to($newsletter->email)->send($email);
+        }
+
+        $email = new ValidMail($article);
+
+        Mail::to($author->email)->send($email);
+
         $message = $article ? "L'article a été validé. Il est maintenant visible par les utilisateurs" : "Erreur lors de la validation de l'article";
+        session()->flash('message',$message);
+
+        return redirect()->back();
+    }
+    public function unvalidArticle($id){
+        $article = Article::find($id);
+        $article->validate = "non";
+        $article->save();
+
+        $message = $article ? "L'article a été dévalidé. Il n'est maintenant plus visible par les utilisateurs" : "Erreur lors de la dévalidation de l'article";
         session()->flash('message',$message);
 
         return redirect()->back();
@@ -208,7 +237,6 @@ class BlogController extends Controller
             $noTags = $allTags->diff($articleTags);
             $articleTags = $allTags->diff($noTags);
             
-
             return view ('admin/crud/editArticle',compact('article',"categories","articleTags","noTags"));
         }else{
             $message = "Erreur. Cet article ne vous appartient pas";
@@ -278,6 +306,13 @@ class BlogController extends Controller
                 }       
             };
 
+            $author = User::find($article->user_id);
+
+            $email = new NewArticleMail($article,$author);
+
+            $user = User::all()->where('role','admin')->take(1);
+
+            Mail::to($user[0]->email)->send($email);
 
             $message = $article ? "Votre article a bien été modifié. IL doit maintenant attendre la validation d'un administateur" : "Erreur lors de la modification de votre article";
             session()->flash('message',$message);
@@ -342,6 +377,13 @@ class BlogController extends Controller
                 $link->save();
             }       
         };
+
+        $author = User::find($article->user_id);
+
+        $email = new NewArticleMail($article,$author);
+        $user = User::all()->where('role','admin')->take(1);
+        Mail::to($user[0]->email)->send($email);
+
 
         $message = $article ? "Votre article a bien été créé. IL doit maintenant attendre la validation d'un administateur" : "Erreur lors de la création de votre article";
         session()->flash('message',$message);

@@ -161,6 +161,7 @@ Route::get('/admin/articles/tags','BlogController@newTag')->middleware('auth',"u
 Route::post('/admin/articles/tags/create',"BlogController@createTag")->middleware('auth',"user");
 
 Route::patch('/admin/articles/{id}/valided',"BlogController@validArticle")->middleware('auth',"admin");
+Route::patch('/admin/articles/{id}/unvalid',"BlogController@unvalidArticle")->middleware('auth',"admin");
 
 // Routes pour les catégories
 

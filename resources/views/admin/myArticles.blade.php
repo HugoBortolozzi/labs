@@ -48,6 +48,13 @@
                         @endforeach
                       @endforeach</td>
                     <td>{{$user->name}}</td>
+                    @if(auth()->user()->role == "admin")
+                    <form action="/admin/articles/{{$article->id}}/unvalid" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method("PATCH")
+                    <td><button type="submit" class="btn btn-success">Dévalider</button></td>
+                    <form action=""></form>
+                    @endif
                     <td><a href="/admin/articles/{{$article->id}}/delete" class="btn btn-danger">Supprimer</a></td>
                     <td><a href="/admin/articles/{{$article->id}}/edit" class="btn btn-primary">Modifier</a></td>
                 </tr>

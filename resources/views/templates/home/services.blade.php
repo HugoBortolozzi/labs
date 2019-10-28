@@ -30,6 +30,9 @@
                     </div>
                 </div>
             @endforeach
+            <div class="page-pagination">
+                {{$allServices->links()}}
+            </div>
         </div>
         @foreach($templates as $template)
             @if($template->id == 17)

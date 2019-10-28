@@ -12,6 +12,10 @@ use App\Team;
 use App\Message;
 use App\Newsletter;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactMail;
+use App\Mail\NewsletterMail;
+
 use App\Template;
 
 class MainController extends Controller
@@ -19,17 +23,13 @@ class MainController extends Controller
     public function main(){
         $carousels = Carousel::all();
         $testimonials = Testimonial::all();
-        if(count(Service::all())>8){
-            $allServices = Service::all()->random(9);
-        }else{
-            $allServices = Service::all();
-        }
+        $allServices = Service::paginate(9);
         if(count(Service::all())>2){
             $randomServices = Service::all()->random(3); ;
         }else{
             $randomServices = Service::all();
         }    
-
+        
         // $teams = Team::all();
         if(count(Team::all())>2){
             $teams = Team::where("leader","non")->get()->random(2);
@@ -138,8 +138,9 @@ class MainController extends Controller
         session()->flash('message',$message);
 
 
+        $email = new ContactMail($msg);
 
-        // Mail::to('test@gmail.com')->send(new contactMail);
+        Mail::to($msg->email)->send($email);
 
         return redirect()->route('main');
     }
@@ -153,7 +154,9 @@ class MainController extends Controller
         $newsletter->email = request()->input('email');
         $newsletter->save();
 
-        // Mail::to('test@gmail.com')->send(new contactMail);
+        $email = new NewsletterMail();
+
+        Mail::to($newsletter->email)->send($email);
 
         return redirect()->route('main');
     }
