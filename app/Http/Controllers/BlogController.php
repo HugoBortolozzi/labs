@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
 use  Illuminate\Database\Eloquent\Collection;
 
 use App\User;
@@ -23,18 +24,40 @@ use App\Mail\ValidMail;
 class BlogController extends Controller
 {
     public function blog(){
-        $templates = Template::all();       
-        if(count(Categorie::all())>4){
-            $categories = Categorie::all()->random(5);
-        }else{
-            $categories = Categorie::all();
+        $templates = Template::all(); 
+        $categories = [];
+        $allCategories = Categorie::all();
+        foreach($allCategories as $categorie){
+            if($categorie->articles()->count()>0){
+                foreach($categorie->articles as $article){
+                    if($article->validate == "oui"){
+                        array_push($categories,$categorie);
+                        break;
+                    }
+                }
+            }        
+        }  
+        if(count($categories)>5){
+            $categories = $categories->random(5);
+        } 
+        // ligne pas sur à tester
+        $articles = Article::where("validate","oui")->orderBy('id','desc')->paginate(3);
+        $tags = [];
+        $allTags = Tag::all();
+        foreach($allTags as $tag){
+            if($tag->links()->count()>0){
+                foreach($tag->links as $article){
+                    if($article->validate == "oui"){
+                        array_push($tags,$tag);
+                        break;
+                    }
+                } 
+            }
         }
-        $articles = Article::where("validate","oui")->paginate(3);
-        if(count(Tag::all())>7){
-            $tags = Tag::all()->random(8);
-        }else{
-            $tags = Tag::all();
+        if(count($tags)>7){
+            $tags = $tags->random(7);
         }
+        // ligne pas plus sur que l'autre XD
         $links = Link::all();    
         
         return view('blog',compact("templates","categories",'articles',"tags","links"));
@@ -43,40 +66,85 @@ class BlogController extends Controller
         $count = Comment::where('article_id',$id)->count();
         $comments = Comment::where('article_id',$id)->get();
         $article = Article::find($id);
+        $user = User::find($article->user_id);
         if($article->validate == "oui"){
             $templates = Template::all();
-            if(count(Categorie::all())>4){
-                $categories = Categorie::all()->random(5);
-            }else{
-                $categories = Categorie::all();
+            $categories = [];
+            $allCategories = Categorie::all();
+            foreach($allCategories as $categorie){
+                if($categorie->articles()->count()>0){
+                    foreach($categorie->articles as $article){
+                        if($article->validate == "oui"){
+                            array_push($categories,$categorie);
+                            break;
+                        }
+                    }
+                }        
+            }  
+            if(count($categories)>5){
+                $categories = $categories->random(5);
+            } 
+            // ligne pas sur à tester
+            $tags = [];
+            $allTags = Tag::all();
+            foreach($allTags as $tag){
+                if($tag->links()->count()>0){
+                    foreach($tag->links as $article){
+                        if($article->validate == "oui"){
+                            array_push($tags,$tag);
+                            break;
+                        }
+                    } 
+                }
             }
-            if(count(Tag::all())>7){
-                $tags = Tag::all()->random(8);
-            }else{
-                $tags = Tag::all();
+            if(count($tags)>7){
+                $tags = $tags->random(7);
             }
+            // ligne pas plus sur que l'autre XD
             $author = User::where('id',$article->user_id);
             $links = Link::all();
-            return view('blog-post',compact('templates',"categories","article","comments","author","count", "tags","links"));
+            return view('blog-post',compact('templates',"categories","user","article","comments","author","count", "tags","links"));
         }else{
             $fail = "Cet article n'est pas disponible actuellement pour les utilisateurs";
-            return view ('noArticle',compact("templates","categories","articles","tags","links","fail"));
+            return view ('noArticle',compact("templates","categories","user","articles","tags","links","fail"));
         }
         
     }
     public function categories($id){
-        $articles = Article::where('categorie_id',$id)->where('validate',"oui")->paginate(3);
+        $articles = Article::where('categorie_id',$id)->where('validate',"oui")->orderBy('id','desc')->paginate(3);
         $templates = Template::all();
-        if(count(Categorie::all())>4){
-            $categories = Categorie::all()->random(5);
-        }else{
-            $categories = Categorie::all();
+        $categories = [];
+        $allCategories = Categorie::all();
+        foreach($allCategories as $categorie){
+            if($categorie->articles()->count()>0){
+                foreach($categorie->articles as $article){
+                    if($article->validate == "oui"){
+                        array_push($categories,$categorie);
+                        break;
+                    }
+                }
+            }        
+        }  
+        if(count($categories)>5){
+            $categories = $categories->random(5);
+        } 
+        // ligne pas sur à tester
+        $tags = [];
+        $allTags = Tag::all();
+        foreach($allTags as $tag){
+            if($tag->links()->count()>0){
+                foreach($tag->links as $article){
+                    if($article->validate == "oui"){
+                        array_push($tags,$tag);
+                        break;
+                    }
+                } 
+            }
         }
-        if(count(Tag::all())>7){
-            $tags = Tag::all()->random(8);
-        }else{
-            $tags = Tag::all();
+        if(count($tags)>7){
+            $tags = $tags->random(7);
         }
+        // ligne pas plus sur que l'autre XD
         $links = Link::all();
 
         if($articles->count() == 0){
@@ -88,26 +156,57 @@ class BlogController extends Controller
     }
     public function tags($id){
         $links = Link::all();
-        if(count(Tag::all())>7){
-            $tags = Tag::all()->random(8);
-        }else{
-            $tags = Tag::all();
+        $tags = [];
+        $allTags = Tag::all();
+        foreach($allTags as $tag){
+            if($tag->links()->count()>0){
+                foreach($tag->links as $article){
+                    if($article->validate == "oui"){
+                        array_push($tags,$tag);
+                        break;
+                    }
+                } 
+            }
         }
+        if(count($tags)>7){
+            $tags = $tags->random(7);
+        }
+        // ligne pas plus sur que l'autre XD
         $templates = Template::all();
-        if(count(Categorie::all())>4){
-            $categories = Categorie::all()->random(5);
-        }else{
-            $categories = Categorie::all();
-        }
+        $categories = [];
+        $allCategories = Categorie::all();
+        foreach($allCategories as $categorie){
+            if($categorie->articles()->count()>0){
+                foreach($categorie->articles as $article){
+                    if($article->validate == "oui"){
+                        array_push($categories,$categorie);
+                        break;
+                    }
+                }
+            }        
+        }  
+        if(count($categories)>5){
+            $categories = $categories->random(5);
+        } 
+        // ligne pas sur à tester
 
-        $searchs = Link::where('tag_id',$id)->get();
+        // $searchs = Link::where('tag_id',$id)->get();
 
         $articles = [];
 
-        foreach($searchs as $search){
-            $article = Article::where('validate',"oui")->find($search->article_id);
-            array_push($articles,$article);
+        // foreach($searchs as $search){
+        //     $article = Article::where('validate',"oui")->find($search->article_id);
+        //     array_push($articles,$article);
+        // }
+        $searchTag = Tag::find($id);
+        $searchArticles = $searchTag->links;
+        foreach($searchArticles as $article){
+            if($article->validate == "oui"){
+                array_push($articles,$article);
+            }
         }
+
+        $articles = array_reverse($articles);
 
         if(count($articles) == 0){
             $fail = "Aucun article ne porte ce tag";
@@ -127,17 +226,41 @@ class BlogController extends Controller
         };
 
         $templates = Template::all();
-        if(count(Categorie::all())>4){
-            $categories = Categorie::all()->random(5);
-        }else{
-            $categories = Categorie::all();
+        $categories = [];
+        $allCategories = Categorie::all();
+        foreach($allCategories as $categorie){
+            if($categorie->articles()->count()>0){
+                foreach($categorie->articles as $article){
+                    if($article->validate == "oui"){
+                        array_push($categories,$categorie);
+                        break;
+                    }
+                }
+            }        
+        }  
+        if(count($categories)>5){
+            $categories = $categories->random(5);
+        } 
+        // ligne pas sur à tester
+        $tags = [];
+        $allTags = Tag::all();
+        foreach($allTags as $tag){
+            if($tag->links()->count()>0){
+                foreach($tag->links as $article){
+                    if($article->validate == "oui"){
+                        array_push($tags,$tag);
+                        break;
+                    }
+                } 
+            }
         }
-        if(count(Tag::all())>7){
-            $tags = Tag::all()->random(8);
-        }else{
-            $tags = Tag::all();
+        if(count($tags)>7){
+            $tags = $tags->random(7);
         }
+        // ligne pas plus sur que l'autre XD
         $links = Link::all();
+
+        $articles = array_reverse($articles);
 
         if(count($articles) == 0){
             $fail = "Aucun article ne correspond à votre recherche";
@@ -153,18 +276,31 @@ class BlogController extends Controller
     }
     public function viewArticle($id){
         $user = User::find($id);
-        $articles = Article::where('user_id',$user->id)->where('validate',"oui")->paginate(3);
-        
-        $tags = Tag::all();
-        $links = Link::all();
-
-        return view ('admin/myArticles',compact('articles',"user","tags",'links'));
+        if(auth()->user()->role == "admin"){
+            
+            $articles = Article::where('user_id',$user->id)->where('validate',"oui")->orderBy('id','desc')->paginate(3);
+            
+            $tags = Tag::all();
+            $links = Link::all();
+    
+            return view ('admin/myArticles',compact('articles',"user","tags",'links'));
+        }else if (auth()->user()->role == "editeur" && auth()->user()->id == $user->id){
+            $user = User::find($id);
+            $articles = Article::where('user_id',$user->id)->where('validate',"oui")->orderBy('id','desc')->paginate(3);
+            
+            $tags = Tag::all();
+            $links = Link::all();
+    
+            return view ('admin/myArticles',compact('articles',"user","tags",'links'));
+        }else{
+            return redirect()->back();
+        }
     }
     public function notValid($id){
         $user = User::find($id);
         $tags = Tag::all();
         $links = Link::all();
-        $articles = Article::where('user_id',$user->id)->where('validate',"non")->paginate(3);
+        $articles = Article::where('user_id',$user->id)->where('validate',"non")->orderBy('id','desc')->paginate(3);
         if($user->role == "editeur" && $user->id == auth()->user()->id){
             return view ('admin/notValid',compact('articles',"user","tags",'links'));
         }else if (auth()->user()->role == "admin"){
@@ -199,12 +335,12 @@ class BlogController extends Controller
     }
     public function unvalidArticle($id){
         $article = Article::find($id);
-        $article->validate = "non";
-        $article->save();
-
-        $message = $article ? "L'article a été dévalidé. Il n'est maintenant plus visible par les utilisateurs" : "Erreur lors de la dévalidation de l'article";
-        session()->flash('message',$message);
-
+        if(auth()->user()->role == "admin" || auth()->user()->id == $article->user_id){
+            $article->validate = "non";
+            $article->save();       
+            $message = $article ? "L'article a été dévalidé. Il n'est maintenant plus visible par les utilisateurs" : "Erreur lors de la dévalidation de l'article";
+            session()->flash('message',$message);
+        }      
         return redirect()->back();
     }
     public function newArticle(){
@@ -496,22 +632,22 @@ class BlogController extends Controller
     public function newComment($id,Request $request){
         $validate = $request->validate([
             'name' => "required",
-            'email' => "required",
+            'email' => "required |email",
             'subject' => "required",
             'comment' => "required",
         ]);
-        // dd($request);
         $comment = new Comment;
 
         $comment->name = request()->input('name');
         $comment->email = request()->input('email');
         $comment->subject = request()->input('subject');
         $comment->comment = request()->input('comment');
-        $comment->photo = "useless";
+
+        $comment->photo = "img/avatar/01.jpg";
         $comment->article_id = $id;
 
         $comment->save();
 
-        return redirect()->back();
+        return redirect()->to(back()."#com_form");
     }
 }

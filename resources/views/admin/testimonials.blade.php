@@ -43,5 +43,5 @@
       <!-- /.box -->
     </div>
   </div>
-  <a href="/admin/testimonials/newTestimonial" class="btn btn-warning">Rajouter un nouveau service</a>
+  <a href="/admin/testimonials/newTestimonial" class="btn btn-warning">Rajouter un nouveau témoignage</a>
 @stop

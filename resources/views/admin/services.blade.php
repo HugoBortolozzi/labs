@@ -23,14 +23,12 @@
           <table class="table table-hover">
             <tbody>
             <tr>
-              <th>ID</th>
               <th>Logo</th>
               <th>Nom du Service</th>
               <th>Description</th>
             </tr>
             @foreach($services as $service)
                 <tr>
-                    <td>{{$service->id}}</td>
                     <td><i class="{{$service->logo}}"></i></td>
                     <td>{{$service->title}}</td>
                     <td><p>{{$service->text}}</p></td>

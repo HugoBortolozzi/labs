@@ -80,10 +80,10 @@
 						<!-- Post Author -->
 						<div class="author">
 							<div class="avatar">
-								<img src="/{{$article->author_photo}}" alt="">
+								<img src="/{{$user->photo}}" alt="">
 							</div>
 							<div class="author-info">
-								<h2>Lore Williams, <span>Author</span></h2>
+								<h2>{{$user->name}}, <span>Author</span></h2>
 								<p>{{$article->author_description}}</p>
 							</div>
 						</div>
@@ -94,7 +94,6 @@
 								@foreach($comments as $comment)
 								<li>
 										<div class="avatar">
-											{{-- <img src="http://lorempixel.com/400/200/people" alt=""> --}}
 											<img src="/{{$comment->photo}}" alt="">
 										</div>
 										<div class="commetn-text">
@@ -107,7 +106,7 @@
 						</div>
 						<!-- Commert Form -->
 						<div class="row">
-							<div class="col-md-9 comment-from">
+							<div class="col-md-9 comment-from" id="com_form">
 								<h2>Laisser un commentaire</h2>
 								<form class="form-class" action="/articles/{{$article->id}}/newComment" method="POST" enctype="multipart/form-data">
 									@csrf
@@ -127,6 +126,17 @@
 								</form>
 							</div>
 						</div>
+						@if(count($errors))
+						<div class="col-md-6">
+							<div class="alert alert-danger rounded">
+								<ul>
+									@foreach($errors->all() as $error)
+										<li>{{$error}}</li>
+									@endforeach
+								</ul>
+							</div>
+						</div>
+					@endif
 					</div>
 				</div>
 

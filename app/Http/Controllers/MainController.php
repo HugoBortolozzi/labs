@@ -120,7 +120,7 @@ class MainController extends Controller
     public function newMessage(Request $request){
         $validate = $request->validate([
             'name' => "required",
-            'email' => "required",
+            'email' => "required | email",
             "subject" => "required",
             "message" => "required",
         ]);
@@ -142,12 +142,12 @@ class MainController extends Controller
 
         Mail::to($msg->email)->send($email);
 
-        return redirect()->route('main');
+        return redirect()->to(route('main').'#con_form');
     }
 
     public function newsletter(Request $request){
         $validate = $request->validate([
-            'email' => "required",
+            'email' => "required | unique:newsletters,email | email",
         ]);
         $newsletter = new Newsletter;
 
@@ -158,7 +158,7 @@ class MainController extends Controller
 
         Mail::to($newsletter->email)->send($email);
 
-        return redirect()->route('main');
+        return redirect()->back();
     }
 
     // Partie users

@@ -33,7 +33,7 @@ class AdminController extends Controller
     }
     public function myArticles(){
         $user = auth()->user();
-        $articles = Article::where('user_id',$user->id)->paginate(3);
+        $articles = Article::where('user_id',$user->id)->where('validate',"oui")->paginate(3);
         $tags = Tag::all();
         $links = Link::all();
 
@@ -42,12 +42,20 @@ class AdminController extends Controller
     public function updateProfil(Request $request){
         $validate = $request->validate([
             'user_name' => "required",
-            'user_email' => "required",
-
+            'user_email' => "required | email | unique:users,email ",
         ]);
 
         $user = auth()->user();
         $user->name = request()->input('user_name');
+        if(request()->file('user_photo')){
+            $fileName= request()->file('user_photo')->getClientOriginalName();
+            $path= request()->file('user_photo')->storeAs('user',$fileName);
+
+            $user->photo = "storage/".$path;
+        }else{
+            $user->photo = $user->photo;
+        }
+
         $user->email = request()->input('user_email');
         if(request()->input('user_password') && request()->input('confirm_password')){
             if(request()->input('user_password')===request()->input('confirm_password')){
@@ -102,7 +110,7 @@ class AdminController extends Controller
     public function updateUser($id){
         $user = User::find($id);
 
-        if($user = auth()->user()){
+        if($user == auth()->user()){
             $message = "Vous ne pouvez pas modifier votre propre role";
             session()->flash('message',$message);
 
@@ -135,6 +143,16 @@ class AdminController extends Controller
         $user->role = "guest";
         $user->name = request()->input('user_name');
         $user->email = request()->input("user_email");
+
+        if(request()->file('user_photo')){
+            $fileName= request()->file('user_photo')->getClientOriginalName();
+            $path= request()->file('user_photo')->storeAs('user',$fileName);
+
+            $user->photo = "storage/".$path;
+        }else{
+            $user->photo = "img/team/john-doe-m4avhdgd3zuctzyxm1gtdulz1hvck28fatlza51c7k.png";
+        }
+
         if(request()->input('user_password')===request()->input('confirm_password')){
             $user->password = bcrypt(request()->input('user_password'));
             $user->save();
@@ -213,7 +231,7 @@ class AdminController extends Controller
             'testimonial_name' => "required",
             "testimonial_text" => "required",
             "testimonial_post" => "required",
-            "testimonial_photo" => "required",
+            "testimonial_photo" => "required | image",
         ]);
         $testimonial = new Testimonial;
 
@@ -296,7 +314,7 @@ class AdminController extends Controller
         $validate = $request->validate([
             'team_name' => "required",
             "team_post" => "required",
-            "team_photo" => "required",
+            "team_photo" => "required | image",
         ]);
         
         $team = new Team;
@@ -388,7 +406,7 @@ class AdminController extends Controller
         $validate = $request->validate([
             'projet_name' => "required",
             'projet_text' => "required",
-            'projet_photo' => "required",
+            'projet_photo' => "required | image",
         ]);
 
         $projet = new Projet;

@@ -13,12 +13,12 @@
             @method("PATCH")
             <div class="form-group">
                 <label for=""><h4>Changer le nom du projet</h4></label>
-                <input class="form-control" value="{{old('projet_name')}}" name='projet_name' type="text">
+                <input class="form-control" value="{{$projet->name}}" name='projet_name' type="text">
             </div>
 
             <div class="form-group">
-                <label for=""><h4>Changer la description</h4></label>
-                <textarea name="projet_text" id="" cols="75" rows="5">{{old('service_text')}}</textarea>
+                <label for=""><h4>Changer la description</h4></label><br>
+                <textarea name="projet_text" id="" cols="75" rows="5">{{$projet->text}}</textarea>
             </div>
 
             <div class="form-group">

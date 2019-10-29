@@ -23,13 +23,11 @@
           <table class="table table-hover">
             <tbody>
             <tr>
-              <th>ID</th>
               <th>Nom</th>
               <th>email</th>
               <th>rôle</th>
             </tr>          
             <tr>
-                <td>{{$user->id}}</td>
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
                 <td>{{$user->role}}</td>

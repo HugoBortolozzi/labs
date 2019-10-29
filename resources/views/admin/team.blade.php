@@ -27,7 +27,6 @@
           <table class="table table-hover">
             <tbody>
             <tr>
-              <th>ID</th>
               <th>Nom de la personne</th>
               <th>Photo de la personne</th>
               <th>Poste de la personne</th>
@@ -35,7 +34,6 @@
             </tr>
             @foreach($teams as $team)
                 <tr>
-                    <td>{{$team->id}}</td>
                     <td>{{$team->name}}</td>
                     <td><img src="/{{$team->photo}}" alt=""></td>
                     <td><p>{{$team->post}}</p></td>

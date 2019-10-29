@@ -27,7 +27,6 @@
           <table class="table table-hover">
             <tbody>
             <tr>
-              <th>ID</th>
               <th>Nom de l'article</th>
               <th>Photo de l'article</th>
               <th>catégorie de l'article</th>
@@ -39,7 +38,6 @@
             </tr>
             @foreach($articles as $article)
                 <tr>
-                    <td>{{$article->id}}</td>
                     <td>{{$article->name}}</td>
                     <td><img src="/{{$article->photo}}" alt=""></td>
                     <td>{{$article->categorie()->get()[0]->name}}</td>

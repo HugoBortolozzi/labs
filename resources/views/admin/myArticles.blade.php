@@ -27,7 +27,6 @@
           <table class="table table-hover">
             <tbody>
             <tr>
-              <th>ID</th>
               <th>Nom de l'article</th>
               <th>Photo de l'article</th>
               <th>catégorie de l'article</th>
@@ -36,7 +35,6 @@
             </tr>
             @foreach($articles as $article)
                 <tr>
-                    <td>{{$article->id}}</td>
                     <td>{{$article->name}}</td>
                     <td><img src="/{{$article->photo}}" alt=""></td>
                     <td>{{$article->categorie()->get()[0]->name}}</td>
@@ -49,6 +47,13 @@
                       @endforeach</td>
                     <td>{{$user->name}}</td>
                     @if(auth()->user()->role == "admin")
+                    <form action="/admin/articles/{{$article->id}}/unvalid" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method("PATCH")
+                    <td><button type="submit" class="btn btn-success">Dévalider</button></td>
+                    <form action=""></form>
+                    @endif
+                    @if(auth()->user()->role == "editeur" && auth()->user()->id == $user->id)
                     <form action="/admin/articles/{{$article->id}}/unvalid" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method("PATCH")

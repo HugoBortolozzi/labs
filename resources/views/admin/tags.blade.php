@@ -19,12 +19,10 @@
           <table class="table table-hover">
             <tbody>
             <tr>
-              <th>ID</th>
               <th>Nom du tag</th>
             </tr>
             @foreach($tags as $tag)
                 <tr>
-                    <td>{{$tag->id}}</td>
                     <form action="/admin/tags/{{$tag->id}}/edit" method="POST" enctype="multipart/form-data"><td>
                         @csrf
                         @method("PATCH")

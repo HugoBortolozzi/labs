@@ -19,12 +19,10 @@
           <table class="table table-hover">
             <tbody>
             <tr>
-              <th>ID</th>
               <th>Nom de la catégorie</th>
             </tr>
             @foreach($categories as $categorie)
                 <tr>
-                    <td>{{$categorie->id}}</td>
                     <form action="/admin/categories/{{$categorie->id}}/edit" method="POST" enctype="multipart/form-data"><td>
                         @csrf
                         @method("PATCH")

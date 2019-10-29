@@ -115,7 +115,7 @@ Route::get('/admin/testimonials/{id}/delete',"AdminController@deleteTestimonial"
 Route::get('/admin/testimonials/{id}/edit',"AdminController@editTestimonial")->middleware('auth')->middleware('admin');
 Route::patch('/admin/testimonials/{id}/update',"AdminController@updateTestimonial")->middleware('auth')->middleware('admin');
 Route::get('/admin/testimonials/newTestimonial',"AdminController@newTestimonial")->middleware('auth')->middleware('admin');
-Route::post('/admin/testimonials/create',"ServiceController@createTestimonial")->middleware('auth')->middleware('admin');
+Route::post('/admin/testimonials/create',"AdminController@createTestimonial")->middleware('auth')->middleware('admin');
 
 // Routes pour le crud de la team
 
@@ -147,7 +147,7 @@ Route::get('/admin/messages/{id}/delete',"AdminController@deleteMessage")->middl
 Route::post('articles/{id}/newComment',"BlogController@newComment")->middleware('auth','user');
 
 Route::get('/admin/articles',"BlogController@authorArticles")->middleware('auth','admin')->name('adminArticle');
-Route::get('/admin/articles/{id}/articles',"BlogController@viewArticle")->middleware('auth','admin');
+Route::get('/admin/articles/{id}/articles',"BlogController@viewArticle")->middleware('auth','user');
 Route::get('/admin/articles/newArticle',"BlogController@newArticle")->middleware('auth','user')->name('newArticle');
 Route::post('/admin/articles/create',"BlogController@createArticle")->middleware('auth','user');
 Route::get('/admin/articles/{id}/edit',"BlogController@editArticle")->middleware('auth','user');
@@ -161,7 +161,7 @@ Route::get('/admin/articles/tags','BlogController@newTag')->middleware('auth',"u
 Route::post('/admin/articles/tags/create',"BlogController@createTag")->middleware('auth',"user");
 
 Route::patch('/admin/articles/{id}/valided',"BlogController@validArticle")->middleware('auth',"admin");
-Route::patch('/admin/articles/{id}/unvalid',"BlogController@unvalidArticle")->middleware('auth',"admin");
+Route::patch('/admin/articles/{id}/unvalid',"BlogController@unvalidArticle")->middleware('auth',"user");
 
 // Routes pour les catégories
 

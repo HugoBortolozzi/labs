@@ -22,7 +22,7 @@
 
             <div class="form-group">
                 <label for=""><h4>Choisir la description du service</h4></label><br>
-                <textarea name="" id="" cols="75" rows="5">{{old('testimonial_text')}}</textarea>
+                <textarea name="testimonial_text" id="" cols="75" rows="5">{{old('testimonial_text')}}</textarea>
             </div>
 
             <div class="form-group">

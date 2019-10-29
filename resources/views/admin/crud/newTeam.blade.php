@@ -17,7 +17,7 @@
             
             <div class="form-group">
                 <label for=""><h4>Choisir la photo</h4></label>
-                <input class="form-control" name='{{old('team_photo')}}' type="file">
+                <input class="form-control" name='team_photo' type="file">
             </div>
 
             <div class="form-group">

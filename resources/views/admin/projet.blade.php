@@ -19,14 +19,12 @@
           <table class="table table-hover">
             <tbody>
             <tr>
-              <th>ID</th>
               <th>Nom du projet</th>
               <th>Image du projet</th>
               <th>Description du projet</th>
             </tr>
             @foreach($projets as $projet)
                 <tr>
-                    <td>{{$projet->id}}</td>
                     <td><i class="{{$projet->name}}"></i></td>
                     <td><img src="/{{$projet->photo}}" alt=""></td>
                     <td><p>{{$projet->text}}</p></td>

@@ -33,6 +33,11 @@
                 <input class="form-control" type="password" name="confirm_password" value="" id="">
             </div>
 
+            <div class="form-group">
+                <label for=""><h4>Choisir la photo</h4></label>
+                <input class="form-control" name='user_photo' type="file">
+            </div>
+
             <button type="submit" class="btn btn-success">Créer l'utilisateur</button>
         </form>
     </section>
