@@ -31,10 +31,11 @@ class MainController extends Controller
         }    
         
         $teams = Team::all();
+        // dd($teams);
         if(count(Team::all())>2){
-            $teams = Team::where("leader","non")->get()->random(2);
-            $team1 = $teams->take(-1)->random();
-            $team3 = $teams->take(1)->random();
+            $myTeams = Team::where("leader","non")->get()->random(2);
+            $team1 = $myTeams->take(-1)->random();
+            $team3 = $myTeams->take(1)->random();
         }else if(count(Team::all())==2){
             $team1 = Team::where("leader","non")->get();
         }

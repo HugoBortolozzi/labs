@@ -52,7 +52,7 @@ class ServiceController extends Controller
     }
     public function update($id,Request $request){
         $validate = $request->validate([
-            'service_title' => "required",
+            'service_title' => "required | unique:services,title",
             'service_logo' => "required",
             "service_text" => "required",
         ]);
@@ -84,7 +84,7 @@ class ServiceController extends Controller
     }
     public function create(Request $request){
         $validate = $request->validate([
-            'service_title' => "required",
+            'service_title' => "required | unique:services,title",
             'service_logo' => "required",
             "service_text" => "required",
         ]);

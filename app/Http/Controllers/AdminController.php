@@ -365,7 +365,7 @@ class AdminController extends Controller
 
     public function updateProjet($id,Request $request){
         $validate = $request->validate([
-            'projet_name' => "required | unique",
+            'projet_name' => "required | unique:projets,name",
             'projet_text' => "required",
         ]);
 
@@ -404,7 +404,7 @@ class AdminController extends Controller
     }
     public function createProjet(Request $request){
         $validate = $request->validate([
-            'projet_name' => "required | unique",
+            'projet_name' => "required | unique:projets,name",
             'projet_text' => "required",
             'projet_photo' => "required | image",
         ]);
