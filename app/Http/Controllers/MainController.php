@@ -117,7 +117,7 @@ class MainController extends Controller
         $msg = new Message;
 
         $msg->name = request()->input('name');
-        $msg->email = request()->input('email');
+        $msg->email = request()->input('contact_email');
         $msg->subject = request()->input('subject');
         $msg->contain = request()->input('message');
 
@@ -136,16 +136,19 @@ class MainController extends Controller
 
     public function newsletter(Request $request){
         $validate = $request->validate([
-            'email' => "required | unique:newsletters,email | email",
+            'newsletter_email' => "required | email | unique:newsletters,email",
         ]);
         $newsletter = new Newsletter;
 
-        $newsletter->email = request()->input('email');
+        $newsletter->email = request()->input('newsletter_email');
         $newsletter->save();
 
         $email = new NewsletterMail();
 
         Mail::to($newsletter->email)->send($email);
+
+        $messageNewsletter = $newsletter ? "Vous êtes bien inscrit à la newsletter" : "Erreur lors de l'inscription à la newsletter";
+        session()->flash('messageNewsletter',$messageNewsletter);
 
         return redirect()->back();
     }

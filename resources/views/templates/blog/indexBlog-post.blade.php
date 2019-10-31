@@ -94,7 +94,7 @@
 								@foreach($comments as $comment)
 								<li>
 										<div class="avatar">
-											<img src="/{{$comment->photo}}" alt="">
+											<img src="http://lorempixel.com/400/400/people" />
 										</div>
 										<div class="commetn-text">
 											<h3>{{$comment->name}} | 03 nov, 2017 | Reply</h3>

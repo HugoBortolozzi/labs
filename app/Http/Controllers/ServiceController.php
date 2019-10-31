@@ -16,9 +16,9 @@ class ServiceController extends Controller
     public function services(){
         $allServices = Service::paginate(9);
         if(count(Projet::all())>2){
-            $allProjets = Projet::all()->take(-3);
+            $allProjets = Projet::inRandomOrder()->take(-3)->get();
         }else{
-            $allProjets = Projet::all();
+            $allProjets = Projet::inRandomOrder()->get();
         }
         if(count(Service::all())>5){
             $services = Service::all()->take(-6);

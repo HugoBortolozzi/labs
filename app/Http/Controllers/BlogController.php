@@ -484,12 +484,12 @@ class BlogController extends Controller
     public function createArticle(Request $request){
         $validate = $request->validate([
             'article_name' => "required",
-            'article_photo' => "required",
+            'article_photo' => "required | unique",
             "article_categorie" => "required",
             "article_text1" => "required",
             "article_text2" => "required",
             "article_text3" => "required",
-            "author_photo" => "required",
+            "author_photo" => "required | unique",
             "author_description" => "required",
         ]);
 
