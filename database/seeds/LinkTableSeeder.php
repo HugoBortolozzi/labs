@@ -29,10 +29,6 @@ class LinkTableSeeder extends Seeder
         ]);
         Link::create([
             "article_id" => "2",
-            "tag_id" => "4",
-        ]);
-        Link::create([
-            "article_id" => "2",
             "tag_id" => "1",
         ]);
         Link::create([
@@ -41,11 +37,15 @@ class LinkTableSeeder extends Seeder
         ]);
         Link::create([
             "article_id" => "2",
+            "tag_id" => "4",
+        ]);
+        Link::create([
+            "article_id" => "2",
             "tag_id" => "5",
         ]);
         Link::create([
             "article_id" => "3",
-            "tag_id" => "2",
+            "tag_id" => "7",
         ]);    
     }
 }

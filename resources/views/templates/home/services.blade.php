@@ -19,7 +19,7 @@
             @foreach($allServices as $service)
             <!-- single service -->
             <div class="col-md-4 col-sm-6">
-                    <div class="service">
+                    <div class="service" id="services">
                         <div class="icon">
                             <i class="{{$service->logo}}"></i>
                         </div>
@@ -31,7 +31,7 @@
                 </div>
             @endforeach
             <div class="page-pagination">
-                {{$allServices->links()}}
+                {{$allServices->fragment("services")->links()}}
             </div>
         </div>
         @foreach($templates as $template)

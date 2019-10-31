@@ -30,30 +30,19 @@ class MainController extends Controller
             $randomServices = Service::all();
         }    
         
-        // $teams = Team::all();
+        $teams = Team::all();
         if(count(Team::all())>2){
             $teams = Team::where("leader","non")->get()->random(2);
             $team1 = $teams->take(-1)->random();
             $team3 = $teams->take(1)->random();
         }else if(count(Team::all())==2){
-            $team1 = Team::where("leader","non")->random();
-            $team3->name = "John Doe";
-            $team3->post = "Unknown";
-            $team3->photo = "img/team/john-doe-m4avhdgd3zuctzyxm1gtdulz1hvck28fatlza51c7k.png";
-        }else{
-            $team1->name = "John Doe";
-            $team1->post = "Unknown";
-            $team1->photo = "img/team/john-doe-m4avhdgd3zuctzyxm1gtdulz1hvck28fatlza51c7k.png";
-            $team3->name = "John Doe";
-            $team3->post = "Unknown";
-            $team3->photo = "img/team/john-doe-m4avhdgd3zuctzyxm1gtdulz1hvck28fatlza51c7k.png";
+            $team1 = Team::where("leader","non")->get();
         }
-
 
         $team2 = Team::where("leader","oui")->get()->random();
         
         $templates = Template::all();
-        return view ("main", compact("carousels","testimonials","allServices","team1","team2","team3","templates","randomServices"));
+        return view ("main", compact("carousels","testimonials","allServices","teams","team1","team2","team3","templates","randomServices"));
     }
     public function contact(){
 

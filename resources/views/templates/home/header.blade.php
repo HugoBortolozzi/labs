@@ -16,7 +16,7 @@
 			<ul class="menu-list">
 				@foreach($templates as $template)
 					@if($template->id == 1)
-						<li class="active"><a href="/home">{{$template->contain}}</a></li>
+						<li class="active"><a href="/">{{$template->contain}}</a></li>
 					@endif
 					@if($template->id == 37)
 						<li><a href="/services">{{$template->contain}}</a></li>

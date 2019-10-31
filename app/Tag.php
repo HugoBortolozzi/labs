@@ -8,6 +8,7 @@ use App\Link;
 class Tag extends Model
 {
     public function links(){
-        return $this->belongsToMany(Article::class,'links',"article_id","tag_id")->using(Link::class);
+        return $this->belongsToMany(Article::class,'links',"tag_id","article_id")->using(Link::class);
     }
+    
 }

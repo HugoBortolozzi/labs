@@ -160,12 +160,14 @@ class BlogController extends Controller
         $allTags = Tag::all();
         foreach($allTags as $tag){
             if($tag->links()->count()>0){
+                
                 foreach($tag->links as $article){
                     if($article->validate == "oui"){
-                        array_push($tags,$tag);
-                        break;
+                        array_push($tags,$tag); 
+                        break;                 
                     }
-                } 
+                    
+                }
             }
         }
         if(count($tags)>7){
@@ -191,6 +193,7 @@ class BlogController extends Controller
         // ligne pas sur à tester
 
         // $searchs = Link::where('tag_id',$id)->get();
+        $allArticles = Article::where("validate","oui")->get();
 
         $articles = [];
 
@@ -198,11 +201,22 @@ class BlogController extends Controller
         //     $article = Article::where('validate',"oui")->find($search->article_id);
         //     array_push($articles,$article);
         // }
-        $searchTag = Tag::find($id);
-        $searchArticles = $searchTag->links;
-        foreach($searchArticles as $article){
-            if($article->validate == "oui"){
-                array_push($articles,$article);
+        // $searchTag = Tag::find($id);
+        // $searchArticles = $searchTag->links;
+        // dd($searchArticles);
+
+        // foreach($searchArticles as $article){
+        //     if($article->validate == "oui"){
+        //         array_push($articles,$article);
+        //     }
+        // }
+
+        foreach($allArticles as $article){
+            $searchTag = $article->links;
+            foreach($searchTag as $tag){
+                if($tag->id == $id){
+                    array_push($articles,$article);
+                }
             }
         }
 
